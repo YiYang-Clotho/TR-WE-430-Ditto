@@ -1,235 +1,816 @@
 <!DOCTYPE html>
+<!--     <table data-toggle="table">
+            <thead>
+              <tr>
+                <th>User story</th>
+                <th>Acceptance criteria</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td></td>
+                <td></td>
+               
+              </tr>
+            </tbody>
+          </table> -->
 <!--
 	Introspect by TEMPLATED
 	templated.co @templatedco
 	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
 -->
 <html>
-  <head>
-    <title>Generic - Introspect by TEMPLATED</title>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, user-scalable=no"
-    />
-    <link rel="stylesheet" href="assets/css/main.css" />
-  </head>
-  <body>
-    <!-- Header -->
-    <div id="headerDiv"></div>
 
-    <!-- Main -->
-    <section id="main">
-      <div class="inner">
-        <header class="major special">
-          <h1>Cookiez</h1>
-        </header>
-        <!-- <a href="#" class="image fit"><img src="images/pic11.jpg" alt="" /></a> -->
-        <h2>1.Description</h2>
-        <p>
-          In the current Covid-19 epidemic situation in most countries,
-          especially in Australia, people are restricted from going out and that
-          greatly affects the quality of their meals. The project we decided to
-          implement is a food and recipe application that organizes a list of
-          recipes based on the ingredients in the user’s kitchen. It hopes to
-          solve the problem of not knowing how to use the ingredients at home
-          and providing ideas on what to cook it when you have no specific
-          ideas. By doing so, we hope to save million tons of food wastage
-          issue, support user to save money from ordering food from restaurants
-          and provide a user-friendly interface that users of all ages can
-          enjoy.
-          <p><b>High level user story: <br></b> <b> As a</b> user, 
-            I want to know which recipe I can use to cook with ingredients in my pantry and I can order online if I don’t have some of the required ingredients 
-            <b><br> so that </b> I can better prepare daily meals for me and my family and save the time as well. </p>
-        </p>
-        <h2>2.Demonstrable Outcomes</h2>
-        <h3>2.1 Project Motivation</h3>
-        <p>
-          This is an upgrade project from the existing applications. We have
-          found their missing points and decided to improve them with this
-          recipe application project. They are not only suitable for all ages
-          but also provide the best support for them. Other apps like Tasty or
-          Yummly only offer available menus and force users to follow them in
-          order to cook the best food. Our app is pretty much the same, which
-          makes a difference and is also the purpose of the app is to help users
-          find the recipe they want to cook with everything in their pantry.
-        </p>
+<head>
+  <title>Generic - Introspect by TEMPLATED</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+    integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.css" />
+  <link rel="stylesheet" href="assets/css/main.css" />
 
-        <p>
-          This is a project that oriented towards database management. We
-          learned about them in year 1 so we can properly apply it to this
-          project. Plus, this project is about web editing and designing as the
-          main part of this course, therefore, each person needs to develop
-          their own coding and managing skills for each stage of the app
-          development.
-        </p>
-        <h3>2.2 Minimum Viable Features (MVF)</h3>
+</head>
 
-        <ul>
-          <li>
-            <b> Personal account managing system:</b> <br />
-            Users should be able to create new accounts, log in, and log out.
-          </li>
-          <li>
-            <b> Slider:</b> <br />
-            The main page will have a picture slider that shows recommending
-            recipes.
-          </li>
-          <li>
-            <b>Data collection and recommendation </b> <br />
-            On the website, there should be a table to collect the user’s
-            kitchen remains so that suitable dishes can be recommended
-            accordingly.
-          </li>
-          <li>
-            <b>Recipe information:</b> <br />
+<body>
+  <!-- Header -->
+  <div id="headerDiv"></div>
 
-            Below the slider, there will be a list of recipes with pictures.
-            Users can click on the picture for further information.
-          </li>
-          <li>
-            <b> Step-by-step instructions: </b><br />
+  <!-- Main -->
+  <section id="main">
+    <div class="inner">
+      <header class="major special">
+        <h1>Cookiez</h1>
+      </header>
+      <!-- <a href="#" class="image fit"><img src="images/pic11.jpg" alt="" /></a> -->
+      <h2>1.Description</h2>
+      <p>
+        In the current Covid-19 epidemic situation in most countries, especially in Australia, people are restricted
+        from going out and that greatly affects the quality of their meals. The project we decided
+        to implement is a food and recipe application that organizes a list of recipes based on the ingredients
+        in the user's kitchen. It is expected to solve the problem of not knowing how to use the ingredients at
+        home and providing ideas on what to cook.
 
-            Each recipe will have detailed descriptions of ingredients and
-            cooking methods. Besides, step-by-step instructions with pictures
-            will be applied to help the user to cook.
-          </li>
-          <li>
-            <b> Tags and searching: </b><br />
 
-            To help users find their suitable recipes, tags will be used in
-            recipes. Those tags may contain key ingredients. Users will have a
-            more pleasing searching experience because tags help them to target
-            recipes more precisely.
-          </li>
-          <li>
-            <b> Upload and manage posts:</b> <br />
-            Users are expected to upload their own posts and be able to modify
-            or delete them.
-          </li>
-        </ul>
-        <h3>2.3 Extended Viable Features (EVF)</h3>
-        <ul>
-          <li>
-            <b> Recipe rating and comment: </b><br />
+      <p><b>High level user story: <br></b> <b> As a</b> user,
+        I want to know which recipe I can use to cook with ingredients in my pantry and I can order online if I don’t
+        have some of the required ingredients
+        <b><br> so that </b> I can better prepare daily meals for me and my family and save the time as well. </p>
+      </p>
+      <h2>2.Demonstrable Outcomes</h2>
+      <h3>2.1 Project Motivation</h3>
+      <p>
+        This is an upgrade project from the existing applications. We have
+        found their missing points and decided to improve them with this
+        recipe application project. They are not only suitable for all ages
+        but also provide the best support for them. Other apps like Tasty or
+        Yummly only offer available menus and force users to follow them in
+        order to cook the best food. Our app is pretty much the same, which
+        makes a difference and is also the purpose of the app is to help users
+        find the recipe they want to cook with everything in their pantry.
+      </p>
 
-            Users are free to rate and comment on any recipe.
-          </li>
-          <li>
-            <b>Health risks and precaution (Allergy Prevention):</b> <br />
+      <p>
+        This is a project that oriented towards database management. We
+        learned about them in year 1 so we can properly apply it to this
+        project. Plus, this project is about web editing and designing as the
+        main part of this course, therefore, each person needs to develop
+        their own coding and managing skills for each stage of the app
+        development.
+      </p>
+      <h3>2.2 Minimum Viable Features (MVF)</h3>
 
-            Recipe posts could have ingredient warnings to inform people with
-            certain allergies of potential risks.
-          </li>
-          <li>
-            <b>Collection and Favourite function: </b> <br />
+      <ul>
+        <li>
+          <b> Personal account managing system:</b> <br />
+          Users should be able to create new accounts, log in, and log out.
+          <!-- <table data-toggle="table">
+              <thead>
+                <tr>
+                  <th>As a</th>
+                  <th>I can/want</th>
+                  <th>so that</th>
+                  <th>Acceptance criteria</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>
+                    <p>
+                    
+                    </p>
+                    <p>
+                    
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>
+                    <p>
+                    
+                    </p>
+                    <p>
+                    
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>
+                    <p>
+                    
+                    </p>
+                    <p>
+                    
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>
+                    <p>
+                    
+                    </p>
+                    <p>
+                    
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>
+                    <p>
+                    
+                    </p>
+                    <p>
+                    
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>
+                    <p>
+                    
+                    </p>
+                    <p>
+                    
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>
+                    <p>
+                    
+                    </p>
+                    <p>
+                    
+                    </p>
+                  </td>
+                </tr>
+              </tbody>
+            </table> -->
+          <table data-toggle="table">
+            <thead>
+              <tr>
+                <th>User story</th>
 
-            The collection and favourite function can help users collect their
-            favorite recipes
-          </li>
-          <li>
-            <b>Substitution: </b> <br />
+                <th>Acceptance criteria</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b>As a</b> user,
+                  <b><br>I can/ I want</b> change my profile
+                  <b><br>so that</b> I can become different in the website.</td>
 
-            The website could have a function to detect missing ingredients and
-            offer substitution suggestions.
-          </li>
-          <li>
-            <b>Shopping helper: </b> <br />
+                <td>
+                  <p>
+                    <br><br>Criterion 0:
+                    <b><br>Given</b> I have logged in And am in the profile page
+                    <b><br>When</b> I click the "change profile" button And enter valid information
+                    <b><br>Then</b> receive success message And the changes showing in the profile page
 
-            When missing ingredients are detected, the website could search
-            nearby shops for supplement or even help users order them online.
-          </li>
-        </ul>
-        <h2>3. Project Justification</h2>
-        <h3>3.1 Workload</h3>
-        <p>
-          <b>Expectation:</b> We plan to meet once every 3-4 business days to
-          assign work to each person based on their knowledge and strengths. We
-          will divide them into different parts of the project such as
-          designing, site coding, workspace managing, annotating and general
-          managing. <br />
-          <b>Reality:</b> Basically, everything is on the track up to now. The
-          only thing that is limited is the meeting on Teams. We have different
-          schedules, so it is difficult to choose a time for people to
-          participate in discussions and suggestions on the project. However, we
-          have already finished assigning in the first group meeting and
-          everyone also tried to complete their part well.
-        </p>
-        <h3>3.2 Beyond Current Capabilities</h3>
-        <!-- TODO Beyond Current Capabilities -->
-        <p>We have not created a web app before</p>
-        <h3>3.3 Risks</h3>
-        <ol>
-          <h4>team dynamics risk</h4>
-          <li>
-            <b>Risk:</b>
-            Do not have enough time to finish all the features.
-            <br />
-            <b>Example: </b>Our group may face hard technological problems.
-            <br />
-            <b>Mitigation:</b>Ask the lecturer or the tutor. More communication
-            to decrease the number of unreachable features.
-          </li>
+                    <br><br>Criterion 1:
+                    <b><br>Given</b> I have logged in And am in the profile page
+                    <b><br>When</b> I click the "change profile" button And do not enter invalid information
+                    <b><br>Then</b> receive rejection message And tell me the reason why the change is not successful.
+                  </p>
+                  <p>
+
+                  </p>
+                </td>
+              </tr>
+
+
+
+
+
+              <tr>
+                <td><b>As a</b> user,
+                  <b><br>I can/ I want</b> log out
+                  <b><br>so that</b> I can log out in a public computer.</td>
+                <td>
+                  <p>
+                    1. <br><br>Criterion 0:
+                    <b><br>Given</b> I have logged in
+                    <b><br>When</b> I click the logout button
+                    <b><br>Then</b> the message show I have logged out And push me to the index page
+                  </p>
+                  <p>
+
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td><b>As a</b> user,
+                  <b><br>I can/ I want</b> delete my account
+                  <b><br>so that</b> I can protect our privacy</td>
+                <td>
+
+                  <p>
+                    <br><br>Criterion 0:
+                    <b><br>Given</b> that I am in the profile page
+                    <b><br>When</b> I click AND I need to confirm the operation.
+                    <b><br>Then</b> the message shows that the account has been deleted AND the page jump to the index
+                    page
+                  </p>
+                  <p>
+
+                  </p>
+                </td>
+              </tr>
+
+
+              <tr>
+                <td><b>As a</b> user,
+                  <b><br>I can/ I want</b> sign up for the website
+                  <b><br>so that</b> I can take advantage of more functions to improve my cooking skill.
+                </td>
+                <td>
+                  <p>
+                    - <br><br>Criterion 0:
+                    <b><br>Given</b> that I am not the registered user And I want to sign up,
+                    <b><br>When</b> I click the sign-up button And enter the required information
+                    <b><br>Then</b> the system shows I registered successfully And take me to the index page.
+                  </p>
+                  <p>
+
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+
+        </li>
+        <li>
+          <b> Slider:</b> <br />
+          The main page will have a picture slider that shows recommending
+          recipes.
+          <table data-toggle="table">
+            <thead>
+              <tr>
+                <th>User story</th>
+                <th>Acceptance criteria</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <b>As a</b> user
+                  <p><b>I want/can</b> select a recommended recipe from the slider</p>
+                  <p><b>so that</b> I can choose a recipe quickly</p>
+                </td>
+                <td>
+                  <p>
+                    <br><br>Criterion 0: <br>
+                    <b>Given</b> I am in the index page AND there are recommended recipe in the slider area.<br>
+                    <b><br>When</b> I select the recipe<br>
+                    <b><br>Then</b> I can the instruction of the recipe.<br>
+
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </li>
+        <li>
+          <b>Data collection and recommendation </b> <br />
+          On the website, there should be a table to collect the user’s
+          kitchen remains so that suitable dishes can be recommended
+          accordingly.
+          <table data-toggle="table">
+            <thead>
+              <tr>
+                <th>User story</th>
+                <th>Acceptance criteria</th>
+              </tr>
+
+
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <b>As a</b> user
+                  <p><b>I want/can</b> search a kind of food ingredients in application</p>
+                  <p><b>so that</b> give me the corresponding recipe to use this kind of food ingredients</p>
+                </td>
+                <td>
+                  <p>
+                    <br><br>Criterion 0: <br>
+                    <b>Given</b> user a navigation bar And a "Search" button<br>
+                    <b><br>When</b> user put the name of a food ingredient in the navigation bar And
+                    they touch research.<br>
+                    <b><br>Then</b> give them corresponding recipe And put other recommendation recipes at the
+                    bottom.<br>
+                  </p>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <b><br>As a user,</b>
+                  <b><br>I want/can</b> search a kind of food ingredients in application
+                  <b><br>so that</b> give me the corresponding recipe to use this kind of food ingredients
+                </td>
+                <td>
+                  <p>
+                    <br><br>Criterion 0: <br>
+                    <b>Given</b> user a navigation bar And a "Search" button<br>
+                    <b><br>When</b> user put the name of a food ingredient in the navigation bar And
+                    they touch research.<br>
+                    <b><br>Then</b> give them corresponding recipe And put other recommendation recipes at the
+                    bottom.<br>
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </li>
+        <li>
+          <b>Recipe information:</b> <br />
+
+          Below the slider, there will be a list of recipes with pictures.
+          Users can click on the picture for further information.
+          <table data-toggle="table">
+            <thead>
+              <tr>
+                <th>User story</th>
+                <th>Acceptance criteria</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td></td>
+                <td></td>
+
+              </tr>
+            </tbody>
+          </table>
+        </li>
+        <li>
+          <b> Step-by-step instructions: </b><br />
+
+          Each recipe will have detailed descriptions of ingredients and
+          cooking methods. Besides, step-by-step instructions with pictures
+          will be applied to help the user to cook.
+          <table data-toggle="table">
+            <thead>
+              <tr>
+                <th>User story</th>
+                <th>Acceptance criteria</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td></td>
+                <td></td>
+
+              </tr>
+            </tbody>
+          </table>
+        </li>
+
+        <li>
+          <b> Tags and searching: </b><br />
+
+          To help users find their suitable recipes, tags will be used in
+          recipes. Those tags may contain key ingredients. Users will have a
+          more pleasing searching experience because tags help them to target
+          recipes more precisely.
+          <table data-toggle="table">
+            <thead>
+              <tr>
+                <th>User story</th>
+                <th>Acceptance criteria</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <b>As a</b> user
+                  <p><b>I want/can</b> searching for needed recipes </p>
+                  <p><b>so that</b> I can prepare my family meal quicker and easier</p>
+                </td>
+                <td>
+                  <p>
+                    <br><br>Criterion <br>
+                    <b>Given</b> I have logged in And am in the main site<br>
+                    <b><br>When</b> I click the "search" section And type masterpiece ingredient<br>
+                    <b><br>Then</b> system popup "searching" And A list of dishes that I can cook with is shown<br>
+                    <b><br>When</b> I click one of those recipes<br>
+                    <b><br>Then</b> screen moves to the recipe spec site And shows a list of ingredients tag at the
+                    bottom of the page<br>
+
+                  </p>
+                  <p>
+                    <br><br>Criterion <br>
+                    <b>Given</b> I have logged in And am in the main site<br>
+                    <b><br>When</b> I click the "search" section And type masterpiece ingredient<br>
+                    <b><br>Then</b> receive rejection message And tell me the reason why there's no recipe contain my
+                    ingredients are available.<br>
+                  </p>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </li>
+
+
+        <li>
+          <b> Upload and manage posts:</b> <br />
+          Users are expected to upload their own posts and be able to modify
+          or delete them.
+          <table data-toggle="table">
+            <thead>
+              <tr>
+                <th>User story</th>
+                <th>Acceptance criteria</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <b>As a</b> user
+                  <p><b>I want/can</b> upload and manage my posts</p>
+                  <p><b>so that</b> I can share my recipe with everyone </p>
+                </td>
+                <td>
+                  <p>
+                    <br><br>Criterion <br>
+                    <b>Given</b> I have logged in And am in the profile site<br>
+                    <b><br>When</b> I click the "Post your recipe"<br>
+                    <b><br>Then</b> system popup the editing tab And there comes a list of recipe criteria: "Name",
+                    "Style",
+                    "Ingredient", "How to cook" and following with step-by-step instruction.<br>
+                    <b><br>When</b> I click "Finish" at the bottom<br>
+                    <b><br>Then</b> screen moves to the manage post And The system will show me what my post would look
+                    like if it
+                    were published.<br>
+                    <b><br>When</b> I click "Post" at the bottom of the tab<br>
+                    <b><br>Then</b> screen switches back to the main profile And The system will show me the post that
+                    being
+                    published with a process bar on the top of the post<br>
+
+                  </p>
+                  <p>
+                    <br><br>Criterion <br>
+                    <b>Given</b> I have logged in And am in the profile site<br>
+                    <b><br>When</b> I click the setting button represented by three dots And click on the "Editing"
+                    button after a
+                    list of setting is shown<br>
+                    <b><br>Then</b> I'm moved to the editing tab similar to the tag when user wants to post a recipe<br>
+                    <b><br>When</b> I finish editing recipe and click "Finish" at the bottom<br>
+                    <b><br>Then</b> screen moves to the manage post And The system will show me what my post would look
+                    like if it
+                    were published.<br>
+                    <b><br>When</b> I click "Post" at the bottom of the tab<br>
+                    <b><br>Then</b> screen switches back to the main profile And The system will show me the post that
+                    being
+                    changed with a process bar on the top of the post<br>
+                  </p>
+                  <p>
+                    <br><br>Criterion <br>
+                    <b>Given</b> I have logged in And am in the profile site<br>
+                    <b><br>When</b> I click the setting button represented by three dots And click on the "Delete"
+                    button after a
+                    list of setting is shown<br>
+                    <b><br>Then</b> System popup confirm message to delete the post<br>
+                    <b><br>When</b> I click on "Yes"<br>
+                    <b><br>Then</b> screen moves to the main profile And The system shows a message that announces my
+                    post was
+                    deleted successfully<br>
+                  </p>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </li>
+
+      </ul>
+      <!-- <h3>2.3 Extended Viable Features (EVF)</h3> -->
+      <ul>
+
+        <li>
+          <b> Recipe rating and comment: </b><br />
+          Users are free to rate and comment on any recipe.
+          <table data-toggle="table">
+            <thead>
+              <tr>
+                <th>User story</th>
+                <th>Acceptance criteria</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td></td>
+                <td></td>
+
+              </tr>
+            </tbody>
+          </table>
+        </li>
+        <li>
+          <b>Health risks and precaution (Allergy Prevention):</b> <br />
+
+          Recipe posts could have ingredient warnings to inform people with
+          certain allergies of potential risks.
+          <table data-toggle="table">
+            <thead>
+              <tr>
+                <th>User story</th>
+                <th>Acceptance criteria</th>
+              </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+          </table>
+        </li>
+        <li>
+          <b>Collection and Favourite function: </b> <br />
+
+          The collection and favourite function can help users collect their
+          favorite recipes
+          <table data-toggle="table">
+            <thead>
+              <tr>
+                <th>User story</th>
+                <th>Acceptance criteria</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b>As a</b> user,
+                  <b><br>I can/ I want</b> I can collect my favorite recipes
+                  <b><br>so that</b> I can easily find this recipe **And** add popularity to it </td>
+                <td>
+                  <p>
+                    <br><br>Criterion
+                    <b><br>Given</b> I have logged in And view the recipe page
+                    <b><br>When</b> I see the pictures of the recipes And next to every recipe picture will have a
+                    "Collection and
+                    Favourite function" button And I click the "button" section
+                    <b><br>Then</b> I can collect this recipe And add one to its popularity
+                  </p>
+                  <p>
+
+                  </p>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </li>
+        <li>
+          <b>Substitution: </b> <br />
+
+          The website could have a function to detect missing ingredients and
+          offer substitution suggestions.
+          <table data-toggle="table">
+            <thead>
+           <tr>
+             <th>User story</th>
+             <th>Acceptance criter</th>
+           </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <b>As a</b> user
+                  <p><b>I want/can</b> to replace one ingredient with another</p>
+                  <p><b>so that</b> to make a recipe that I lack ingredients</p>
+                </td>
+                <td>
+                  <p>
+                    <br><br>Criterion 0: <br>
+                    <b>Given</b> user a substitution tag under the search bar<br>
+                    <b><br>When</b> user choose "substitution" tag And input the recipe name in search bar And input
+                    "Ingredients"
+                    in substitution bar And touch the button search.<br>
+                    <b><br>Then</b> the system will give the user recipes which "Ingredients" have been replaced.<br>
+
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </li>
+       
+      </ul>
+      <h2>3. Project Justification</h2>
+      <h3>3.1 Workload</h3>
+      <table data-toggle="table">
+        <thead>
+          <tr>
+            <th>Week</th>
+            <th>Job</th>
+          </tr>
+        </thead>
+        <tbody>
+         <tr>
+           <td>5: Design a database and discuss about interfaces </td>
+           <td>
+
+            Zhihao, yingjian, heran, mingxuan 4hours designing <br>
+            
+            Yi, Gia 4hours think about interfaces  <br>
+            
+            All members 1-hour meeting discuss about interfaces </td>
+         </tr>
+         <tr>
+           <td>6: Mockup and finalize interface structure</td>
+           <td>Zhinhao  yingjian 4 hours MVF1,2 mockup  <br>
+
+            Mingxuan heran  4 hours MVF3,4,5 mockup  <br>
+            
+            Yi, gia 4hours MVF6,7 mockup  <br>
+            
+            All members 1-hour meeting demo and optimization </td>
+         </tr>
+         <tr>
+           <td>7: Build MVF1 personal account managing system</td>
+           <td>Zhinhao  yingjian 4 hours Sign up  <br>
+
+            Yi Heran Mingxuan 4 hours Login  <br>
+            
+            Gia Zhihao 4hours front-end design  <br>
+            
+            All members Meeting 1 hour </td>
+         </tr>
+         <tr>
+           <td>8: Build MVF3   Write a data collection feature </td>
+           <td>Zhihao, yi, heran ,yingjian 4hour data collection table  <br>
+
+            Gia Mingxuan 4hours front-end design  <br>
+            
+            All members Meeting 1 hour </td>
+         </tr>
+         <tr>
+           <td>9: Build MVF2, MVF4, MVF5   Write recipe-related features </td>
+           <td>Gia Yingjian 4 hours MVF2  <br>
+
+            Zhihao Mingxuan 4hours MVF4  <br>
+            
+            Yi Heran 4 Hours MVF5  <br>
+            
+            All members Meeting 1 hour </td>
+         </tr>
+         <tr>
+           <td>10: Build MVF6   Write about tags and realize searching function </td>
+           <td>Zhihao,yi,heran setting tags 4hours  <br>
+
+            Mingxuan yingjian, zhihao searching function 4hours  <br>
+            
+            Gia Heran user interface 4hours  <br>
+            
+            All members Meeting 1 hour </td>
+         </tr>
+         <tr>
+           <td>11: Build MVF7   Realize posting and managing function.</td>
+           <td>yingjian, heran post function 4hours  <br>
+
+            Mingxuan, zhihao modify and delete function 4hours  <br>
+            
+            Gia interface 4hours  <br>
+            
+            All members Meeting 1 hour </td>
+         </tr>
+         <tr>
+          <td>12: Test and optimization </td>
+          <td>Gia Mingxuan Yi 4 hours flow test   <br>
+
+            Zhihao Heran Yingjan 4 hours code review  <br>
+            
+            All members Meeting 1 hour </td>
+        </tr>
+        </tbody>
+      </table>
+      <h3>3.2 Beyond Current Capabilities</h3>
+      <!-- TODO Beyond Current Capabilities -->
+      <p>We have not created a web app before</p>
+      <h3>3.3 Risks</h3>
+      <ol>
+        <h4>team dynamics risk</h4>
+        <li>
+          <b>Risk:</b>
+          Do not have enough time to finish all the features.
           <br />
-          <li>
-            <b>Risk:</b>
-            Suddenly or unpredictable requirements are adding
-            <br />
-            <b>Example: </b>we may forget to add a vital function to the
-            application.<br />
-            <b>Mitigation:</b>do more communication and learn more about how to
-            build a system
-          </li>
+          <b>Example: </b>Our group may face hard technological problems.
           <br />
-          <li>
-            <b>Risk:</b>
-            Limited knowledge reserve lead to the delay our project’s progress.
-            <br />
-            <b>Example: </b>we may have no idea to achieve the background side.
-            <br />
-            <b>Mitigation:</b>learn more or delete difficult features
-          </li>
+          <b>Mitigation:</b>Ask the lecturer or the tutor. More communication
+          to decrease the number of unreachable features.
+        </li>
+        <br />
+        <li>
+          <b>Risk:</b>
+          Suddenly or unpredictable requirements are adding
           <br />
-          <h4>project risks</h4>
-          <li>
-            <b>Risk:</b>
-            Recipe content
-            <br />
-            <b>Example: </b> recipe content cannot be shown properly.<br />
-            <b>Mitigation:</b>learn more html and css technology.
-          </li>
+          <b>Example: </b>we may forget to add a vital function to the
+          application.<br />
+          <b>Mitigation:</b>do more communication and learn more about how to
+          : Build a system
+        </li>
+        <br />
+        <li>
+          <b>Risk:</b>
+          Limited knowledge reserve lead to the delay our project’s progress.
           <br />
-          <li>
-            <b>Risk:</b>
-            Concurrency control
-            <br />
-            <b>Example: </b> Overloaded server<br />
-            <b>Mitigation:</b>Minimize main database but still keep the
-            flexibility and the algorithms that used for the main function.
-          </li>
+          <b>Example: </b>we may have no idea to achieve the background side.
           <br />
-          <li>
-            <b>Risk:</b>
-            Content control/authorization
-            <br />
-            <b>Example: </b> The workload for administrators is huge.<br />
-            <b>Mitigation:</b>Implement the authorization program which can
-            check each post that user going to upload, and the checking process
-            will be taken over by cooperated chefs
-          </li>
+          <b>Mitigation:</b>learn more or delete difficult features
+        </li>
+        <br />
+        <h4>project risks</h4>
+        <li>
+          <b>Risk:</b>
+          Recipe content
           <br />
-        </ol>
-      </div>
-    </section>
+          <b>Example: </b> recipe content cannot be shown properly.<br />
+          <b>Mitigation:</b>learn more html and css technology.
+        </li>
+        <br />
+        <li>
+          <b>Risk:</b>
+          Concurrency control
+          <br />
+          <b>Example: </b> Overloaded server<br />
+          <b>Mitigation:</b>Minimize main database but still keep the
+          flexibility and the algorithms that used for the main function.
+        </li>
+        <br />
+        <li>
+          <b>Risk:</b>
+          Content control/authorization
+          <br />
+          <b>Example: </b> The workload for administrators is huge.<br />
+          <b>Mitigation:</b>Implement the authorization program which can
+          check each post that user going to upload, and the checking process
+          will be taken over by cooperated chefs
+        </li>
+        <br />
+      </ol>
+    </div>
+  </section>
 
-    <!-- Footer -->
-    <div id="footerDiv"></div>
+  <!-- Footer -->
+  <div id="footerDiv"></div>
 
-    <!-- Scripts -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/skel.min.js"></script>
-    <script src="assets/js/util.js"></script>
-    <script src="assets/js/main.js"></script>
-    <script src="assets/js/loader.js"></script>
-  </body>
+  <!-- Scripts -->
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/skel.min.js"></script>
+  <script src="assets/js/util.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/loader.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.js"></script>
+</body>
+
 </html>
