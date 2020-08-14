@@ -55,7 +55,8 @@
 
 
       <p><b>High level user story: <br></b> <b> As a</b> user,
-        I want to know which recipe I can use to cook with ingredients in my pantry and I can order online if I don’t
+        I want to know which recipe I can use to cook with ingredients in my pantry and I can order online if I
+        don’t
         have some of the required ingredients
         <b><br> so that </b> I can better prepare daily meals for me and my family and save the time as well. </p>
       </p>
@@ -381,9 +382,19 @@
             </thead>
             <tbody>
               <tr>
-                <td></td>
-                <td></td>
-
+                <td>
+                  <b><br>As a user,</b>
+                  <b><br>I want/can</b> know about each recipe more graphically, 
+                  <b><br>so that</b> I could decide if I wanna cook this dish.
+                </td>
+                <td>
+                  <p>
+                    <br><br>Criterion 0: <br>
+                    <b>Given</b> I have logged in and entered the main page<br>
+                    <b><br>When</b> I see the recipe picture I have interest in and click the picture<br>
+                    <b><br>Then</b> I entered a new page that has detailed information on the recipe including ingredients and cooking methods.<br>
+                  </p>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -403,9 +414,19 @@
             </thead>
             <tbody>
               <tr>
-                <td></td>
-                <td></td>
-
+                <td>
+                  <b><br>As  </b>a user who is a starter in cooking
+                  <b><br>I want/can</b>  know the exact cooking steps of a recipe,
+                  <b><br>so that</b> I could succeed more easily.
+                </td>
+                <td>
+                  <p>
+                    <br><br>Criterion 0: <br>
+                    <b>Given</b> I have entered a specific recipe page.<br>
+                    <b><br>When</b> I decide I want to have a try on this recipe.<br>
+                    <b><br>Then</b>I scroll down and follow each step while cooking.<br>
+                  </p>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -545,9 +566,23 @@
             </thead>
             <tbody>
               <tr>
-                <td></td>
-                <td></td>
+                <td><b>As a</b> user,
+                  <b><br>I can/ I want</b> to express opinions 
+                  <b><br>so that</b> I comment others' recipes </td>
+                <td>
+                  <p>
+                    <br><br>Criterion
+                    <b><br>Given</b> the user is logged on
+                    <b><br>When</b> the user click the comment button
+                    <b><br>Then</b> the system navigate to the comment page 
+                    <b><br>When</b> the user type the comments and click post button
+                    <b><br>Then</b> the system navigate back to the recipe page to show the specific 
+                    comment and add the comment to the database
+                  </p>
+                  <p>
 
+                  </p>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -565,7 +600,22 @@
               </tr>
             </thead>
             <tbody>
+              <tr>
+                <td>
+                  <b>As a</b> user
+                  <p><b>I want/can</b>  see health tips on recipes</p>
+                  <p><b>so that</b> I know if this recipe is a risk to my health </p>
+                </td>
+                <td>
+                  <p>
+                    <br><br>Criterion 0: <br>
+                    <b>Given</b> I have logged in And am on the main page<br>
+                    <b><br>When</b> I see the pictures of the recipes And every recipe picture will have a warning "button" to indicate the relevant health risk alert And I move the mouse over "button" section <br>
+                    <b><br>Then</b>  tell me the healthy warning about this recipe<br>
 
+                  </p>
+                </td>
+              </tr>
             </tbody>
           </table>
         </li>
@@ -585,7 +635,7 @@
               <tr>
                 <td><b>As a</b> user,
                   <b><br>I can/ I want</b> I can collect my favorite recipes
-                  <b><br>so that</b> I can easily find this recipe **And** add popularity to it </td>
+                  <b><br>so that</b> I can easily find this recipe And add popularity to it </td>
                 <td>
                   <p>
                     <br><br>Criterion
@@ -611,10 +661,10 @@
           offer substitution suggestions.
           <table data-toggle="table">
             <thead>
-           <tr>
-             <th>User story</th>
-             <th>Acceptance criter</th>
-           </tr>
+              <tr>
+                <th>User story</th>
+                <th>Acceptance criteria</th>
+              </tr>
             </thead>
             <tbody>
               <tr>
@@ -638,7 +688,36 @@
             </tbody>
           </table>
         </li>
-       
+        <li>
+          <b>Shopping helper: </b> <br />
+          <table data-toggle="table">
+            <thead>
+              <tr>
+                <th>User story</th>
+                <th>Acceptance criteria</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <b>As a</b> user
+                  <p><b>I want/can</b> to search nearby shops for supplement</p>
+                  <p><b>so that</b> I fill in the missing ingredients </p>
+                </td>
+                <td>
+                  <p>
+                    <br><br>Criterion 0: <br>
+                    <b>Given</b> the user is logged on<br>
+                    <b><br>When</b> the user choose a recipe and find out some missing ingredients<br>
+                    <b><br>Then</b> the system navigate the user to shopping list<br>
+
+                  </p>
+                </td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </li>
       </ul>
       <h2>3. Project Justification</h2>
       <h3>3.1 Workload</h3>
@@ -646,91 +725,177 @@
         <thead>
           <tr>
             <th>Week</th>
-            <th>Job</th>
+            <th>Task</th>
           </tr>
         </thead>
         <tbody>
-         <tr>
-           <td>5: Design a database and discuss about interfaces </td>
-           <td>
+          <tr>
+            <td>5: Design a database and discuss about interfaces </td>
+            <td>
 
-            Zhihao, yingjian, heran, mingxuan 4hours designing <br>
-            
-            Yi, Gia 4hours think about interfaces  <br>
-            
-            All members 1-hour meeting discuss about interfaces </td>
-         </tr>
-         <tr>
-           <td>6: Mockup and finalize interface structure</td>
-           <td>Zhinhao  yingjian 4 hours MVF1,2 mockup  <br>
+              Zhihao, yingjian, heran, mingxuan 4hours designing <br>
 
-            Mingxuan heran  4 hours MVF3,4,5 mockup  <br>
-            
-            Yi, gia 4hours MVF6,7 mockup  <br>
-            
-            All members 1-hour meeting demo and optimization </td>
-         </tr>
-         <tr>
-           <td>7: Build MVF1 personal account managing system</td>
-           <td>Zhinhao  yingjian 4 hours Sign up  <br>
+              Yi, Gia 4hours think about interfaces <br>
 
-            Yi Heran Mingxuan 4 hours Login  <br>
-            
-            Gia Zhihao 4hours front-end design  <br>
-            
-            All members Meeting 1 hour </td>
-         </tr>
-         <tr>
-           <td>8: Build MVF3   Write a data collection feature </td>
-           <td>Zhihao, yi, heran ,yingjian 4hour data collection table  <br>
+              All members 1-hour meeting discuss about interfaces </td>
+          </tr>
+          <tr>
+            <td>6: Mockup and finalize interface structure</td>
+            <td>Zhinhao yingjian 4 hours MVF1,2 mockup <br>
 
-            Gia Mingxuan 4hours front-end design  <br>
-            
-            All members Meeting 1 hour </td>
-         </tr>
-         <tr>
-           <td>9: Build MVF2, MVF4, MVF5   Write recipe-related features </td>
-           <td>Gia Yingjian 4 hours MVF2  <br>
+              Mingxuan heran 4 hours MVF3,4,5 mockup <br>
 
-            Zhihao Mingxuan 4hours MVF4  <br>
-            
-            Yi Heran 4 Hours MVF5  <br>
-            
-            All members Meeting 1 hour </td>
-         </tr>
-         <tr>
-           <td>10: Build MVF6   Write about tags and realize searching function </td>
-           <td>Zhihao,yi,heran setting tags 4hours  <br>
+              Yi, gia 4hours MVF6,7 mockup <br>
 
-            Mingxuan yingjian, zhihao searching function 4hours  <br>
-            
-            Gia Heran user interface 4hours  <br>
-            
-            All members Meeting 1 hour </td>
-         </tr>
-         <tr>
-           <td>11: Build MVF7   Realize posting and managing function.</td>
-           <td>yingjian, heran post function 4hours  <br>
+              All members 1-hour meeting demo and optimization </td>
+          </tr>
+          <tr>
+            <td>7: Build MVF1 personal account managing system</td>
+            <td>Zhinhao yingjian 4 hours Sign up <br>
 
-            Mingxuan, zhihao modify and delete function 4hours  <br>
-            
-            Gia interface 4hours  <br>
-            
-            All members Meeting 1 hour </td>
-         </tr>
-         <tr>
-          <td>12: Test and optimization </td>
-          <td>Gia Mingxuan Yi 4 hours flow test   <br>
+              Yi Heran Mingxuan 4 hours Login <br>
 
-            Zhihao Heran Yingjan 4 hours code review  <br>
-            
-            All members Meeting 1 hour </td>
-        </tr>
+              Gia Zhihao 4hours front-end design <br>
+
+              All members Meeting 1 hour </td>
+          </tr>
+          <tr>
+            <td>8: Build MVF3 Write a data collection feature </td>
+            <td>Zhihao, yi, heran ,yingjian 4hour data collection table <br>
+
+              Gia Mingxuan 4hours front-end design <br>
+
+              All members Meeting 1 hour </td>
+          </tr>
+          <tr>
+            <td>9: Build MVF2, MVF4, MVF5 Write recipe-related features </td>
+            <td>Gia Yingjian 4 hours MVF2 <br>
+
+              Zhihao Mingxuan 4hours MVF4 <br>
+
+              Yi Heran 4 Hours MVF5 <br>
+
+              All members Meeting 1 hour </td>
+          </tr>
+          <tr>
+            <td>10: Build MVF6 Write about tags and realize searching function </td>
+            <td>Zhihao,yi,heran setting tags 4hours <br>
+
+              Mingxuan yingjian, zhihao searching function 4hours <br>
+
+              Gia Heran user interface 4hours <br>
+
+              All members Meeting 1 hour </td>
+          </tr>
+          <tr>
+            <td>11: Build MVF7 Realize posting and managing function.</td>
+            <td>yingjian, heran post function 4hours <br>
+
+              Mingxuan, zhihao modify and delete function 4hours <br>
+
+              Gia interface 4hours <br>
+
+              All members Meeting 1 hour </td>
+          </tr>
+          <tr>
+            <td>12: Test and optimization </td>
+            <td>Gia Mingxuan Yi 4 hours flow test <br>
+
+              Zhihao Heran Yingjan 4 hours code review <br>
+
+              All members Meeting 1 hour </td>
+          </tr>
         </tbody>
       </table>
       <h3>3.2 Beyond Current Capabilities</h3>
-      <!-- TODO Beyond Current Capabilities -->
-      <p>We have not created a web app before</p>
+      <table data-toggle="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Beyond Current Capabilities</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+
+            <td>Heran Wang</td>
+            <td>
+              <p>The program has difficulties in designing websites and realizing real functions. I have no idea in
+                JavaScript because I just learned HTML/CSS. I need to learn JavaScript myself and contribute to our
+                team. Not only do I have some weaknesses in the front end, but I also need to learn about spring boots
+                myself. Moreover, I need to review Database knowledge, which is very important in the program. Overall,
+                this program is challenging for me.
+
+              </p>
+            </td>
+
+          </tr>
+          <tr>
+
+            <td>Yi Yang</td>
+            <td>
+              <p>Do not have much experience of developing project from the first beginning because in the project that
+                I attended before, there always be tutors give the guidance or lead me understand the project. So,
+                during this project, I am willing to spend more time on development and build up the back end of the
+                website to learn some new tools. On the other hand, as an international student, I want to communicate
+                more within the group to improve my communication and expression skills. </p>
+
+            </td>
+
+          </tr>
+          <tr>
+
+            <td>Le Gia Hung</td>
+            <td>
+              <p></p>
+            </td>
+
+          </tr>
+          <tr>
+
+            <td>Mingxuan Zhou</td>
+            <td>
+              <p>About my current capabilities, I have already studied several coding languages, including C, Java, and
+                Python. Currently, I am studying C++. Except for those, I have a certain understanding of C# and HTML,
+                CSS on building a web application. In this course, I hope I could extend my ability to coding and learn
+                more about new tools like Spring Boot. Hopefully, I could learn to teamwork with others more
+                effectively. Ideally, I would like to overcome my weaknesses like getting more involved in designing
+                user interfaces and being more positive in hearing teammates's options. </p>
+            </td>
+
+          </tr>
+          <tr>
+
+            <td>Zhihao Liang</td>
+            <td>
+              <p>The program has difficulties in designing websites and realizing real functions. I have no idea in
+                JavaScript because I just learned HTML/CSS. I need to learn JavaScript myself and contribute to our
+                team. Not only do I have some weaknesses in the front end, but I also need to learn about spring boots
+                myself. Moreover, I need to review Database knowledge, which is very important in the program. Overall,
+                this program is challenging for me. </p>
+            </td>
+
+          </tr>
+          <tr>
+
+            <td>Yingjian Di</td>
+            <td>
+              <p>I've learned several coding languages, including Java and python. At present, I'm learning Spring Boot.
+                Although I learned a lot of programming languages, but I
+
+                Almost forgot how to use them, and the learning content is very basic. I only
+
+                Remember Java. I want to practice my ability to use the Java language through this
+
+                Project and make Java my main language. What's more, I know a lot about Spring Boot. I also hope that
+                through this project, I think I need to understand not only the knowledge level, but also the practical
+                application level </p>
+            </td>
+
+          </tr>
+        </tbody>
+      </table>
       <h3>3.3 Risks</h3>
       <ol>
         <h4>team dynamics risk</h4>
@@ -805,11 +970,11 @@
   <script src="assets/js/main.js"></script>
   <script src="assets/js/loader.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"></script>
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
   <script src="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.js"></script>
 </body>
 
