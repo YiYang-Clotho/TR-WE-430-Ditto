@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "spring.resources.cache-period",
+      "type": "java.lang.String",
+      "description": "Description for spring.resources.cache-period."
+  }
+] }
