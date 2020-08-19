@@ -3,12 +3,14 @@ package com.autoGenerate.service.impl;
 import com.autoGenerate.model.entity.Comment;
 import com.autoGenerate.mapper.CommentMapper;
 import com.autoGenerate.service.ICommentService;
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
  * <p>
- *  服务实现类
+ * 服务实现类
  * </p>
  *
  * @author astupidcoder
@@ -16,5 +18,11 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class CommentServiceImpl extends ServiceImpl<CommentMapper, Comment> implements ICommentService {
+    @Autowired
+    CommentMapper mapper;
 
+    public void main(String[] args) {
+
+                
+    }
 }
