@@ -18,7 +18,7 @@
 <html>
 
 <head>
-  <title>MVF5-Step-by-step instructions</title>
+  <title>MVF6-Tags and searching</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -38,7 +38,7 @@
   <section id="main">
     <div class="inner">
       <header class="major special">
-        <h1>MVF5 - Step-by-step instructions</h1>
+        <h1>MVF6 - Tags and searching</h1>
       </header>
       <!-- <a href="#" class="image fit"><img src="images/pic11.jpg" alt="" /></a> -->
       <h2>1. Feature descriptions</h2>
@@ -67,7 +67,7 @@
       <ul>
 
         <li>
-          <b> Step-by-step instructions:</b> <br />
+          <b> Tags and searching:</b> <br />
           xxxxxxxxxxxxxx
 
           <table data-toggle="table">
@@ -80,19 +80,31 @@
             <tbody>
               <tr>
                 <td>
-                  <b><br>As </b>a user who is a starter in cooking
-                  <b><br>I want/can</b> know the exact cooking steps of a recipe,
-                  <b><br>so that</b> I could succeed more easily.
+                  <b>As a</b> user
+                  <p><b>I want/can</b> searching for needed recipes </p>
+                  <p><b>so that</b> I can prepare my family meal quicker and easier</p>
                 </td>
                 <td>
                   <p>
-                    <br><br>Criterion 0: <br>
-                    <b>Given</b> I have entered a specific recipe page.<br>
-                    <b><br>When</b> I decide I want to have a try on this recipe.<br>
-                    <b><br>Then</b>I scroll down and follow each step while cooking.<br>
+                    <br><br>Criterion 0:<br>
+                    <b>Given</b> I have logged in And am in the main site<br>
+                    <b><br>When</b> I click the "search" section And type masterpiece ingredient<br>
+                    <b><br>Then</b> system popup "searching" And A list of dishes that I can cook with is shown<br>
+                    <b><br>When</b> I click one of those recipes<br>
+                    <b><br>Then</b> screen moves to the recipe spec site And shows a list of ingredients tag at the
+                    bottom of the page<br>
+
+                  </p>
+                  <p>
+                    <br><br>Criterion 1:<br>
+                    <b>Given</b> I have logged in And am in the main site<br>
+                    <b><br>When</b> I click the "search" section And type masterpiece ingredient<br>
+                    <b><br>Then</b> receive rejection message And tell me the reason why there's no recipe contain my
+                    ingredients are available.<br>
                   </p>
                 </td>
               </tr>
+
             </tbody>
           </table>
         </li>
