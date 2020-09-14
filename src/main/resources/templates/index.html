@@ -2,13 +2,15 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
+    <th:block th:include="/fragment/common.html :: head"></th:block>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>Hello Bulma!</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 </head>
 <body>
+<header th:replace="/fragment/common.html :: header" ></header>
 <section class="section">
     <div class="container">
         <h1 class="title">
@@ -28,6 +30,7 @@
         <div class="textAreas"><textarea class="textarea" placeholder="e.g. Hello world"></textarea></div>
         <div class="textAreas"><textarea class="textarea" placeholder="e.g. Hello world"></textarea></div>
         <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap/bootstrap.min.js"></script>
         <script>
             let number = 0;
             returnTextarea = (number) => {
