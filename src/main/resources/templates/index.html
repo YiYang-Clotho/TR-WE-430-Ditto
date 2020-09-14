@@ -10,8 +10,9 @@
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 </head>
 <body>
-<header th:replace="/fragment/common.html :: header" ></header>
+<header th:replace="/fragment/common.html :: header"></header>
 <section class="section">
+    <button onclick="login(this)">login</button>
     <div class="container">
         <h1 class="title">
             Hello World
@@ -29,27 +30,34 @@
         </div>
         <div class="textAreas"><textarea class="textarea" placeholder="e.g. Hello world"></textarea></div>
         <div class="textAreas"><textarea class="textarea" placeholder="e.g. Hello world"></textarea></div>
-        <script src="js/jquery.min.js"></script>
-        <script src="js/bootstrap/bootstrap.min.js"></script>
-        <script>
-            let number = 0;
-            returnTextarea = (number) => {
-                const a = `<textarea class="textarea" placeholder="e.g.${number}"></textarea>`;
-                $(".textAreas").append(a)
-            }
-            closeModal=()=>{
-                $(".modal").removeClass("is-active");
-            }
 
-            $("#showModal").click(function () {
-                number++;
-                returnTextarea(number)
-            })
-            $(".modal-close").click(()=>{
-                closeModal();
-            })
-        </script>
     </div>
 </section>
+<th:block th:include="/fragment/common.html :: scripts"></th:block>
+<script th:inline="javascript">
+    let number = 0;
+    returnTextarea = (number) => {
+        const a = `<textarea class="textarea" placeholder="e.g.${number}"></textarea>`;
+        $(".textAreas").append(a)
+    }
+    closeModal = () => {
+        $(".modal").removeClass("is-active");
+    }
+
+    $("#showModal").click(function () {
+        number++;
+        returnTextarea(number)
+    })
+    $(".modal-close").click(() => {
+        closeModal();
+    })
+
+    function login(obj) {
+        axios.put("/api/login", {
+            name:"123"
+    })
+    }
+
+</script>
 </body>
 </html>
