@@ -20,8 +20,10 @@
 <body>
 <header th:fragment="header">
     <!--use d-flex and justify-content-center to manage layout !-->
-    <nav class="navbar d-flex justify-content-center navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Navbar</a>
+    <nav class="navbar d-flex justify-content-center navbar-expand-lg navbar-light">
+        <a class="logo" href="/">
+            <img src="/images/logo.png" width="40px" height="40px" alt="CookieZ" />
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -29,12 +31,16 @@
 
         <div class="d-flex justify-content-center" id="navbarSupportedContent">
             <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
+                    <a class="nav-link" href="#">Pantry</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Tags</a>
+                </li>
+           <!--
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -47,19 +53,52 @@
                         <a class="dropdown-item" href="#">Something else here</a>
                     </div>
                 </li>
+                -->
+                <!--
                 <li class="nav-item">
                     <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                 </li>
+               -->
             </ul>
             <form class="form-inline mx-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+
+                <button class="btn btn-outline-danger my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
             </form>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Join us! Login</a>
+                </li>
+            </ul>
         </div>
     </nav>
 
 
 </header>
+
+<footer th:fragment="footer">
+    <div class="inner footer">
+        <center>
+            <div>
+                <p>
+                    <strong>Cookiez</strong> by "Ditto"<i class="fa fa-bug"></i>
+                </p>
+                <p>
+                    <strong>"Ditto"</strong> is a group name
+                    <i class="fa fa-share"></i>
+                </p>
+                <p>
+                    <strong>Please support us!</strong> <i class="fa fa-university"></i>
+                </p>
+                <p>
+                    Support us a cup of <strong> coffee!</strong>
+                    <i class="fa fa-coffee"></i>
+                </p>
+            </div>
+        </center>
+    </div>
+</footer>
+
 <!--  request http lib  -->
 <div th:fragment="scripts">
     <!-- Optional JavaScript -->

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * 没有凭证的情况
+ * Without proof
  * @author 1
  */
 @Component
