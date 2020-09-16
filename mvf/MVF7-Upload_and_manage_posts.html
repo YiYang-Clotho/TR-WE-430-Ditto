@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<!--     <table data-toggle="table">
+            <thead>
+              <tr>
+                <th>User story</th>
+                <th>Acceptance criteria</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td></td>
+                <td></td>
+
+              </tr>
+            </tbody>
+          </table> -->
+
+<html>
+
+<head>
+  <title>MVF7-Upload and manage posts</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+    integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.css" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet" />
+</head>
+
+<body>
+  <!-- Header -->
+  <div id="headerDiv"></div>
+
+  <!-- Main -->
+  <section id="main">
+    <div class="inner">
+      <header class="major special">
+        <h1>MVF7 - Upload and manage posts</h1>
+      </header>
+      <!-- <a href="#" class="image fit"><img src="images/pic11.jpg" alt="" /></a> -->
+      <h2>1. Diagram design</h2>
+      <!-- STUB: done -->
+      <p>
+
+        <p><b>Activity diagram: <br></b>
+          <b><img src="images/mvf6Diagram.jpg" /></p>
+      </p>
+      <h2>2.Explanation</h2>
+      <h3>2.1 Description</h3>
+      <p style="color: black;">
+        <ul>
+          <li>Basically, the two functions to upload and edit this post are almost equivalent. They allow users to share
+            and edit their recipes</li>
+          <li>Upload and edit post uses popular design for most of today's social networks, so it is very user-friendly.
+            They are also designed by us according to the 10 hierarchy design principles.</li>
+          <li>According to the above diagram, users can freely manipulate as they want and still complete the task
+            because this function does not force the user to follow specific rules to upload a recipe. Even so to upload
+            a recipe, they still have to fill in its minimum information.</li>
+        </ul>
+      </p>
+      <h3>2.2 User story and criteria</h3>
+
+      <ul>
+
+        <li>
+          <b> Upload and manage posts:</b> <br />
+
+          <table data-toggle="table">
+            <thead>
+              <tr>
+                <th>User story</th>
+                <th>Acceptance criteria</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <b>As a</b> user
+                  <p><b>I want/can</b> upload and manage my posts</p>
+                  <p><b>so that</b> I can share my recipe with everyone </p>
+                </td>
+                <td>
+                  <p>
+                    <br><br>Criterion 0:<br>
+                    <b>Given</b> I have logged in And am in the profile site<br>
+                    <b><br>When</b> I click the "Post your recipe"<br>
+                    <b><br>Then</b> system popup the editing tab And there comes a list of recipe criteria: "Name",
+                    "Style",
+                    "Ingredient", "How to cook" and following with step-by-step instruction.<br>
+                    <b><br>When</b> I click "Finish" at the bottom<br>
+                    <b><br>Then</b> screen moves to the manage post And The system will show me what my post would look
+                    like if it
+                    were published.<br>
+                    <b><br>When</b> I click "Post" at the bottom of the tab<br>
+                    <b><br>Then</b> screen switches back to the main profile And The system will show me the post that
+                    being
+                    published with a process bar on the top of the post<br>
+
+                  </p>
+                  <p>
+                    <br><br>Criterion 1:<br>
+                    <b>Given</b> I have logged in And am in the profile site<br>
+                    <b><br>When</b> I click the setting button represented by three dots And click on the "Editing"
+                    button after a
+                    list of setting is shown<br>
+                    <b><br>Then</b> I'm moved to the editing tab similar to the tag when user wants to post a recipe<br>
+                    <b><br>When</b> I finish editing recipe and click "Finish" at the bottom<br>
+                    <b><br>Then</b> screen moves to the manage post And The system will show me what my post would look
+                    like if it
+                    were published.<br>
+                    <b><br>When</b> I click "Post" at the bottom of the tab<br>
+                    <b><br>Then</b> screen switches back to the main profile And The system will show me the post that
+                    being
+                    changed with a process bar on the top of the post<br>
+                  </p>
+                  <p>
+                    <br><br>Criterion 2:<br>
+                    <b>Given</b> I have logged in And am in the profile site<br>
+                    <b><br>When</b> I click the setting button represented by three dots And click on the "Delete"
+                    button after a
+                    list of setting is shown<br>
+                    <b><br>Then</b> System popup confirm message to delete the post<br>
+                    <b><br>When</b> I click on "Yes"<br>
+                    <b><br>Then</b> screen moves to the main profile And The system shows a message that announces my
+                    post was
+                    deleted successfully<br>
+                  </p>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </li>
+
+        <br />
+        </ol>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <div id="footerDiv"></div>
+
+  <script src="/assets/js/common.js"></script>
+</body>
+
+</html>
