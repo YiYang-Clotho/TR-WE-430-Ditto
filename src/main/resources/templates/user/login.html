@@ -27,17 +27,18 @@
             <h1 class="title mb-5 font-comic animate__bounceIn">
                 Sign in to Cookiez
             </h1>
-            <form class="w-75">
+            <div class="w-75">
                 <div class="form-group  ">
-                    <label for="exampleInputEmail1"><i class="fa fa-envelope"></i> Username</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                    <label for="username"><i class="fa fa-user"></i> Username</label>
+                    <input type="text" class="form-control" name="username" id="username"
+                           placeholder="Email or Username">
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputPassword1"> <i class="fa fa-lock"></i>Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    <label for="password"> <i class="fa fa-lock"></i>Password</label>
+                    <input type="password" class="form-control" name="password" id="password" placeholder="Password">
                 </div>
-                <button type="submit" class="btn btn-light">LOGIN</button>
-            </form>
+                <button class="btn btn-light" onclick="handleLoginBtn(this)">LOGIN</button>
+            </div>
         </div>
 
     </div>
@@ -48,7 +49,22 @@
 
 <th:block th:include="/fragment/common.html :: scripts"></th:block>
 <script th:inline="javascript">
+    function handleLoginBtn() {
+        let data = {}
+        axios.post("/api/login", {
 
+                username: $("#username").val(),
+                password: $("#password").val(),
+
+        }).then(res => {
+            console.log(res)
+            localStorage.setItem("accessToken","Bearer "+ res['data']['data']['accessToken'])
+            window.location.replace("/")
+        }).catch(err => {
+            bootbox.alert("Login Failed")
+            console.log(err)
+        })
+    }
 </script>
 </body>
 </html>

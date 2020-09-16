@@ -5,10 +5,15 @@ import com.ditto.cookiez.entity.User;
 import com.ditto.cookiez.service.IUserService;
 import com.ditto.cookiez.utils.Response;
 import com.ditto.cookiez.utils.ResponseMsg;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * <p>
@@ -53,8 +58,8 @@ import org.springframework.web.servlet.ModelAndView;
     }
 
 *    @PostMapping("/api/login")
-    public void login(@RequestBody JSONObject name) {
-        System.out.println(name.toString());
+    public void login(@RequestBody JSONObject param ) {
+param.getStirng
 
     }
     * ------------------------------------
@@ -70,6 +75,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @RestController
 public class UserController {
+    private final Logger logger = LoggerFactory.getLogger(UserController.class);
     @Autowired
     IUserService service;
 
@@ -79,11 +85,15 @@ public class UserController {
     }
 
     @PostMapping("/api/login")
-    public ResponseEntity<JSONObject> login(@RequestBody JSONObject loginParams) {
-        String username = loginParams.getString("username");
-        String password = loginParams.getString("password");
-        service.auth(username, password);
-        User user = service.getByUsername(username);
+    public ResponseEntity<JSONObject> login(@RequestBody JSONObject param) {
+        String username = param.getString("username");
+        String password = param.getString("password");
+        User user = service.auth(username, password);
+        logger.info(username + " " + password);
+        ModelAndView mv = new ModelAndView("/index");
+        Map<String, Object> models = new HashMap<>();
+        models.put("user", user);
+        mv.addAllObjects(models);
         if (user != null) {
             return Response.ok(ResponseMsg.SUCCEED_TO_LOGIN.v(), user);
         } else {

@@ -21,6 +21,7 @@ mybatis-plus:
     db-config:
       logic-not-delete-value: 1
       logic-delete-value: 0
+
 jwt:
   secret: secret
   expiration: 7200000
