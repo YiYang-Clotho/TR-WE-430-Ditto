@@ -1,0 +1,29 @@
+.bg-red-C14A4A {
+    background-color: #C14A4A;
+}
+
+.navbar {
+    background-color: #C14A4A;
+}
+
+.font-comic {
+    font-family: 'ComicReliefRegular';
+    font-weight: normal;
+    font-style: normal;
+}
+
+.btn-outline-danger {
+    color: white;
+}
+
+.navbar-nav .nav-item .nav-link {
+    color: white;
+}
+
+.navbar-nav .nav-item:hover .nav-link {
+    color: salmon;
+}
+
+.footer {
+    background-color: #E5474B;
+}

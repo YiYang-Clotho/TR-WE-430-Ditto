@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <th:block th:include="/fragment/common.html :: head"></th:block>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Cookiez - login</title>
+
+</head>
+<body>
+<header th:replace="/fragment/common.html :: header"></header>
+
+<div class="container d-flex justify-content-center">
+    <div class="row my-5 w-75 animate__fadeInRightBig animate__bounceIn">
+        <div class="col-4 bg-red-C14A4A   rounded-right bg-red- d-flex flex-column align-items-center text-center text-white justify-content-around">
+
+            <h2>Welcome home!</h2>
+            <p>If we want to learn new recipe and improve you cook skill, please create account to save favourite recipe
+
+
+            </p>
+            <a class="rounded-lg w-75 btn btn-outline-light" href="/register">Here to create account</a>
+        </div>
+        <div class="col-8 shadow-lg d-flex flex-column p-5 rounded-left align-items-center">
+            <h1 class="title mb-5 font-comic animate__bounceIn">
+                Sign in to Cookiez
+            </h1>
+            <form class="w-75">
+                <div class="form-group  ">
+                    <label for="exampleInputEmail1"><i class="fa fa-envelope"></i> Username</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1"> <i class="fa fa-lock"></i>Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                </div>
+                <button type="submit" class="btn btn-light">LOGIN</button>
+            </form>
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<th:block th:include="/fragment/common.html :: scripts"></th:block>
+<script th:inline="javascript">
+
+</script>
+</body>
+</html>
