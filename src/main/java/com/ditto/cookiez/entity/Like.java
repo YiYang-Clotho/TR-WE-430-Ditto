@@ -13,25 +13,24 @@ import lombok.EqualsAndHashCode;
  * </p>
  *
  * @author astupidcoder
- * @since 2020-08-14
+ * @since 2020-09-16
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class Recipe extends Model {
+public class Like extends Model {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId(value = "recipe_id", type = IdType.AUTO)
+    @TableId(value = "like_id", type = IdType.AUTO)
+    private Integer likeId;
+
+    private Integer userId;
+
+    private LocalDateTime likeTime;
+
+    private Integer status;
+
     private Integer recipeId;
-
-    private String recipeName;
-
-    private String recipeDescription;
-
-    private Integer recipeLike;
-
-    private LocalDateTime recipeCreatedTime;
-    private  int recipeCoverId;
 
 
 }

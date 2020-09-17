@@ -20,8 +20,4 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, Comment> impl
     @Autowired
     CommentMapper mapper;
 
-    public void main(String[] args) {
-
-                
-    }
 }

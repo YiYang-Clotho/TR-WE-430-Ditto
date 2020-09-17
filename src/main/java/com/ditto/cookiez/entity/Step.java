@@ -3,7 +3,6 @@ package com.ditto.cookiez.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import com.baomidou.mybatisplus.annotation.TableId;
-import java.time.LocalDateTime;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -13,25 +12,24 @@ import lombok.EqualsAndHashCode;
  * </p>
  *
  * @author astupidcoder
- * @since 2020-08-14
+ * @since 2020-09-16
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class Recipe extends Model {
+public class Step extends Model {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId(value = "recipe_id", type = IdType.AUTO)
+    @TableId(value = "step_id", type = IdType.AUTO)
+    private Integer stepId;
+
+    private Integer stepOrder;
+
+    private Integer imgId;
+
     private Integer recipeId;
 
-    private String recipeName;
-
-    private String recipeDescription;
-
-    private Integer recipeLike;
-
-    private LocalDateTime recipeCreatedTime;
-    private  int recipeCoverId;
+    private String stepContent;
 
 
 }
