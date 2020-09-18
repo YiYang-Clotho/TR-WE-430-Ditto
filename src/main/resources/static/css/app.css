@@ -8,6 +8,10 @@
 
     color: #888276;
 }
+.bg-grad-888276{
+
+    background-color: #888276;
+}
 .rounded-50{
     border-radius: 50px;
     box-shadow: 2px 2px 5px #888888;
@@ -15,7 +19,9 @@
 .rounded-20{
     border-radius: 20px;
 }
-
+.shadow-2-2-5{
+    box-shadow: 2px 2px 5px #888888;
+}
 .navbar {
     background-color: #C14A4A;
 }
