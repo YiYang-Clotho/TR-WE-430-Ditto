@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Cookiez-login</title>
+    <title>Cookiez - register</title>
 
 </head>
 <body>
@@ -19,17 +19,17 @@
                 <h1 class="title mb-5 font-comic">
                     Create Account
                 </h1>
-                <form class="w-75">
+                <div class="w-75" >
                     <div class="form-group ">
-                        <label for="exampleInputEmail1"><i class="fa fa-envelope"></i> Email</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                        <label for="username"><i class="fa fa-envelope"></i> Email</label>
+                        <input type="email" class="form-control" id="username" placeholder="Email">
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword1"> <i class="fa fa-lock"></i>Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                        <label for="password"> <i class="fa fa-lock"></i>Password</label>
+                        <input type="password" class="form-control" id="password" placeholder="Password">
                     </div>
-                    <button type="submit" class="btn btn-light">SIGN UP</button>
-                </form>
+                    <button  class="btn btn-light" onclick="signUp(this)">SIGN UP</button>
+                </div>
             </div>
             <div class="col-4 bg-red-C14A4A   rounded-right bg-red- d-flex flex-column align-items-center text-center text-white justify-content-around" >
                 <h2 >Hello, my friend</h2>
@@ -45,8 +45,10 @@
     </div>
 
 <th:block th:include="/fragment/common.html :: scripts"></th:block>
+<script type="text/javascript" src="/js/user/signup.js"></script>
 <script th:inline="javascript">
 
+    
 </script>
 </body>
 </html>

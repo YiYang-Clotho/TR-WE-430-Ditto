@@ -42,6 +42,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         return getOne(wrapper);
     }
 
+
     @Override
     public User auth(String username, String password) {
 
@@ -53,5 +54,16 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
             return user;
         }
         return null;
+    }
+
+    @Override
+    public Boolean register(User user) {
+//        Has existed the user?
+        User qUser = getByUsername(user.getUsername());
+        if (qUser == null) {
+            save(user);
+            return true;
+        }
+        return false;
     }
 }

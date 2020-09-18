@@ -51,7 +51,7 @@ public class User extends Model  {
     public User() {
     }
 
-    public User(String username, String userPwd) {
+    public User( String username, String userPwd) {
         this.username = username;
         this.userPwd = userPwd;
     }

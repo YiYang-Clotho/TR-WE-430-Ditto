@@ -104,14 +104,14 @@ public class UserController {
     @GetMapping("/register")
     public ModelAndView registerPage() {
         return new ModelAndView("user/register");
-
-
     }
 
     @PostMapping("/api/register")
     public ResponseEntity<JSONObject> register(@RequestBody JSONObject param) {
         String username = param.getString("username"), password = param.getString("password");
+
         User user = new User(username, password);
+
         if (service.save(user)) {
             return Response.ok("Succeed to register");
         }
