@@ -123,9 +123,14 @@ public class UserController {
 //        return "";
 //    }
 //
-    @GetMapping("profile")
-    public ModelAndView profile() {
+    @GetMapping("/user/profile")
+    public ModelAndView profilePage() {
         return new ModelAndView("user/profile");
+    }
+
+    @GetMapping("/user/saves")
+    public ModelAndView savesPage() {
+        return new ModelAndView("user/saves");
     }
 
 

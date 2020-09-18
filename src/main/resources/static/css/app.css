@@ -12,6 +12,11 @@
 
     background-color: #888276;
 }
+.border-red-C14A4A{
+    border:  3px #C14A4A solid ;
+    border-radius: 20px;
+    box-shadow: 2px 2px 5px #888888;
+}
 .rounded-50{
     border-radius: 50px;
     box-shadow: 2px 2px 5px #888888;
