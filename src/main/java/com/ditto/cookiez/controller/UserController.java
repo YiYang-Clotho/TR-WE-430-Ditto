@@ -118,9 +118,15 @@ public class UserController {
         return Response.bad("Failed to register");
     }
 
-    @GetMapping("user/{userId}")
-    public String profile() {
-        return "";
+    //    @GetMapping("user/{userId}")
+//    public String profile() {
+//        return "";
+//    }
+//
+    @GetMapping("profile")
+    public ModelAndView profile() {
+        return new ModelAndView("user/profile");
     }
+
 
 }

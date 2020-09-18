@@ -1,5 +1,19 @@
+
+
 .bg-red-C14A4A {
+    color: white;
     background-color: #C14A4A;
+}
+.text-grad-888276{
+
+    color: #888276;
+}
+.rounded-50{
+    border-radius: 50px;
+    box-shadow: 2px 2px 5px #888888;
+}
+.rounded-20{
+    border-radius: 20px;
 }
 
 .navbar {
@@ -27,3 +41,16 @@
 .footer {
     background-color: #E5474B;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

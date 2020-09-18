@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <th:block th:include="/fragment/common.html :: head"></th:block>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Profile</title>
+
+</head>
+<body>
+<header th:replace="/fragment/common.html :: header"></header>
+
+<div class="container d-flex flex-column align-items-center">
+    <div class="d-flex flex-column my-5 align-items-center">
+        <div class="text-center my-3">
+            <img src="/images/avatar.jpg" class="rounded-circle shadow-sm" alt="..." width="150" height="150">
+        </div>
+        <h2 class="text-grad-888276 ">Admin's Kitchen</h2>
+        <div class="my-2">
+            <button class="btn bg-red-C14A4A rounded-50  mx-2"><i class="iconfont icon-pencil"></i> Edit Profile</button>
+            <button class=" btn bg-red-C14A4A rounded-50  mx-2"><i class="iconfont icon-cross"></i>Add a recipe</button>
+        </div>
+
+    </div>
+    <div class="d-flex w-75 shadow-lg">
+        <a class="btn bg-success rounded-left text-white" href="#"><i class="iconfont icon-cook"></i> Created recipes</a>
+        <a class="btn  mr-auto rounded-right " href="#"><i class="iconfont icon-bookmarks"></i> Saves</a>
+        <a class="btn bg-red-C14A4A rounded-50 ml-auto" href="#"><i class="iconfont icon-lanzi mr-1"></i>Go to pantry</a>
+    </div>
+    <div class="d-flex w-75 shadow-lg h-100">
+        <div class=""></div>
+    </div>
+</div>
+
+<th:block th:include="/fragment/common.html :: scripts"></th:block>
+<script type="text/javascript" src="/js/">
+</script>
+<script th:inline="javascript">
+
+</script>
+</body>
+</html>
