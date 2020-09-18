@@ -6,64 +6,41 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Cookiez Profile</title>
+    <title>Cookiez - Profile</title>
 
 </head>
 <body>
 <header th:replace="/fragment/common.html :: header"></header>
+<div class="container d-flex  justify-content-center">
+    <div class="d-flex flex-column w-75 my-5 align-items-center" >
+        <h2 class="font-comic">My profile</h2>
+<!--     TODO   Need prefect distance between icon and input-->
+        <div class="d-flex flex-column shadow-lg  my-3 p-5 rounded-20" style="width:60%;">
+            <div class="text-center my-3 d-flex justify-content-center">
+                <img src="/images/avatar.jpg" class="rounded-circle shadow-sm" alt="..." width="150" height="150"> <i class="iconfont icon-pencil mt-auto"></i>
+            </div>
+            <div class="form-group">
+                <label for="username" class="mt-auto"><i class="iconfont icon-seeuser"></i> Username</label>
+                <input type="text" class="form-control rounded-pill" id="username" >
+            </div>
+            <div class="form-group">
+                <label for="email"><i class="iconfont icon-EmailHili"></i>Email</label>
+                <input type="password" class="form-control rounded-pill" id="email">
+            </div>
+            <div class="form-group">
+                <label for="oldPassword"><i class="iconfont icon-lock mb-2"></i>Old Password</label>
+                <input type="password" class="form-control rounded-pill" id="oldPassword">
+                <label for="newPassword"><i class="iconfont icon-lock"></i>New Password</label>
+                <input type="password" class="form-control rounded-pill" id="newPassword">
+            </div>
+            <button class="btn bg-red-C14A4A rounded-50 ml-auto w-25"> Save<i class="iconfont icon-rightarrow ml-2"></i></button>
 
-<div class="container d-flex flex-column align-items-center">
-    <div class="d-flex flex-column my-5 align-items-center">
-        <div class="text-center my-3">
-            <img src="/images/avatar.jpg" class="rounded-circle shadow-sm" alt="..." width="150" height="150">
-        </div>
-        <h2 class="text-grad-888276 ">Admin's Kitchen</h2>
-        <div class="my-2">
-            <button class="btn bg-red-C14A4A rounded-50  mx-2"><i class="iconfont icon-pencil"></i> Edit Profile
-            </button>
-            <button class=" btn bg-red-C14A4A rounded-50  mx-2"><i class="iconfont icon-cross"></i>Add a recipe</button>
         </div>
 
     </div>
-    <div class="d-flex w-100  mb-4">
-        <button  class="btn bg-success rounded-left text-white"  disabled><i class="iconfont icon-cook"></i> Created
-            recipes</button>
-        <a class="btn  mr-auto rounded-right " href="/user/saves"><i class="iconfont icon-bookmarks"></i> Saves</a>
-        <a class="btn bg-red-C14A4A rounded-50 ml-auto" href="#"><i class="iconfont icon-lanzi mr-1"></i>Go to
-            pantry</a>
-    </div>
-    <div class="d-flex w-100  h-100 p-4 justify-content-around mb-5  border-red-C14A4A" >
-        <div class="card shadow-2-2-5 p-2 rounded-20" style="width: 40%">
-            <div class="d-flex">
-                <img src="/images/pasted.png" class="rounded shadow-2-2-5 m-2" alt="" width="200px" height="130px">
-                <div class="d-flex flex-column">
-                    <h2>Title</h2>
-                    <p> description</p>
 
-                </div>
-            </div>
-            <div class="ml-2">
-                <button class="btn bg-red-C14A4A rounded-50 "><i class="iconfont icon-pencil mr-1"></i> Edit</button>
-                <button class="btn bg-red-C14A4A rounded-50 "><i class="iconfont icon-x mr-1"></i>Delete</button>
-                <button class="btn btn-light ml-auto bg-grad-888276" disabled><i class="iconfont icon-entypocalendar mr-1"></i>01.10.2050</button>
-            </div>
-        </div>
-        <div class="card shadow-2-2-5 p-2 rounded-20" style="width: 40%">
-            <div class="d-flex">
-                <img src="/images/pasted.png" class="rounded shadow-2-2-5 m-2" alt="" width="200px" height="130px">
-                <div class="d-flex flex-column">
-                    <h2>Title</h2>
-                    <p> description</p>
-                    <button class="mt-auto">01.10.2050</button>
-                </div>
-            </div>
-            <div class="ml-2">
-                <button class="btn bg-red-C14A4A rounded-50 "><i class="iconfont icon-pencil mr-1"></i> Edit</button>
-                <button class="btn bg-red-C14A4A rounded-50 "><i class="iconfont icon-x mr-1"></i>Delete</button>
-            </div>
-        </div>
-    </div>
 </div>
+
 
 <th:block th:include="/fragment/common.html :: scripts"></th:block>
 <script type="text/javascript" src="/js/">

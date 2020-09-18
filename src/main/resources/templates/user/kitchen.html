@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Cookiez - Save</title>
+    <title>Cookiez Profile</title>
 
 </head>
 <body>
@@ -25,14 +25,14 @@
         </div>
 
     </div>
-    <div id="options" class="d-flex w-100  mb-4">
-        <a class="btn  rounded-left " href="/user/kitchen"><i class="iconfont icon-cook"></i> Created
-            recipes</a>
-        <button class="btn bg-success  mr-auto rounded-right " disabled><i class="iconfont icon-bookmarks"></i> Saves</button>
+    <div class="d-flex w-100  mb-4">
+        <button  class="btn bg-success rounded-left text-white"  disabled><i class="iconfont icon-cook"></i> Created
+            recipes</button>
+        <a class="btn  mr-auto rounded-right " href="/user/saves"><i class="iconfont icon-bookmarks"></i> Saves</a>
         <a class="btn bg-red-C14A4A rounded-50 ml-auto" href="#"><i class="iconfont icon-lanzi mr-1"></i>Go to
             pantry</a>
     </div>
-    <div id="cards-container" class="d-flex w-100 shadow-sm h-100 p-4 justify-content-around mb-5 border-danger">
+    <div class="d-flex w-100  h-100 p-4 justify-content-around mb-5  border-red-C14A4A" >
         <div class="card shadow-2-2-5 p-2 rounded-20" style="width: 40%">
             <div class="d-flex">
                 <img src="/images/pasted.png" class="rounded shadow-2-2-5 m-2" alt="" width="200px" height="130px">
@@ -43,9 +43,8 @@
                 </div>
             </div>
             <div class="ml-2">
-<!--                TODO add icon for "see more"-->
-                <button class="btn bg-red-C14A4A rounded-50 "><i class="iconfont icon-eye"></i> See More</button>
-
+                <button class="btn bg-red-C14A4A rounded-50 "><i class="iconfont icon-pencil mr-1"></i> Edit</button>
+                <button class="btn bg-red-C14A4A rounded-50 "><i class="iconfont icon-x mr-1"></i>Delete</button>
                 <button class="btn btn-light ml-auto bg-grad-888276" disabled><i class="iconfont icon-entypocalendar mr-1"></i>01.10.2050</button>
             </div>
         </div>
@@ -55,14 +54,12 @@
                 <div class="d-flex flex-column">
                     <h2>Title</h2>
                     <p> description</p>
-
+                    <button class="mt-auto">01.10.2050</button>
                 </div>
             </div>
             <div class="ml-2">
-                <!--                TODO add icon for "see more"-->
-                <button class="btn bg-red-C14A4A rounded-50 "><i class="iconfont icon-eye mr-1"></i> See More</button>
-
-                <button class="btn btn-light ml-auto bg-grad-888276" disabled><i class="iconfont icon-entypocalendar mr-1"></i>01.10.2050</button>
+                <button class="btn bg-red-C14A4A rounded-50 "><i class="iconfont icon-pencil mr-1"></i> Edit</button>
+                <button class="btn bg-red-C14A4A rounded-50 "><i class="iconfont icon-x mr-1"></i>Delete</button>
             </div>
         </div>
     </div>

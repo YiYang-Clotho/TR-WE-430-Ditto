@@ -123,14 +123,19 @@ public class UserController {
 //        return "";
 //    }
 //
-    @GetMapping("/user/profile")
-    public ModelAndView profilePage() {
-        return new ModelAndView("user/profile");
+    @GetMapping("/user/kitchen")
+    public ModelAndView kitchenPage() {
+        return new ModelAndView("user/kitchen");
     }
 
     @GetMapping("/user/saves")
     public ModelAndView savesPage() {
         return new ModelAndView("user/saves");
+    }
+
+    @GetMapping("/user/profile")
+    public ModelAndView profilePage() {
+        return new ModelAndView("user/profile");
     }
 
 
