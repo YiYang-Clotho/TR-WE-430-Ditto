@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+
+
+<html>
+
+<head>
+  <title>MVF1-Account management</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+    integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.css" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet" />
+</head>
+
+<body>
+  <!-- Header -->
+  <div id="headerDiv"></div>
+
+  <!-- Main -->
+  <section id="main">
+    <div class="inner">
+      <header class="major special">
+        <h1>MVF1 - Account System</h1>
+      </header>
+      <!-- <a href="#" class="image fit"><img src="images/pic11.jpg" alt="" /></a> -->
+      <h2>1. Diagram design</h2>
+      <!-- STUB: done -->
+      <p>
+        <h3>Activity Diagram</h3>
+        <b><img src="/images/MVF1_Activity_diagram.png" alt="Activity Diagram" />
+      </p>
+      <p>
+        <p>
+          <h3>Class Diagram</h3>
+          <b><img src="/images/mvf1class-account.bmp" width="960" height="600" alt="Class Diagram" />
+        </p>
+        <p>
+          <h3>Design Diagram</h3>
+          <b><img src="/images/mvf1login.bmp" width="960" height="600" alt="Class Diagram" />
+        </p>
+        <p>
+
+          <h2>2.Explanation</h2>
+          <h3>2.1 Description</h3>
+          <p style="color: black;"> In this feature, users can have their account access more functions, like post and
+            manage recipes, write a comment for a recipe. In addition, only registered users can save and collect their
+            favorite recipes. </p>
+          <h3>2.2 User story and criteria</h3>
+
+
+          <ul>
+
+            <li>
+              <b> Account management:</b> <br />
+
+              <table data-toggle="table">
+                <thead>
+                  <tr>
+                    <th>User story</th>
+
+                    <th>Acceptance criteria</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><b>As a</b> user,
+                      <b><br>I can/ I want</b> change my profile
+                      <b><br>so that</b> I can become different in the website.</td>
+
+                    <td>
+                      <p>
+                        <br><br>Criterion 0:
+                        <b><br>Given</b> I have logged in And am in the profile page
+                        <b><br>When</b> I click the "change profile" button And enter valid information
+                        <b><br>Then</b> receive success message And the changes showing in the profile page
+
+                        <br><br>Criterion 1:
+                        <b><br>Given</b> I have logged in And am in the profile page
+                        <b><br>When</b> I click the "change profile" button And do not enter invalid information
+                        <b><br>Then</b> receive rejection message And tell me the reason why the change is not
+                        successful.
+                      </p>
+                      <p>
+
+                      </p>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td><b>As a</b> user,
+                      <b><br>I can/ I want</b> log out
+                      <b><br>so that</b> I can log out in a public computer.</td>
+                    <td>
+                      <p>
+                        1. <br><br>Criterion 0:
+                        <b><br>Given</b> I have logged in
+                        <b><br>When</b> I click the logout button
+                        <b><br>Then</b> the message show I have logged out And push me to the index page
+                      </p>
+                      <p>
+
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><b>As a</b> user,
+                      <b><br>I can/ I want</b> delete my account
+                      <b><br>so that</b> I can protect our privacy</td>
+                    <td>
+
+                      <p>
+                        <br><br>Criterion 0:
+                        <b><br>Given</b> that I am in the profile page
+                        <b><br>When</b> I click AND I need to confirm the operation.
+                        <b><br>Then</b> the message shows that the account has been deleted AND the page jump to the
+                        index
+                        page
+                      </p>
+                      <p>
+
+                      </p>
+                    </td>
+                  </tr>
+
+
+                  <tr>
+                    <td><b>As a</b> user,
+                      <b><br>I can/ I want</b> sign up for the website
+                      <b><br>so that</b> I can take advantage of more functions to improve my cooking skill.
+                    </td>
+                    <td>
+                      <p>
+                        <br><br>Criterion 0:
+                        <b><br>Given</b> that I am not the registered user And I want to sign up,
+                        <b><br>When</b> I click the sign-up button And enter the required information
+                        <b><br>Then</b> the system shows I registered successfully And take me to the index page.
+                      </p>
+                      <p>
+
+                      </p>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </li>
+
+            <br />
+            </ol>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <div id="footerDiv"></div>
+
+  <script src="/assets/js/common.js"></script>
+</body>
+
+</html>
