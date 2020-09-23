@@ -33,7 +33,11 @@ public class RecipeController {
 
     @Autowired
     IStepService stepService;
-
+    @GetMapping("/recipe/add")
+    public ModelAndView addRecipePage() {
+        ModelAndView mv = new ModelAndView("recipe/add");
+        return mv;
+    }
     @GetMapping("/recipe/{recipeId}")
     public ModelAndView recipePage(@PathVariable Integer recipeId) {
         ModelAndView mv = new ModelAndView("recipe/detail");

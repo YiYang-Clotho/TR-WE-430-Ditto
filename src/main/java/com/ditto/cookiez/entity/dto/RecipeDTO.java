@@ -12,10 +12,16 @@ import java.util.List;
  */
 @Data
 public class RecipeDTO {
+
     private String recipeName;
     private String recipeDescription;
     private String author;
     private List<StepDTO> stepList;
     private List<IngredientDTO> ingredientDTOList;
+    private List<StepDTO> stepDTOList;
 
+    public RecipeDTO(Recipe recipe) {
+        this.recipeName = recipe.getRecipeName();
+        this.recipeDescription=recipe.getRecipeDescription();
+    }
 }
