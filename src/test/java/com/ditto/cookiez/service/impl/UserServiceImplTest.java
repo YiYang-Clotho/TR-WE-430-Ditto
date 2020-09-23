@@ -25,7 +25,11 @@ class UserServiceImplTest {
     @Test
     public void test() {
 
-        System.out.println(service.getByUsername("123"));
+     User user=  service.getByUsername("1234");
+     user.setUsername("123");
+     user.setUserPwd(null);
+     user.updateById();
+
     }
 
     @Test

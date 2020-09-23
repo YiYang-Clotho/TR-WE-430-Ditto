@@ -31,5 +31,8 @@ public class Step extends Model {
 
     private String stepContent;
 
-
+    public Step(Integer stepOrder, String stepContent) {
+        this.stepOrder = stepOrder;
+        this.stepContent = stepContent;
+    }
 }
