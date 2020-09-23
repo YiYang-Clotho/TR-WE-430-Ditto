@@ -32,7 +32,9 @@ public class Recipe extends Model {
 
     private LocalDateTime recipeCreatedTime;
 
-    private  int recipeCoverId;
+    private  Integer recipeCoverId;
+
+    private Integer recipeAuthorId;
 
 
 

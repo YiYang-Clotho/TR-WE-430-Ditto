@@ -1,5 +1,6 @@
 package com.ditto.cookiez.entity.dto;
 
+import com.ditto.cookiez.entity.Step;
 import lombok.Data;
 
 /**
@@ -11,6 +12,15 @@ import lombok.Data;
 public class StepDTO {
     private String stepContent;
     private String imgPath;
-    private Integer imgId;
     private Integer stepOrder;
+    private Integer imgId;
+    public StepDTO() {
+
+    }
+
+    public StepDTO(Step step) {
+        this.stepContent = step.getStepContent();
+        this.stepOrder = step.getStepOrder();
+
+    }
 }

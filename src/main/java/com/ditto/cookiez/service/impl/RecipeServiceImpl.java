@@ -2,9 +2,11 @@ package com.ditto.cookiez.service.impl;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.ditto.cookiez.entity.Img;
 import com.ditto.cookiez.entity.Recipe;
 import com.ditto.cookiez.entity.Step;
+import com.ditto.cookiez.entity.User;
 import com.ditto.cookiez.entity.dto.RecipeDTO;
 import com.ditto.cookiez.entity.dto.StepDTO;
 import com.ditto.cookiez.mapper.RecipeMapper;
@@ -12,10 +14,12 @@ import com.ditto.cookiez.service.IImgService;
 import com.ditto.cookiez.service.IRecipeService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ditto.cookiez.service.IStepService;
+import com.ditto.cookiez.service.IUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -33,6 +37,9 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
     IImgService imgService;
     @Autowired
     IStepService stepService;
+    @Autowired
+    IUserService userService;
+
 
     @Override
     public void updateRecipe(JSONObject json) {
@@ -75,6 +82,24 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
 
     @Override
     public RecipeDTO getRecipe(int id) {
-        return null;
+        Recipe recipe = getById(id);
+        RecipeDTO recipeDTO = new RecipeDTO(recipe);
+
+        User user = userService.getById(recipe.getRecipeAuthorId());
+        recipeDTO.setAuthor(user.getUsername());
+
+        List<Step> stepList = stepService.list(new QueryWrapper<Step>().eq("recipe_id", recipe.getRecipeId()));
+        List<StepDTO> stepDTOList = new ArrayList<>();
+        for (Step step : stepList
+        ) {
+            StepDTO stepDTO = new StepDTO(step);
+            Img img = imgService.getById(step.getImgId());
+            stepDTO.setImgPath(img.getImgPath());
+            stepDTOList.add(stepDTO);
+        }
+        recipeDTO.setStepDTOList(stepDTOList);
+
+
+        return recipeDTO;
     }
 }
