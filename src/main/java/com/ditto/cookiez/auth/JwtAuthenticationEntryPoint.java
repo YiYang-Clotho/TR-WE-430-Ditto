@@ -11,6 +11,7 @@ import java.io.IOException;
 
 /**
  * Without proof
+ *
  * @author 1
  */
 @Component
@@ -21,7 +22,8 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
                          AuthenticationException authException)
             throws IOException, ServletException {
 
-        System.out.println("JwtAuthenticationEntryPoint:"+authException.getMessage());
-        response.sendError(HttpServletResponse.SC_UNAUTHORIZED,"UNAUTHORIZED");
+        System.out.println("JwtAuthenticationEntryPoint:" + authException.getMessage());
+        response.sendRedirect("/login");
+//        response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "UNAUTHORIZED");
     }
 }

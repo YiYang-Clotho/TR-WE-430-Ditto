@@ -8,11 +8,11 @@ function handleLoginBtn() {
 
     }).then(res => {
         console.log(res)
-        localStorage.setItem("accessToken","Bearer "+ res['data']['data']['accessToken'])
-        window.location.replace("/")
+        bootbox.alert("Login Successfully!")
+        window.location.replace("/");
     }).catch(err => {
         // eslint-disable-next-line no-undef
-        bootbox.alert("Login Failed")
+        bootbox.alert("Login Failed!")
         console.log(err)
     })
 }

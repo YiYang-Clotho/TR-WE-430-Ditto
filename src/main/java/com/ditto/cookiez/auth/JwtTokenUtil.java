@@ -1,11 +1,14 @@
 package com.ditto.cookiez.auth;
 
+import com.ditto.cookiez.WebLogAspect;
 import com.ditto.cookiez.entity.SecurityUserDetails;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Clock;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.impl.DefaultClock;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
@@ -19,9 +22,10 @@ import java.util.function.Function;
 @Component
 public class JwtTokenUtil implements Serializable {
     private static final long serialVersionUID = -3301605591108950415L;
-
+    private final static Logger logger = LoggerFactory.getLogger(JwtTokenUtil.class);
+    //
     @Value("${jwt.secret}")
-    private  String secret;
+    private  String secret="secretscookiez";
 
     @Value("${jwt.expiration}")
     private Long expiration;
@@ -71,6 +75,7 @@ public class JwtTokenUtil implements Serializable {
     }
 
     private Claims getAllClaimsFromToken(String token) {
+
         return Jwts.parser()
                 .setSigningKey(secret)
                 .parseClaimsJws(token)
