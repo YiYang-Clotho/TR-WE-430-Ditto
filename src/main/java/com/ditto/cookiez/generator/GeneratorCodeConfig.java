@@ -17,7 +17,7 @@ public class GeneratorCodeConfig {
     public static String driverUrl="jdbc:mysql://127.0.0.1:3306/cookiez?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true";
     public static String driverName="com.mysql.cj.jdbc.Driver";
     public static String username="root";
-    public static String password="Test@123";
+    public static String password="";
 
 
     public static void main(String[] args) {
@@ -129,7 +129,7 @@ public class GeneratorCodeConfig {
         System.out.println(help.toString());
         if (scanner.hasNext()) {
             String ipt = scanner.next();
-            if (StringUtils.isNotEmpty(ipt)) {
+            if (!ipt.isEmpty()) {
                 return ipt;
             }
         }

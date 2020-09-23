@@ -3,7 +3,7 @@
 <head th:fragment="head">
 
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
+    <link rel="shortcut icon" href="/images/logo.png" />
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -15,6 +15,7 @@
             href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
     />
     <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" href="/css/icon.css">
 
 </head>
 <body>
@@ -32,33 +33,14 @@
         <div class="d-flex justify-content-center" id="navbarSupportedContent">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/"><i class="iconfont icon-xuanzhongshangcheng"></i> Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Pantry</a>
+                    <a class="nav-link" href="#"><i class="iconfont icon-lanzi mr-1"></i>Pantry</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Tags</a>
+                    <a class="nav-link" href="#"><i class="iconfont icon-tag mr-1"></i>Tags</a>
                 </li>
-           <!--
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Dropdown
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                </li>
-                -->
-                <!--
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                </li>
-               -->
             </ul>
             <form class="form-inline mx-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -69,8 +51,8 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/login">Join us! Login</a>
                 </li>
-                <li>
-                    <a class="nav-link" href="/login"><i class="far fa-user-circle fa-lg" style="color: #fff"></i></a>
+                <li class="nav-item">
+                    <a class="nav-link" href="/user/kitchen"><i class="icon-seeuser iconfont"></i></a>
                 </li>
             </ul>
         </div>
@@ -119,9 +101,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
             integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
             crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.0/showdown.min.js"
-            crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.2/main.min.js"></script>
     <!--    time lib-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"
             integrity="sha512-rmZcZsyhe0/MAjquhTgiUcb4d9knaFc7b5xAfju483gbEXTkeJRUMIPk6s3ySZMYUHEcjKbjLjyddGWMrNEvZg=="
@@ -131,6 +110,7 @@
     <!--  request http lib  -->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script src="/js/public/common.js"></script>
 </div>
 </body>
 </html>

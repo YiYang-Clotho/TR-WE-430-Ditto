@@ -1,14 +1,71 @@
-<!doctype html>
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <th:block th:include="/fragment/common.html :: head"></th:block>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Cookiez - Add a recipe</title>
+
 </head>
 <body>
+<header th:replace="/fragment/common.html :: header"></header>
+<div class="container d-flex flex-column p-5 w-60">
+    <input class=" mb-5 border-red-C14A4A" type="text" placeholder="Please enter recipe name" style="height:60px;">
+    <div class="bg-grad-888276 mb-3" style="height:520px"></div>
+    <button class="btn bg-red-C14A4A rounded-50  w-25 ml-auto mb-5">Upload cover</button>
+    <i class="iconfont icon-pen"></i>
+    <textarea class="mb-3 input-area-red mb-2" placeholder="Describe Your Recipe"></textarea>
+    <i class="iconfont icon-pen"></i>
+    <input class="input-red mb-5" type="text" placeholder="Add Tags">
+    <div class="d-flex flex-column mb-5">
+        Ingredients
+        <div class="d-flex mb-4 justify-content-between">
+            <input class="mr-3 input-red" type="text" placeholder="Name"> <input class="input-red" type="text"
+                                                                                 placeholder="Name"> <i
+                class="iconfont icon-x"> </i>
 
+        </div>
+        <div class="d-flex mb-4  justify-content-between">
+            <input class="mr-3 input-red" type="text" placeholder="Name"> <input class="input-red" type="text"
+                                                                                 placeholder="Name"><i
+                class="iconfont icon-x"> </i>
+
+        </div>
+        <div class="d-flex mb-4  justify-content-between">
+            <input class="mr-3 input-red" type="text" placeholder="Name"> <input class="input-red" type="text"
+                                                                                 placeholder="Name"><i
+                class="iconfont icon-x"> </i>
+
+        </div>
+        <button class="w-25 btn btn-red">Add a ingredient</button>
+    </div>
+<!--    Step area-->
+    <div class="d-flex flex-column mb-5">
+        <div class="d-flex  justify-content-between align-content-between">
+            <div class="d-flex flex-column w-75 mr-3"> Step1
+                <textarea class="h-100 input-area-red" name="textarea" id=""
+                          placeholder="Add step here"></textarea>
+            </div>
+            <div><img class="rounded-20" src="/images/salad.jpg" alt="" width="300" height="300"></div>
+        </div>
+    </div>
+<!--    Operation Area-->
+    <div class="d-flex">
+        <button class="btn btn-red">Add a step</button>
+        <button class="btn btn-red ml-auto">Submit</button>
+    </div>
+
+
+</div>
+
+
+<th:block th:include="/fragment/common.html :: scripts"></th:block>
+<script type="text/javascript" src="/js/">
+</script>
+<script th:inline="javascript">
+
+</script>
 </body>
 </html>

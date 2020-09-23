@@ -4,24 +4,13 @@ spring:
     cache: false
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/cookiez?setUnicode=true&characterEncoding=utf8&serverTimezone=GMT
-    username: root
-    password:
   resources:
     static-locations: file:src/main/resources/static/
 server:
   port: 8090
-mybatis-plus:
-  configuration:
-    map-underscore-to-camel-case: true
-    auto-mapping-behavior: full
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-  mapper-locations: classpath*:mapper/**/*Mapper.xml
-  global-config:
-    db-config:
-      logic-not-delete-value: 1
-      logic-delete-value: 0
+
+
 jwt:
-  secret: secret
+  secret: secretscookiez
   expiration: 7200000
   token: Authorization

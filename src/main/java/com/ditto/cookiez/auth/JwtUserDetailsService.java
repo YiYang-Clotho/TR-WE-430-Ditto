@@ -29,6 +29,7 @@ public class JwtUserDetailsService implements UserDetailsService {
 //        from database to get role
         authorityList.add(new SimpleGrantedAuthority("ROLE_CUSTOMER"));
         User user= userService.getByUsername(username);
+        System.out.println(user);
         return new SecurityUserDetails(user.getUsername(),user.getUserPwd(),authorityList);
     }
 

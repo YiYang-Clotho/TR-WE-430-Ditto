@@ -1,6 +1,9 @@
 package com.ditto.cookiez.service.impl;
 
+import com.ditto.cookiez.entity.User;
+import com.ditto.cookiez.mapper.UserMapper;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -11,10 +14,23 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 
 class UserServiceImplTest {
+    @Autowired
+    private UserMapper userMapper;
+
     @Test
-    public void test(){
-        UserServiceImpl service=new UserServiceImpl();
+    public void test() {
+        UserServiceImpl service = new UserServiceImpl();
         System.out.println(service.getById(1).toString());
+
+    }
+
+    @Test
+    void getByUsername() {
+
+
+        System.out.println(("----- selectAll method test ------"));
+
+        System.out.println(userMapper.selectById(1).toString());
 
     }
 }

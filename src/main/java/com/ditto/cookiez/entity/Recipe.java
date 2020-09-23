@@ -31,6 +31,7 @@ public class Recipe extends Model {
     private Integer recipeLike;
 
     private LocalDateTime recipeCreatedTime;
+    private  int recipeCoverId;
 
 
 }
