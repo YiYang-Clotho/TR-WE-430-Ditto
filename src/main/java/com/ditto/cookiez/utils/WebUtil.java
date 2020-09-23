@@ -1,4 +1,4 @@
-package com.ditto.cookiez.auth;
+package com.ditto.cookiez.utils;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
  * @email s3798366@student.rmit.edu.au
  */
 public class WebUtil {
-    public static Cookie get(HttpServletRequest request,
-                             String name) {
+    public static Cookie getCookieVal(HttpServletRequest request,
+                                      String name) {
         //1.将cookies放到map中去
         Map<String, Cookie> cookieMap = new HashMap<>();
         Cookie[] cookies = request.getCookies();
@@ -28,10 +28,10 @@ public class WebUtil {
             return null;
         }
     }
-    public static void set(HttpServletResponse response,
-                           String name,
-                           String value,
-                           int maxAge) {
+    public static void setCookieVal(HttpServletResponse response,
+                                    String name,
+                                    String value,
+                                    int maxAge) {
         Cookie cookie = new Cookie(name, value);
         cookie.setPath("/");
         cookie.setMaxAge(maxAge);

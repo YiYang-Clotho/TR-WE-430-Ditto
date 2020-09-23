@@ -1,6 +1,6 @@
 package com.ditto.cookiez.auth;
 
-import com.ditto.cookiez.controller.UserController;
+import com.ditto.cookiez.utils.WebUtil;
 import io.jsonwebtoken.ExpiredJwtException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,7 +11,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
@@ -19,11 +18,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 @Component
 public class JwtAuthorizationTokenFilter extends OncePerRequestFilter {
@@ -52,7 +47,7 @@ public class JwtAuthorizationTokenFilter extends OncePerRequestFilter {
 
 
             authToken = requestHeader.substring(7);
-           WebUtil.set(response,"accessToken",authToken,3600);
+           WebUtil.setCookieVal(response,"accessToken",authToken,3600);
             try {
                 username = jwtTokenUtil.getUsernameFromToken(authToken);
             } catch (ExpiredJwtException e) {
@@ -61,7 +56,7 @@ public class JwtAuthorizationTokenFilter extends OncePerRequestFilter {
 
 
 
-        Cookie cookie = WebUtil.get(request,"accessToken");
+        Cookie cookie = WebUtil.getCookieVal(request,"accessToken");
         String auth= null;
         if(cookie!=null){
             auth=cookie.getValue();

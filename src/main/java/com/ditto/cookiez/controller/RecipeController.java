@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * <p>
@@ -21,5 +22,10 @@ public class RecipeController {
     @GetMapping("{recipeId}")
     public String recipe() {
         return "";
+    }
+    @GetMapping("/add")
+    public ModelAndView addRecipePage() {
+
+        return new ModelAndView("recipe/add");
     }
 }

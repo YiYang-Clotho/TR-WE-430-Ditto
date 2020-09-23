@@ -1,13 +1,10 @@
 package com.ditto.cookiez.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.ditto.cookiez.auth.JwtTokenUtil;
-import com.ditto.cookiez.auth.WebUtil;
+import com.ditto.cookiez.utils.WebUtil;
 import com.ditto.cookiez.entity.User;
 import com.ditto.cookiez.service.IUserService;
-import com.ditto.cookiez.utils.ModelUtil;
 import com.ditto.cookiez.utils.Response;
-import com.ditto.cookiez.utils.ResponseMsg;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -100,7 +95,7 @@ public class UserController {
         Map<String, Object> models = new HashMap<>();
         models.put("user", user);
         logger.info(user.getAccessToken());
-        WebUtil.set(response, "accessToken", user.getAccessToken(), 3600);
+        WebUtil.setCookieVal(response, "accessToken", user.getAccessToken(), 3600);
 
         if (user != null) {
 //            return Response.ok(ResponseMsg.SUCCEED_TO_LOGIN.v(), user);
