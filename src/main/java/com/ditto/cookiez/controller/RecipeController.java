@@ -73,5 +73,11 @@ public class RecipeController {
         return Response.bad("Delete Failed");
     }
 
+    @GetMapping("/recipe/add")
+    public ModelAndView addRecipePage() {
+        ModelAndView mv = new ModelAndView("recipe/add");
+        return mv;
+    }
+
 
 }
