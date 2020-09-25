@@ -79,5 +79,10 @@ public class RecipeController {
         return mv;
     }
 
+    @GetMapping("/recipe/detail")
+    public ModelAndView RecipeDetail() {
+        ModelAndView mv = new ModelAndView("recipe/detail");
+        return mv;
+    }
 
 }
