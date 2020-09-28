@@ -40,12 +40,14 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
     @Autowired
     IUserService userService;
 
-
+//TODO update ingredients
     @Override
     public void updateRecipe(JSONObject json) {
         Recipe recipe = json.getObject("recipe", Recipe.class);
+//        update recipe basic info
         recipe.updateById();
         List<StepDTO> stepDTOs = json.getJSONArray("steps").toJavaList(StepDTO.class);
+//        update step
         for (StepDTO stepDTO : stepDTOs
         ) {
             Img img = new Img(stepDTO.getImgId(), stepDTO.getImgPath());
@@ -54,7 +56,15 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
             step.setImgId(stepDTO.getImgId());
             step.updateById();
         }
+//        update ingredients
+
+//        for (:
+//             ) {
+//
+//        }
+//        update tags
     }
+    
 
     @Override
     public Recipe addRecipe(JSONObject json) {
