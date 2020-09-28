@@ -6,4 +6,7 @@ package com.ditto.cookiez.entity.dto;
  * @email s3798366@student.rmit.edu.au
  */
 public class IngredientDTO {
+    private String name;
+    private String amount;
+
 }
