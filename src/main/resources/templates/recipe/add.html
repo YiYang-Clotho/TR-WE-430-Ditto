@@ -3,6 +3,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <th:block th:include="/fragment/common.html :: head"></th:block>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -12,49 +13,55 @@
 <body>
 <header th:replace="/fragment/common.html :: header"></header>
 <div class="container d-flex flex-column p-5 w-60">
-    <input class=" mb-5 border-red-C14A4A" type="text" placeholder="Please enter recipe name" style="height:60px;">
-    <div class="bg-grad-888276 mb-3" style="height:520px"></div>
-    <button class="btn bg-red-C14A4A rounded-50  w-25 ml-auto mb-5">Upload cover</button>
+    <input class=" mb-5 border-red-C14A4A" type="text" id="input-title" placeholder="Please enter recipe name"
+           style="height:60px;">
+    <img class="bg-grad-888276 mb-3" id="cover" style="height:520px"></img>
+    <!--    <button class="btn bg-red-C14A4A rounded-50  w-25 ml-auto mb-5">Upload cover</button>-->
+    <input type="file" class="btn bg-red-C14A4A rounded-50  w-25 ml-auto mb-5" id="cover-input"
+           placeholder="Upload cover" onchange="uploadCover(this)" accept="image/jpg,image/jpeg,image/png,image/PNG">
     <i class="iconfont icon-pen"></i>
-    <textarea class="mb-3 input-area-red mb-2" placeholder="Describe Your Recipe"></textarea>
+    <textarea class="mb-3 input-area-red mb-2" placeholder="Describe Your Recipe" id="input-describe"></textarea>
     <i class="iconfont icon-pen"></i>
     <input class="input-red mb-5" type="text" placeholder="Add Tags">
     <div class="d-flex flex-column mb-5">
         Ingredients
-        <div class="d-flex mb-4 justify-content-between">
-            <input class="mr-3 input-red" type="text" placeholder="Name"> <input class="input-red" type="text"
-                                                                                 placeholder="Name"> <i
-                class="iconfont icon-x"> </i>
-
-        </div>
-        <div class="d-flex mb-4  justify-content-between">
-            <input class="mr-3 input-red" type="text" placeholder="Name"> <input class="input-red" type="text"
-                                                                                 placeholder="Name"><i
-                class="iconfont icon-x"> </i>
-
-        </div>
-        <div class="d-flex mb-4  justify-content-between">
-            <input class="mr-3 input-red" type="text" placeholder="Name"> <input class="input-red" type="text"
-                                                                                 placeholder="Name"><i
-                class="iconfont icon-x"> </i>
-
-        </div>
-        <button class="w-25 btn btn-red">Add a ingredient</button>
-    </div>
-<!--    Step area-->
-    <div class="d-flex flex-column mb-5">
-        <div class="d-flex  justify-content-between align-content-between">
-            <div class="d-flex flex-column w-75 mr-3"> Step1
-                <textarea class="h-100 input-area-red" name="textarea" id=""
-                          placeholder="Add step here"></textarea>
+        <div class="d-flex flex-column mb-4 justify-content-between" id="div-ingredients">
+            <div class="d-flex justify-content-between" id="ingred-1"><input class="mr-3 input-red" type="text"
+                                                                             placeholder="Name"> <input
+                    class="input-red" type="text"
+                    placeholder="Name">
+                <button class="btn iconfont icon-x" onclick="delIngredientEle(1)"></button>
             </div>
-            <div><img class="rounded-20" src="/images/salad.jpg" alt="" width="300" height="300"></div>
+
         </div>
+
+        <button class="w-25 btn btn-red" id="btn-addIngredient">Add a ingredient</button>
     </div>
-<!--    Operation Area-->
+    <!--    Step area-->
+    <div class="d-flex flex-column mb-5" id="div-steps">
+
+        <div class="d-flex  justify-content-between align-content-between" id="step-1">
+            <div class="d-flex flex-column w-75 mr-3"> Step1
+                <textarea class="h-100 input-area-red" name="textarea"
+                          placeholder="Add step here"></textarea>
+
+            </div>
+            <div class="d-flex flex-column "><img id="img-step-1" class="rounded-20 mb-1"
+                                                  src="http://iph.href.lu/300x300"
+                                                  alt="" width="300"
+                                                  height="300"> <input id="img-input-step-1" type="file" class="btn-red"
+                                                                       ACCEPT="image/*" onchange="uploadStepImg(1)">
+            </div>
+
+        </div>
+
+    </div>
+
+    <!--    Operation Area-->
     <div class="d-flex">
-        <button class="btn btn-red">Add a step</button>
-        <button class="btn btn-red ml-auto">Submit</button>
+        <button class="btn btn-red" id="btn-addStep">Add a step</button>
+        <button class="btn btn-red" id="btn-removeStep">remove last step</button>
+        <button class="btn btn-red ml-auto" onclick="submit()">Submit</button>
     </div>
 
 
@@ -62,9 +69,148 @@
 
 
 <th:block th:include="/fragment/common.html :: scripts"></th:block>
-<script type="text/javascript" src="/js/">
-</script>
+<!--<script type="text/javascript" src="/js/">-->
+<!--</script>-->
 <script th:inline="javascript">
+    let formData = new FormData();
+    let coverFile = document.getElementById('cover-input');
+
+    function uploadCover(obj) {
+        let reader = new FileReader()
+        reader.readAsDataURL(coverFile.files[0])
+        reader.onload = function (e) {
+            document.getElementById('cover').src = this.result;
+        }
+        formData.append("coverImg", coverFile.files[0])
+    }
+
+    function uploadStepImg(index) {
+        let stepFile = document.getElementById(`img-input-step-${index}`)
+        let reader = new FileReader()
+
+        reader.readAsDataURL(stepFile.files[0])
+        reader.onload = function (e) {
+            document.getElementById(`img-step-${index}`).src = this.result;
+        }
+        formData.append(`stepImg-${index}`, stepFile.files[0])
+    }
+
+    function getIngredients() {
+        const div = document.getElementById("div-ingredients")
+        let ingredientsJson = []
+        for (const ele of div.children) {
+            let ingredient = $(ele.children[0]).val()
+            let amount = $(ele.children[1]).val()
+            ingredientsJson.push({
+                ingredient, amount
+            })
+        }
+        return ingredientsJson
+    }
+
+    function delIngredientEle(index) {
+        const div = document.getElementById("div-ingredients")
+        const size = div.children.length
+        if (size > 1) {
+            $(`#ingred-${index}`).remove()
+
+        }
+
+
+    }
+
+    $("#btn-addStep").click(function () {
+        const div = document.getElementById("div-steps")
+        const size = div.children.length
+
+        const html =
+            `
+
+            <div class="d-flex mt-5 justify-content-between align-content-between" id="step-${size + 1}">
+                <div class="d-flex flex-column w-75 mr-3"> Step${size + 1}
+                    <textarea class="h-100 input-area-red" name="textarea"
+                              placeholder="Add step here"></textarea>
+
+                </div>
+                <div class="d-flex flex-column "><img id="img-step-${size + 1}" class="rounded-20 mb-1" src="http://iph.href.lu/300x300" alt="" width="300"
+                                                      height="300"> <input id="img-input-step-${size + 1}" type="file" class="btn-red" ACCEPT="image/*" onchange="uploadStepImg(${size + 1})"></div>
+
+            </div>
+
+
+
+            `
+        $(div).append(html)
+
+    })
+
+
+    $("#btn-removeStep").click(function () {
+        const div = document.getElementById("div-steps")
+        const size = div.children.length
+        if (size > 1) {
+
+            console.log(div.lastElementChild)
+            div.lastElementChild.remove()
+        }
+
+    })
+
+
+    $("#btn-addIngredient").click(function () {
+        const div = document.getElementById("div-ingredients")
+        const size = div.children.length
+
+        getIngredients()
+        let newSize = size + 1
+        let childHtml = ` <div class="d-flex justify-content-between mt-2" id="ingred-${newSize}"><input class="mr-3 input-red" type="text"
+                                                                                                        placeholder="Name"> <input
+                class="input-red" type="text"
+                placeholder="Name"> <button
+                class="btn iconfont icon-x" onclick="delIngredientEle(${newSize})"> </button>
+            </div>`
+        $("#div-ingredients").append(childHtml)
+    })
+
+
+    function getStepsContent() {
+        const div = document.getElementById("div-steps")
+        let steps = []
+        let ind = 0;
+        for (const ele of div.children) {
+            ind++;
+            let stepOrder = ind;
+            let stepContent = $(ele).find('textarea').val()
+            steps.push({
+                stepOrder, stepContent
+            })
+        }
+        return steps
+    }
+
+    function submit() {
+        const title = $("input-title").val();
+        const description = $("input-describe").val();
+        const recipe = {
+            title, description, recipeCreatedTime: moment().format()
+        }
+        const steps = getStepsContent()
+        const ingredients = getIngredients()
+        formData.append("data", JSON.stringify({
+            recipe, steps, ingredients
+        }))
+
+        bootbox.confirm("Are you sure you want to submit this recipe?", function (result) {
+            if (result) {
+                axios.post('/api/recipe', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                })
+                formData=new FormData()
+            }
+        })
+    }
 
 </script>
 </body>
