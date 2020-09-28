@@ -8,6 +8,8 @@
     <th:block th:include="/fragment/common.html :: head"></th:block>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Step by step instructions</title>
+    <link rel="stylesheet" href="/css/detail.css">
+
 </head>
 <body>
 <header th:replace="/fragment/common.html :: header"></header>
@@ -19,14 +21,14 @@
 </div>
 <!-- Description area-->
 <div class="container-fluid w-60 padding">
-    <div class="col-md-12">
-        <img src="/images/step_sample/1.png" class="img-fluid">
+    <div style="text-align:center" class="col-md-12">
+        <img src="/images/step_sample/1.png" class="img-fluid" id="img1">
     </div>
     <hr>
     <div class="row padding">
         <div class="col-md-12 col-lg-8">
             <div>
-                <div><h3>Author: amos</h3></div>
+                <div id="author"><h3>Author: amos</h3></div>
             </div>
             <div>
                 <h3>Description</h3>
@@ -35,28 +37,28 @@
         </div>
         <div class="col-md-12 col-lg-4">
             <h3>Tags</h3>
-            <button type="button" class="btn btn-outline-primary">
+            <button type="button" class="btn btn-outline-primary ml-2 mb-2">
                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-tag-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" d="M2 1a1 1 0 0 0-1 1v4.586a1 1 0 0 0 .293.707l7 7a1 1 0 0 0 1.414 0l4.586-4.586a1 1 0 0 0 0-1.414l-7-7A1 1 0 0 0 6.586 1H2zm4 3.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
                 </svg>
                 Greek
             </button>
 
-            <button type="button" class="btn btn-outline-primary">
+            <button type="button" class="btn btn-outline-primary ml-2 mb-2">
                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-tag-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" d="M2 1a1 1 0 0 0-1 1v4.586a1 1 0 0 0 .293.707l7 7a1 1 0 0 0 1.414 0l4.586-4.586a1 1 0 0 0 0-1.414l-7-7A1 1 0 0 0 6.586 1H2zm4 3.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
                 </svg>
                 Chicken
             </button>
 
-            <button type="button" class="btn btn-outline-primary">
+            <button type="button" class="btn btn-outline-primary ml-2 mb-2">
                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-tag-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" d="M2 1a1 1 0 0 0-1 1v4.586a1 1 0 0 0 .293.707l7 7a1 1 0 0 0 1.414 0l4.586-4.586a1 1 0 0 0 0-1.414l-7-7A1 1 0 0 0 6.586 1H2zm4 3.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
                 </svg>
                 Lemon
             </button>
 
-            <button type="button" class="btn btn-outline-primary">
+            <button type="button" class="btn btn-outline-primary ml-2 mb-2">
                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-tag-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" d="M2 1a1 1 0 0 0-1 1v4.586a1 1 0 0 0 .293.707l7 7a1 1 0 0 0 1.414 0l4.586-4.586a1 1 0 0 0 0-1.414l-7-7A1 1 0 0 0 6.586 1H2zm4 3.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
                 </svg>
@@ -71,22 +73,22 @@
     <h2>Ingredients</h2>
     <hr>
     <div class="checkbox">
-        <div class="custom-control custom-checkbox col-md-12">
+        <div class="custom-control custom-checkbox col-md-12 ml-5" >
             <input type="checkbox" class="custom-control-input" id="customCheck1">
             <label class="custom-control-label" for="customCheck1">Chicken</label>
         </div>
 
-        <div class="custom-control custom-checkbox col-md-12">
+        <div class="custom-control custom-checkbox col-md-12 ml-5">
             <input type="checkbox" class="custom-control-input" id="customCheck2">
             <label class="custom-control-label" for="customCheck2">Lemon</label>
         </div>
 
-        <div class="custom-control custom-checkbox col-md-12">
+        <div class="custom-control custom-checkbox col-md-12 ml-5">
             <input type="checkbox" class="custom-control-input" id="customCheck3">
             <label class="custom-control-label" for="customCheck3">Potato</label>
         </div>
 
-        <div class="custom-control custom-checkbox col-md-12">
+        <div class="custom-control custom-checkbox col-md-12 ml-5">
             <input type="checkbox" class="custom-control-input" id="customCheck4">
             <label class="custom-control-label" for="customCheck4">Salt</label>
         </div>
@@ -177,6 +179,6 @@
     </div>
     <hr>
 </div>
-<footer th:replace="/fragment/common.html :: footer"></footer>
+<footer class="footer" th:replace="/fragment/common.html :: footer"></footer>
 </body>
 </html>
