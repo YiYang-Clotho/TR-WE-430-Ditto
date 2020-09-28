@@ -55,6 +55,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/login").permitAll()
                 .antMatchers("/recipe/add").permitAll()
                 .antMatchers("/").permitAll()
+                .antMatchers("/pantry/show").permitAll()
                 .antMatchers(HttpMethod.OPTIONS, "/**").anonymous()
                 .anyRequest().authenticated()// 剩下所有的验证都需要验证
                 .and()

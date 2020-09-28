@@ -1,9 +1,11 @@
 package com.ditto.cookiez.controller;
 
 
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * <p>
@@ -14,7 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2020-08-14
  */
 @RestController
-@RequestMapping("//pantry")
+//@RequestMapping("//pantry")
 public class PantryController {
+    @GetMapping("/pantry/show")
+    public ModelAndView addRecipePage() {
+        ModelAndView mv = new ModelAndView("/pantry/show");
+        return mv;
+    }
 
 }
