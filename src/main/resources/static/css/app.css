@@ -1,0 +1,97 @@
+
+.bg-red-C14A4A {
+    color: white;
+    background-color: #C14A4A;
+}
+
+.text-grad-888276 {
+
+    color: #888276;
+}
+
+.bg-grad-888276 {
+
+    background-color: #888276;
+}
+
+.input-red {
+    height: 40px;
+    width: 40%;
+    border-radius: 10px;
+    border: 3px #C14A4A solid;
+
+    box-shadow: 2px 2px 5px #888888;
+}
+.input-area-red {
+
+    border-radius: 10px;
+    border: 3px #C14A4A solid;
+
+    box-shadow: 2px 2px 5px #888888;
+}
+.btn-red {
+    color: white;
+    background-color: #C14A4A;
+    border-radius: 50px;
+    box-shadow: 2px 2px 5px #888888;
+}
+
+.border-red-C14A4A {
+    border: 3px #C14A4A solid;
+    border-radius: 20px;
+    box-shadow: 2px 2px 5px #888888;
+}
+
+.rounded-50 {
+    border-radius: 50px;
+    box-shadow: 2px 2px 5px #888888;
+}
+
+.rounded-20 {
+    border-radius: 20px;
+}
+
+.shadow-2-2-5 {
+    box-shadow: 2px 2px 5px #888888;
+}
+
+.navbar {
+    background-color: #C14A4A;
+}
+
+.font-comic {
+    font-family: 'ComicReliefRegular';
+    font-weight: normal;
+    font-style: normal;
+}
+
+.btn-outline-danger {
+    color: white;
+}
+
+.navbar-nav .nav-item .nav-link {
+    color: white;
+}
+
+.navbar-nav .nav-item:hover .nav-link {
+    color: salmon;
+}
+
+.footer {
+    background-color: #E5474B;
+}
+.w-60{
+    width: 60%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
