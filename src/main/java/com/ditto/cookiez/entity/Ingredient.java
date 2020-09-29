@@ -25,5 +25,10 @@ public class Ingredient extends Model {
 
     private String ingredientName;
 
+    public Ingredient() {
+    }
 
+    public Ingredient(String ingredientName) {
+        this.ingredientName = ingredientName;
+    }
 }

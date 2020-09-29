@@ -95,19 +95,15 @@ public class RecipeController {
 //        TODO finish controller
 //        log.info(str);
         JSONObject jsonObject = JSONObject.parseObject(str);
-        jsonObject.getJSONObject("recipe");
-        jsonObject.getJSONArray("steps");
-        jsonObject.getJSONArray("ingredients");
-
+        Map<String, MultipartFile> fileMap = ((MultipartHttpServletRequest) request).getFileMap();
+        service.addRecipe(jsonObject,fileMap);
         log.info(JSONObject.parseObject(str).toJSONString());
 
-        Map<String, MultipartFile> fileMap = ((MultipartHttpServletRequest) request).getFileMap();
+
         for (MultipartFile v : fileMap.values()) {
             System.out.println(v.getName());
             System.out.println(v.getOriginalFilename());
             System.out.println("value=" + v);
-            //拷贝文件到输出文件对象
-
         }
 
 

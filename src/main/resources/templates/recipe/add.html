@@ -22,14 +22,14 @@
     <i class="iconfont icon-pen"></i>
     <textarea class="mb-3 input-area-red mb-2" placeholder="Describe Your Recipe" id="input-describe"></textarea>
     <i class="iconfont icon-pen"></i>
-    <input class="input-red mb-5" type="text" placeholder="Add Tags">
+    <input class="input-red mb-5" type="text" id="input-tags" placeholder="Add Tags (separated by commas)">
     <div class="d-flex flex-column mb-5">
         Ingredients
         <div class="d-flex flex-column mb-4 justify-content-between" id="div-ingredients">
             <div class="d-flex justify-content-between" id="ingred-1"><input class="mr-3 input-red" type="text"
                                                                              placeholder="Name"> <input
                     class="input-red" type="text"
-                    placeholder="Name">
+                    placeholder="Amount">
                 <button class="btn iconfont icon-x" onclick="delIngredientEle(1)"></button>
             </div>
 
@@ -99,11 +99,12 @@
         const div = document.getElementById("div-ingredients")
         let ingredientsJson = []
         for (const ele of div.children) {
-            let ingredient = $(ele.children[0]).val()
-            let amount = $(ele.children[1]).val()
-            ingredientsJson.push({
-                ingredient, amount
-            })
+            let ingredient = $(ele.children[0]).val().trim()
+            let amount = $(ele.children[1]).val().trim()
+            if (ingredient.length !== 0 && amount.length !== 0)
+                ingredientsJson.push({
+                    ingredientName: ingredient, amount
+                })
         }
         return ingredientsJson
     }
@@ -160,13 +161,11 @@
     $("#btn-addIngredient").click(function () {
         const div = document.getElementById("div-ingredients")
         const size = div.children.length
-
-        getIngredients()
         let newSize = size + 1
         let childHtml = ` <div class="d-flex justify-content-between mt-2" id="ingred-${newSize}"><input class="mr-3 input-red" type="text"
                                                                                                         placeholder="Name"> <input
                 class="input-red" type="text"
-                placeholder="Name"> <button
+                placeholder="Amount"> <button
                 class="btn iconfont icon-x" onclick="delIngredientEle(${newSize})"> </button>
             </div>`
         $("#div-ingredients").append(childHtml)
@@ -188,16 +187,30 @@
         return steps
     }
 
-    function submit() {
-        const title = $("input-title").val();
-        const description = $("input-describe").val();
-        const recipe = {
-            title, description, recipeCreatedTime: moment().format()
+    function getTags() {
+        let tags = $("#input-tags").val().split(",")
+        let newTags = []
+        for (let tag of tags) {
+            if (tag.trim().length !== 0) {
+                newTags.push({tagName: tag.trim()})
+            }
+
         }
+        return newTags
+
+    }
+
+    function submit() {
+        const title = $("#input-title").val();
+        const description = $("#input-describe").val();
+        const recipe = {
+            recipeName: title, recipeDescription: description, recipeCreatedTime: moment().format()
+        }
+        const tags = getTags()
         const steps = getStepsContent()
         const ingredients = getIngredients()
         formData.append("data", JSON.stringify({
-            recipe, steps, ingredients
+            recipe, steps, ingredients, tags
         }))
 
         bootbox.confirm("Are you sure you want to submit this recipe?", function (result) {
@@ -207,7 +220,7 @@
                         'Content-Type': 'multipart/form-data'
                     }
                 })
-                formData=new FormData()
+                formData = new FormData()
             }
         })
     }
