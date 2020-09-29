@@ -1,7 +1,7 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : localhost
+ Source Server         : liang
  Source Server Type    : MySQL
  Source Server Version : 80019
  Source Host           : localhost:3306
@@ -11,11 +11,23 @@
  Target Server Version : 80019
  File Encoding         : 65001
 
- Date: 15/09/2020 09:11:15
+ Date: 29/09/2020 22:54:47
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for amount
+-- ----------------------------
+DROP TABLE IF EXISTS `amount`;
+CREATE TABLE `amount`  (
+  `amount_id` int(0) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `amount_content` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `ingredient_id` int(0) NULL DEFAULT NULL,
+  `recipe_id` int(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`amount_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for comment
@@ -34,11 +46,6 @@ CREATE TABLE `comment`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Records of comment
--- ----------------------------
-INSERT INTO `comment` VALUES (1, 1, '11', NULL);
-
--- ----------------------------
 -- Table structure for favorite
 -- ----------------------------
 DROP TABLE IF EXISTS `favorite`;
@@ -51,11 +58,7 @@ CREATE TABLE `favorite`  (
   INDEX `fk_favorite_user_1`(`user_id`) USING BTREE,
   CONSTRAINT `fk_favorite_recipe_1` FOREIGN KEY (`recipe_id`) REFERENCES `recipe` (`recipe_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_favorite_user_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of favorite
--- ----------------------------
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for img
@@ -65,11 +68,7 @@ CREATE TABLE `img`  (
   `img_id` int(0) UNSIGNED NOT NULL AUTO_INCREMENT,
   `img_path` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   PRIMARY KEY (`img_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of img
--- ----------------------------
+) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for ingredient
@@ -80,10 +79,6 @@ CREATE TABLE `ingredient`  (
   `ingredient_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   PRIMARY KEY (`ingredient_id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of ingredient
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for ingredient_recipe_bridge
@@ -98,11 +93,7 @@ CREATE TABLE `ingredient_recipe_bridge`  (
   INDEX `fk_ingredient_recipe_bridge_recipe_1`(`recipe_id`) USING BTREE,
   CONSTRAINT `fk_ingredient_recipe_bridge_ingredient_1` FOREIGN KEY (`ingredient_id`) REFERENCES `ingredient` (`ingredient_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_ingredient_recipe_bridge_recipe_1` FOREIGN KEY (`recipe_id`) REFERENCES `recipe` (`recipe_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of ingredient_recipe_bridge
--- ----------------------------
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for ingredient_tag_bridge
@@ -120,10 +111,6 @@ CREATE TABLE `ingredient_tag_bridge`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Records of ingredient_tag_bridge
--- ----------------------------
-
--- ----------------------------
 -- Table structure for like
 -- ----------------------------
 DROP TABLE IF EXISTS `like`;
@@ -138,11 +125,7 @@ CREATE TABLE `like`  (
   INDEX `fk_like_recipe_1`(`recipe_id`) USING BTREE,
   CONSTRAINT `fk_like_recipe_1` FOREIGN KEY (`recipe_id`) REFERENCES `recipe` (`recipe_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_like_user_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of like
--- ----------------------------
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for no_eat
@@ -155,11 +138,7 @@ CREATE TABLE `no_eat`  (
   PRIMARY KEY (`ingredient_id`) USING BTREE,
   INDEX `fk_no_eat_user_1`(`user_id`) USING BTREE,
   CONSTRAINT `fk_no_eat_user_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of no_eat
--- ----------------------------
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for pantry
@@ -174,11 +153,7 @@ CREATE TABLE `pantry`  (
   INDEX `fk_pantry_ingredient_1`(`ingredient_id`) USING BTREE,
   CONSTRAINT `fk_pantry_ingredient_1` FOREIGN KEY (`ingredient_id`) REFERENCES `ingredient` (`ingredient_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_pantry_user_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of pantry
--- ----------------------------
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for recipe
@@ -190,12 +165,10 @@ CREATE TABLE `recipe`  (
   `recipe_description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `recipe_like` int(0) NULL DEFAULT NULL,
   `recipe_created_time` datetime(0) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0),
+  `recipe_cover_id` int(0) NULL DEFAULT NULL,
+  `recipe_author_id` int(0) NULL DEFAULT NULL,
   PRIMARY KEY (`recipe_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of recipe
--- ----------------------------
+) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for recipe_tag_bridge
@@ -210,11 +183,7 @@ CREATE TABLE `recipe_tag_bridge`  (
   INDEX `fk_recipe_tag_bridge_recipe_1`(`recipe_id`) USING BTREE,
   CONSTRAINT `fk_recipe_tag_bridge_recipe_1` FOREIGN KEY (`recipe_id`) REFERENCES `recipe` (`recipe_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_recipe_tag_bridge_tag_1` FOREIGN KEY (`tag_id`) REFERENCES `tag` (`tag_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of recipe_tag_bridge
--- ----------------------------
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for role
@@ -225,10 +194,6 @@ CREATE TABLE `role`  (
   `role_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   PRIMARY KEY (`role_id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of role
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for step
@@ -245,11 +210,7 @@ CREATE TABLE `step`  (
   INDEX `fk_step_recipe_1`(`recipe_id`) USING BTREE,
   CONSTRAINT `fk_step_img_1` FOREIGN KEY (`img_id`) REFERENCES `img` (`img_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_step_recipe_1` FOREIGN KEY (`recipe_id`) REFERENCES `recipe` (`recipe_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of step
--- ----------------------------
+) ENGINE = InnoDB AUTO_INCREMENT = 21 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for tag
@@ -265,10 +226,6 @@ CREATE TABLE `tag`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Records of tag
--- ----------------------------
-
--- ----------------------------
 -- Table structure for tag_type
 -- ----------------------------
 DROP TABLE IF EXISTS `tag_type`;
@@ -277,10 +234,6 @@ CREATE TABLE `tag_type`  (
   `tag_type_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   PRIMARY KEY (`tag_type_id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of tag_type
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for user
@@ -297,12 +250,6 @@ CREATE TABLE `user`  (
   INDEX `fk_user_img_1`(`avatar_id`) USING BTREE,
   CONSTRAINT `fk_user_img_1` FOREIGN KEY (`avatar_id`) REFERENCES `img` (`img_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_user_role_1` FOREIGN KEY (`role_id`) REFERENCES `role` (`role_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of user
--- ----------------------------
-INSERT INTO `user` VALUES (1, '123', '123', NULL, NULL);
-INSERT INTO `user` VALUES (2, NULL, NULL, NULL, NULL);
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 SET FOREIGN_KEY_CHECKS = 1;
