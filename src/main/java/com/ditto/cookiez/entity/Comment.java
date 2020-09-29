@@ -19,7 +19,7 @@ public class Comment extends Model {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId
+    @TableId(value = "comment_id")
     private Integer commentId;
 
     private Integer userId;

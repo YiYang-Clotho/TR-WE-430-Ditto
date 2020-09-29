@@ -121,11 +121,7 @@ public class UserController {
         return Response.bad("Failed to register");
     }
 
-    //    @GetMapping("user/{userId}")
-//    public String profile() {
-//        return "";
-//    }
-//
+
     @GetMapping("/user/kitchen")
     public ModelAndView kitchenPage() {
         return new ModelAndView("user/kitchen");
@@ -149,9 +145,6 @@ public class UserController {
         return mv;
     }
 
-    @GetMapping("/")
-    public ModelAndView indexPage() {
-        return new ModelAndView("index");
-    }
+
 
 }

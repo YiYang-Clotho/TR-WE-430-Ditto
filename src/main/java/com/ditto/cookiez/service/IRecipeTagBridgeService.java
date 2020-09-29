@@ -5,11 +5,11 @@ import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
  * <p>
- *  service class
+ *  服务类
  * </p>
  *
  * @author astupidcoder
- * @since 2020-08-14
+ * @since 2020-09-29
  */
 public interface IRecipeTagBridgeService extends IService<RecipeTagBridge> {
 

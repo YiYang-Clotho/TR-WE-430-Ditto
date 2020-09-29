@@ -59,6 +59,6 @@ class RecipeServiceImplTest {
               "  ]\n" +
               "}");
         System.out.println(jsonObject.toJSONString());
-        service.addRecipe(jsonObject);
+//        servic.addRecipe(jsonObject);
     }
 }

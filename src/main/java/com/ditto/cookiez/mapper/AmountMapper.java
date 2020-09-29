@@ -1,6 +1,6 @@
 package com.ditto.cookiez.mapper;
 
-import com.ditto.cookiez.entity.RecipeTagBridge;
+import com.ditto.cookiez.entity.Amount;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author astupidcoder
  * @since 2020-09-29
  */
-public interface RecipeTagBridgeMapper extends BaseMapper<RecipeTagBridge> {
+public interface AmountMapper extends BaseMapper<Amount> {
 
 }
