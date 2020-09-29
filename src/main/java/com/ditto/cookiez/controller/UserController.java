@@ -138,7 +138,7 @@ public class UserController {
 
 
     @GetMapping("/user/profile")
-    public ModelAndView profilePage(HttpSession session, @CookieValue(value = "accessToken") String accessToken) {
+    public ModelAndView profilePage( @CookieValue(value = "accessToken") String accessToken) {
 
         logger.info(accessToken);
         User user = service.getUserByToken(accessToken);

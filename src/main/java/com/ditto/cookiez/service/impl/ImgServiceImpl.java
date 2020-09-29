@@ -17,4 +17,5 @@ import org.springframework.stereotype.Service;
 @Service
 public class ImgServiceImpl extends ServiceImpl<ImgMapper, Img> implements IImgService {
 
+
 }

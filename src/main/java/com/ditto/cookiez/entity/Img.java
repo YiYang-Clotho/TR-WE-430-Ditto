@@ -25,5 +25,15 @@ public class Img extends Model {
 
     private String imgPath;
 
+    public Img(String imgPath) {
+        this.imgPath = imgPath;
+    }
 
+    public Img() {
+    }
+
+    public Img(Integer imgId, String imgPath) {
+        this.imgId = imgId;
+        this.imgPath = imgPath;
+    }
 }
