@@ -9,6 +9,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Step by step instructions</title>
     <link rel="stylesheet" href="/css/detail.css">
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("input:checkbox").click(function () {
+
+                if($(this).is(':checked') == true){
+                    $(this).next().css("text-decoration","line-through");
+                }else{
+                    $(this).next().css("text-decoration","none");
+                }
+            });
+        });
+    </script>
 
 </head>
 <body>
