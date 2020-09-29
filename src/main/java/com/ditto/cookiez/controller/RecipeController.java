@@ -99,11 +99,11 @@ public class RecipeController {
         service.addRecipe(jsonObject,fileMap);
         log.info(JSONObject.parseObject(str).toJSONString());
 
-    @GetMapping("/recipe/detail")
-    public ModelAndView RecipeDetail() {
-        ModelAndView mv = new ModelAndView("recipe/detail");
-        return mv;
-    }
+//    @GetMapping("/recipe/detail")
+//    public ModelAndView RecipeDetail() {
+//        ModelAndView mv = new ModelAndView("recipe/detail");
+//        return mv;
+//    }
 
         for (MultipartFile v : fileMap.values()) {
             System.out.println(v.getName());
