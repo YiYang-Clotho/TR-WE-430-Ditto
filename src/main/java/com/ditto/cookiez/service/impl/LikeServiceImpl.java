@@ -17,4 +17,8 @@ import org.springframework.stereotype.Service;
 @Service
 public abstract class LikeServiceImpl extends ServiceImpl<LikeMapper, Like> implements ILikeService {
 
+    @Override
+    public Like getByUserID(String userId) {
+        return null;
+    }
 }
