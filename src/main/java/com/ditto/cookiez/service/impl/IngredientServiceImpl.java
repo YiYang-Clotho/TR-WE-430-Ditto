@@ -28,6 +28,7 @@ public class IngredientServiceImpl extends ServiceImpl<IngredientMapper, Ingredi
     ITagService tagService;
     @Autowired
     IIngredientTagBridgeService ingredientTagBridgeService;
+    private QueryWrapper<Ingredient> qw = new QueryWrapper<>();
 
 
     @Override
@@ -42,5 +43,17 @@ public class IngredientServiceImpl extends ServiceImpl<IngredientMapper, Ingredi
 //        }
 //        return null;
         return null;
+    }
+
+    @Override
+    public Integer existedReturnId(String name) {
+        qw.clear();
+        Ingredient ingredient = getOne(qw.eq("ingredient_name", name));
+        if (ingredient != null) {
+            return ingredient.getIngredientId();
+        } else {
+            return -1;
+        }
+
     }
 }
