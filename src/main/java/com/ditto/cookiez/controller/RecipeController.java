@@ -63,11 +63,6 @@ public class RecipeController {
         }
         return mv;
     }
-    @GetMapping("/recipe/detail")
-    public ModelAndView recipePage() {
-
-        return new ModelAndView("recipe/detail");
-    }
 
     @PutMapping("/api/recipe")
     public Integer updateRecipe(@RequestBody JSONObject json) {
