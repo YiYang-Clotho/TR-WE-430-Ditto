@@ -38,3 +38,4 @@ src/main/resources/mapper/
 src/main/resources/static/js/recipe/
 !/src/main/resources/application.properties
 !/src/main/resources/application-database.properties
+!/src/main/resources/application-dev.properties
