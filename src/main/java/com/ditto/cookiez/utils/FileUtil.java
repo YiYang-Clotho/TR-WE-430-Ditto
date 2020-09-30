@@ -1,5 +1,7 @@
 package com.ditto.cookiez.utils;
 
+import com.ditto.cookiez.config.AwsClient;
+import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.util.ClassUtils;
 
 import java.io.File;
@@ -24,10 +26,14 @@ public class FileUtil {
             targetfile.mkdirs();
         }
 
+
         //binary stream input
         FileOutputStream out = new FileOutputStream(filePath + fileName);
+
         out.write(file);
         out.flush();
+
+
         out.close();
     }
 

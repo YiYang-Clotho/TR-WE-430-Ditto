@@ -1,4 +1,4 @@
-package com.ditto.cookiez;
+package com.ditto.cookiez.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.util.ClassUtils;
