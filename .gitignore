@@ -36,3 +36,4 @@ application.properties
 !/src/main/java/com/ditto/cookiez/config/AwsClient.java
 src/main/resources/mapper/
 src/main/resources/static/js/recipe/
+!/src/main/resources/application.properties
