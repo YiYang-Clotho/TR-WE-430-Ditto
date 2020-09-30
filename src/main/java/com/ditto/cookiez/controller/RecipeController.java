@@ -90,6 +90,12 @@ public class RecipeController {
         return Response.bad("Delete Failed");
     }
 
+    @GetMapping("/recipe/detail")
+    public ModelAndView RecipeDetail() {
+        ModelAndView mv = new ModelAndView("recipe/detail");
+        return mv;
+    }
+
     @PostMapping("/api/recipe")
     public Integer addRecipe(HttpServletRequest request, @RequestParam("data") String str) throws IOException {
 //        TODO finish controller
@@ -98,12 +104,6 @@ public class RecipeController {
         Map<String, MultipartFile> fileMap = ((MultipartHttpServletRequest) request).getFileMap();
         service.addRecipe(jsonObject,fileMap);
         log.info(JSONObject.parseObject(str).toJSONString());
-
-//    @GetMapping("/recipe/detail")
-//    public ModelAndView RecipeDetail() {
-//        ModelAndView mv = new ModelAndView("recipe/detail");
-//        return mv;
-//    }
 
         for (MultipartFile v : fileMap.values()) {
             System.out.println(v.getName());
