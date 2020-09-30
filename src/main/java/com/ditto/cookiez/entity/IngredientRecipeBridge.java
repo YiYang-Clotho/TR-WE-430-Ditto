@@ -12,7 +12,7 @@ import lombok.EqualsAndHashCode;
  * </p>
  *
  * @author astupidcoder
- * @since 2020-08-14
+ * @since 2020-09-29
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -27,5 +27,11 @@ public class IngredientRecipeBridge extends Model {
 
     private Integer recipeId;
 
+    public IngredientRecipeBridge() {
+    }
 
+    public IngredientRecipeBridge(Integer ingredientId, Integer recipeId) {
+        this.ingredientId = ingredientId;
+        this.recipeId = recipeId;
+    }
 }

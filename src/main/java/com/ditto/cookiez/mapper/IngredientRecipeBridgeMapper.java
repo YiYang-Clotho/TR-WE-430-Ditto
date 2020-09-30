@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * </p>
  *
  * @author astupidcoder
- * @since 2020-08-14
+ * @since 2020-09-29
  */
 public interface IngredientRecipeBridgeMapper extends BaseMapper<IngredientRecipeBridge> {
 

@@ -1,6 +1,6 @@
 package com.ditto.cookiez.service;
 
-import com.ditto.cookiez.entity.Tag;
+import com.ditto.cookiez.entity.Amount;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -9,8 +9,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * </p>
  *
  * @author astupidcoder
- * @since 2020-09-16
+ * @since 2020-09-29
  */
-public interface ITagService extends IService<Tag> {
-    Integer existedReturnId(String tagName);
+public interface IAmountService extends IService<Amount> {
+
 }
