@@ -219,6 +219,13 @@
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }
+                }).then(res => {
+                    console.log(res)
+                    bootbox.alert("Add a recipe Successfully!")
+                    // window.location.replace("/");
+                }).catch(err => {
+                    bootbox.alert("Failed to add")
+                    console.log(err)
                 })
                 formData = new FormData()
             }

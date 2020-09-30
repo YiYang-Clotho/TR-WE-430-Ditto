@@ -1,6 +1,7 @@
 package com.ditto.cookiez.entity.dto;
 
 import com.ditto.cookiez.entity.Recipe;
+import com.ditto.cookiez.entity.Tag;
 import lombok.Data;
 
 import java.util.List;
@@ -16,9 +17,10 @@ public class RecipeDTO {
     private String recipeName;
     private String recipeDescription;
     private String author;
-    private List<StepDTO> stepList;
+    private String coverPath;
     private List<IngredientDTO> ingredientDTOList;
     private List<StepDTO> stepDTOList;
+    private List<Tag> tagList;
 
     public RecipeDTO(Recipe recipe) {
         this.recipeName = recipe.getRecipeName();

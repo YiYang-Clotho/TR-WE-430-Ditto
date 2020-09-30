@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * <p>
- *  服务实现类
+ * Service Class
  * </p>
  *
  * @author astupidcoder
@@ -18,4 +18,12 @@ import org.springframework.stereotype.Service;
 public class ImgServiceImpl extends ServiceImpl<ImgMapper, Img> implements IImgService {
 
 
+    @Override
+    public String getPathById(Integer id) {
+        Img img = getById(id);
+        if (img != null) {
+            return img.getImgPath();
+        }
+        return null;
+    }
 }

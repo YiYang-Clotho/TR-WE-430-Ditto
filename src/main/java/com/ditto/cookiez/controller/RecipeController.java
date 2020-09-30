@@ -6,6 +6,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.ditto.cookiez.entity.Recipe;
 import com.ditto.cookiez.entity.Step;
+import com.ditto.cookiez.entity.dto.RecipeDTO;
 import com.ditto.cookiez.service.IRecipeService;
 import com.ditto.cookiez.service.IStepService;
 import com.ditto.cookiez.utils.Response;
@@ -53,14 +54,19 @@ public class RecipeController {
 
     @GetMapping("/recipe/{recipeId}")
     public ModelAndView recipePage(@PathVariable Integer recipeId) {
-        ModelAndView mv = new ModelAndView("recipe/detail");
-        Recipe recipe = service.getById(recipeId);
+        ModelAndView mv = new ModelAndView("recipe/show");
+        RecipeDTO recipe=service.getRecipe(recipeId);
         if (recipe != null) {
-            mv.addObject(recipe);
+            mv.addObject("recipeDTO",recipe);
         } else {
             log.info("Recipe is null, id is " + recipeId);
         }
         return mv;
+    }
+    @GetMapping("/recipe/detail")
+    public ModelAndView recipePage() {
+
+        return new ModelAndView("recipe/detail");
     }
 
     @PutMapping("/api/recipe")
@@ -97,9 +103,9 @@ public class RecipeController {
     }
 
     @PostMapping("/api/recipe")
-    public Integer addRecipe(HttpServletRequest request, @RequestParam("data") String str) throws IOException {
-//        TODO finish controller
-//        log.info(str);
+    public  ResponseEntity<JSONObject>  addRecipe(HttpServletRequest request, @RequestParam("data") String str) throws IOException {
+
+
         JSONObject jsonObject = JSONObject.parseObject(str);
         Map<String, MultipartFile> fileMap = ((MultipartHttpServletRequest) request).getFileMap();
         service.addRecipe(jsonObject,fileMap);
@@ -108,10 +114,9 @@ public class RecipeController {
         for (MultipartFile v : fileMap.values()) {
             System.out.println(v.getName());
             System.out.println(v.getOriginalFilename());
-            System.out.println("value=" + v);
         }
 
 
-        return null;
+        return Response.ok("Succeed to add recipe!");
     }
 }

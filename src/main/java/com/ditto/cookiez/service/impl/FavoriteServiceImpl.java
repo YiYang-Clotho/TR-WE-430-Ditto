@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * <p>
- *  服务实现类
+ *  Service Class
  * </p>
  *
  * @author astupidcoder

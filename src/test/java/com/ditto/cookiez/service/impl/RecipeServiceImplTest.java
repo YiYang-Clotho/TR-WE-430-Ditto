@@ -61,4 +61,19 @@ class RecipeServiceImplTest {
         System.out.println(jsonObject.toJSONString());
 //        servic.addRecipe(jsonObject);
     }
+
+    @Test
+    void testUpdateRecipe() {
+    }
+
+    @Test
+    void testAddRecipe() {
+    }
+
+    @Test
+    void getRecipe() {
+        Integer id=19;
+        System.out.println(   service.getRecipe(19).toString());
+
+    }
 }

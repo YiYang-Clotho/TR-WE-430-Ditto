@@ -23,7 +23,7 @@ import java.util.Objects;
 
 /**
  * <p>
- * 服务实现类
+ * Service Class
  * </p>
  *
  * @author astupidcoder
@@ -43,13 +43,13 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
     @Autowired
     IAmountService amountService;
     @Autowired
-    IIngredientRecipeBridgeService recipeBridgeService;
+    IIngredientRecipeBridgeService ingredientRecipeBridgeService;
     @Autowired
     ITagService tagService;
     @Autowired
     IRecipeTagBridgeService recipeTagBridgeService;
 
-//         TODO update ingredients
+    //         TODO update ingredients
     @Override
     public void updateRecipe(JSONObject json) {
         Recipe recipe = json.getObject("recipe", Recipe.class);
@@ -80,13 +80,14 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
         List<IngredientDTO> ingredients = json.getJSONArray("ingredients").toJavaList(IngredientDTO.class);
 //       some magic value
         String imgPath = FileUtil.PATH + "recipes/" + recipeId + "/";
-        String coverKey = "coverImg";
-        String stepImgPrefix = "stepImg-";
+        String coverKey = FileUtil.COVER;
+        String stepImgPrefix = FileUtil.STEP_PREFIX;
 //        save cover img
         if (fileMap.containsKey(coverKey)) {
             MultipartFile file = fileMap.get(coverKey);
             String fileNameInDB = coverKey + FileUtil.getFileType(Objects.requireNonNull(file.getOriginalFilename()));
-            Img img = new Img("recipes/" + recipeId + "/" + fileNameInDB);
+            FileUtil.fileupload(file.getBytes(), imgPath, fileNameInDB);
+            Img img = new Img(FileUtil.getRecipeDirRelativePath(recipeId) + fileNameInDB);
             imgService.save(img);
             recipe.setRecipeCoverId(img.getImgId());
         }
@@ -108,7 +109,7 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
             log.info(amount.toString());
             amountService.save(amount);
             IngredientRecipeBridge bridge = new IngredientRecipeBridge(idOr1, recipeId);
-            recipeBridgeService.save(bridge);
+            ingredientRecipeBridgeService.save(bridge);
         }
 //         save tag
         for (Tag tag : tags
@@ -143,22 +144,44 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
     @Override
     public RecipeDTO getRecipe(int id) {
         Recipe recipe = getById(id);
+//        get title and description
         RecipeDTO recipeDTO = new RecipeDTO(recipe);
+//        get cover path
+        if (recipe.getRecipeCoverId() != null) {
+            String coverPath = FileUtil.getFileAbsolutePath(imgService.getPathById(recipe.getRecipeCoverId())) ;
+            recipeDTO.setCoverPath(coverPath);
+        }
 
-        User user = userService.getById(recipe.getRecipeAuthorId());
-        recipeDTO.setAuthor(user.getUsername());
+//  TODO add author info
 
-        List<Step> stepList = stepService.list(new QueryWrapper<Step>().eq("recipe_id", recipe.getRecipeId()));
+//        User user = userService.getById(recipe.getRecipeAuthorId());
+//        recipeDTO.setAuthor(user.getUsername());
+
+//        Get Step
+        List<Step> stepList = stepService.list(new QueryWrapper<Step>().eq("recipe_id", id));
         List<StepDTO> stepDTOList = new ArrayList<>();
         for (Step step : stepList
         ) {
             StepDTO stepDTO = new StepDTO(step);
-            Img img = imgService.getById(step.getImgId());
-            stepDTO.setImgPath(img.getImgPath());
+            stepDTO.setImgPath(FileUtil.getFileAbsolutePath(imgService.getPathById(step.getImgId())) );
             stepDTOList.add(stepDTO);
         }
         recipeDTO.setStepDTOList(stepDTOList);
-
+//        Get tags
+        List<Tag> tags = recipeTagBridgeService.getTagsByRecipeId(id);
+        recipeDTO.setTagList(tags);
+//      Get ingredients
+        List<IngredientDTO> ingredientDTOS = new ArrayList<>();
+        List<Ingredient> ingredients = ingredientRecipeBridgeService.getIngredientsByRecipeId(id);
+        log.info(ingredients.toString());
+        for (Ingredient i : ingredients
+        ) {
+            Amount amount = amountService.getByRecipeIngredientId(id, i.getIngredientId());
+            log.info(amount.toString());
+            ingredientDTOS.add(new IngredientDTO(i.getIngredientName(), amount.getAmountContent()));
+        }
+        log.info(ingredientDTOS.toString());
+        recipeDTO.setIngredientDTOList(ingredientDTOS);
 
         return recipeDTO;
     }
