@@ -3,6 +3,7 @@ package com.ditto.cookiez.service.impl;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.ditto.cookiez.config.AwsClient;
 import com.ditto.cookiez.entity.*;
 import com.ditto.cookiez.entity.dto.IngredientDTO;
 import com.ditto.cookiez.entity.dto.RecipeDTO;
@@ -88,6 +89,12 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
             MultipartFile file = fileMap.get(coverKey);
             String fileNameInDB = coverKey + FileUtil.getFileType(Objects.requireNonNull(file.getOriginalFilename()));
             FileUtil.fileupload(file.getBytes(), imgPath, fileNameInDB);
+
+            File awsFile = new File(imgPath+fileNameInDB);
+
+            file.transferTo(awsFile);
+            log.info(AwsClient.uploadToS3(awsFile, file.getOriginalFilename()));
+
             Img img = new Img(FileUtil.getRecipeDirRelativePath(recipeId) + fileNameInDB);
             imgService.save(img);
             recipe.setRecipeCoverId(img.getImgId());
@@ -149,7 +156,7 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
         RecipeDTO recipeDTO = new RecipeDTO(recipe);
 //        get cover path
         if (recipe.getRecipeCoverId() != null) {
-            String coverPath = FileUtil.getFileAbsolutePath(imgService.getPathById(recipe.getRecipeCoverId())) ;
+            String coverPath = FileUtil.getFileAbsolutePath(imgService.getPathById(recipe.getRecipeCoverId()));
             recipeDTO.setCoverPath(coverPath);
         }
 
@@ -164,7 +171,7 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
         for (Step step : stepList
         ) {
             StepDTO stepDTO = new StepDTO(step);
-            stepDTO.setImgPath(FileUtil.getFileAbsolutePath(imgService.getPathById(step.getImgId())) );
+            stepDTO.setImgPath(FileUtil.getFileAbsolutePath(imgService.getPathById(step.getImgId())));
             stepDTOList.add(stepDTO);
         }
         recipeDTO.setStepDTOList(stepDTOList);
