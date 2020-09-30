@@ -23,6 +23,7 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
             throws IOException, ServletException {
 
         System.out.println("JwtAuthenticationEntryPoint:" + authException.getMessage());
+        System.out.println(request.getPathInfo());
         response.sendRedirect("/login");
 //        response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "UNAUTHORIZED");
     }
