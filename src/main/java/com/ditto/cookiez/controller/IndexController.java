@@ -20,9 +20,5 @@ import org.springframework.web.servlet.ModelAndView;
 public class IndexController {
 
 
-    @GetMapping("/")
-    public ModelAndView indexPage() {
-        return new ModelAndView("/");
-    }
 
 }
