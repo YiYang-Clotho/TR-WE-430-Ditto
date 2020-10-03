@@ -33,14 +33,15 @@ public class StepServiceImpl extends ServiceImpl<StepMapper, Step> implements IS
     }
 
     @Override
-    public Step addStep(Step step, MultipartFile file, String imgPath) throws IOException {
+    public Step addStep(Step step, MultipartFile file) throws IOException {
         int recipeId = step.getRecipeId();
         int order = step.getStepOrder();
-        String relativeImgPath=FileUtil.getRecipeDirRelativePath(recipeId);
-        String nameInFileMap = "stepImg-" + order;
-        String fileNameInDB = nameInFileMap + FileUtil.getFileType(file.getOriginalFilename());
-        FileUtil.fileupload(file.getBytes(), imgPath, fileNameInDB);
-        Img img = new Img(relativeImgPath + fileNameInDB);
+        String url = FileUtil.uploadStepImgToAws(file, recipeId, order);
+//        String relativeImgPath = FileUtil.getRecipeDirRelativePath(recipeId);
+//        String nameInFileMap = "stepImg-" + order;
+//        String fileNameInDB = nameInFileMap + FileUtil.getFileTypeHasDot(file.getOriginalFilename());
+//        FileUtil.fileUpload(file.getBytes(), imgPath, fileNameInDB);
+        Img img = new Img(url);
         imgService.save(img);
         step.setImgId(img.getImgId());
         save(step);
