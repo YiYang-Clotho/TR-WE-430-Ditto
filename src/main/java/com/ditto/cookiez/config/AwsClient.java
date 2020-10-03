@@ -24,13 +24,11 @@ import java.util.Objects;
  */
 public class AwsClient {
     static AmazonS3 s3;
-    static TransferManager tx;
-    private static String AWS_ACCESS_KEY = "ASIATYM2HCSNYIWUR34D";
-    private static String AWS_SECRET_KEY = "QqKGnPmATt5slfe7Aot1PEL731XyzOkg3mkoleOO";
-    static final String bucketName = "cookiez-img";
+    //    static TransferManager tx;
+    static final String bucketName = "cookiez-img2";
 
     static {
-        BasicAWSCredentials awsCredentials = new BasicAWSCredentials(AWS_ACCESS_KEY, AWS_SECRET_KEY);
+
         s3 = AmazonS3ClientBuilder.standard()
                 .withRegion(Regions.US_EAST_1)
                 .build();
@@ -38,26 +36,25 @@ public class AwsClient {
     }
 
     /**
-     * @param @param  tempFile 目标文件
-     * @param @param  remoteFileName 文件名
+     * @param @param  tempFile
+     * @param @param  remoteFileName
      * @param @return
-     * @param @throws IOException    设定文件
-     * @return String    返回类型
+     * @param @throws IOException
+     * @return String    url
      * @throws
      * @Title: uploadToS3
-     * @Description: 将文件上传至S3上并且返回url
+     * @Description:
      */
     public static String uploadToS3(File tempFile, String remoteFileName) throws IOException {
         try {
-            //上传文件
+            //upload file
             s3.putObject(new PutObjectRequest(bucketName, remoteFileName, tempFile).withCannedAcl(CannedAccessControlList.PublicRead));
-            //获取一个request
+            //get a request
             GeneratePresignedUrlRequest urlRequest = new GeneratePresignedUrlRequest(
                     bucketName, remoteFileName);
-            //生成公用的url
-            URL url = s3.generatePresignedUrl(urlRequest);
-            System.out.println("=========URL=================" + url + "============URL=============");
-            return url.toString();
+            //generate url
+
+            return s3.getUrl(bucketName, remoteFileName).toString();
         } catch (AmazonServiceException ase) {
             ase.printStackTrace();
         } catch (AmazonClientException ace) {
@@ -68,11 +65,11 @@ public class AwsClient {
 
     /**
      * @param @param  remoteFileName
-     * @param @throws IOException    设定文件
-     * @return S3ObjectInputStream    返回类型  数据流
+     * @param @throws IOException
+     * @return S3ObjectInputStream
      * @throws
      * @Title: getContentFromS3
-     * @Description: 获取文件2进制流
+     * @Description:
      */
     public static S3ObjectInputStream getContentFromS3(String remoteFileName) throws IOException {
         try {
@@ -88,13 +85,13 @@ public class AwsClient {
 
 
     /**
-     * @param @param  remoteFileName 文件名
-     * @param @param  path 下载的路径
-     * @param @throws IOException    设定文件
-     * @return void    返回类型
+     * @param @param  remoteFileName
+     * @param @param  path
+     * @param @throws IOException
+     * @return void
      * @throws
      * @Title: downFromS3
-     * @Description: 将文件下载到本地路径
+     * @Description:
      */
     public static void downFromS3(String remoteFileName, String path) throws IOException {
         try {
@@ -106,18 +103,19 @@ public class AwsClient {
     }
 
     /**
-     * @param @param  remoteFileName 文件名
+     * @param @param  remoteFileName
      * @param @return
-     * @param @throws IOException    设定文件
-     * @return String    返回类型
+     * @param @throws IOException
+     * @return String
      * @throws
      * @Title: getUrlFromS3
-     * @Description: 获取文件的url
+     * @Description: getFileUrl
      */
     public static String getUrlFromS3(String remoteFileName) throws IOException {
         try {
             GeneratePresignedUrlRequest httpRequest = new GeneratePresignedUrlRequest(bucketName, remoteFileName);
-            String url = s3.generatePresignedUrl(httpRequest).toString();//临时链接
+//            temp url
+            String url = s3.generatePresignedUrl(httpRequest).toString();
             return url;
         } catch (Exception e) {
             e.printStackTrace();
@@ -158,7 +156,7 @@ public class AwsClient {
 //        uploadToS3(tempFile, key);//上传文件
 //        String url = getUrlFromS3(key);//获取文件的url
 //        System.out.println(url);
-   AwsClient.uploadToS3(new File("D:\\1.txt"),"image/1.txt");
+        AwsClient.uploadToS3(new File("D:\\1.png"), "/imagess/1.txt");
 
 //    	delFromS3(key);//删除文件
     }

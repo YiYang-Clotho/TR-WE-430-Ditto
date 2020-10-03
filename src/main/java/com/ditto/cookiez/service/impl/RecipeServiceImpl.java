@@ -3,7 +3,6 @@ package com.ditto.cookiez.service.impl;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.ditto.cookiez.config.AwsClient;
 import com.ditto.cookiez.entity.*;
 import com.ditto.cookiez.entity.dto.IngredientDTO;
 import com.ditto.cookiez.entity.dto.RecipeDTO;
@@ -14,9 +13,9 @@ import com.ditto.cookiez.utils.FileUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -69,7 +68,7 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
         }
     }
 
-
+    @Transactional
     @Override
     public Recipe addRecipe(JSONObject json, Map<String, MultipartFile> fileMap) throws IOException {
 //        BUG: when upload tow same pictures, one picture will lost.
@@ -81,21 +80,14 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
         List<Step> steps = json.getJSONArray("steps").toJavaList(Step.class);
         List<IngredientDTO> ingredients = json.getJSONArray("ingredients").toJavaList(IngredientDTO.class);
 //       some magic value
-        String imgPath = FileUtil.PATH + "recipes/" + recipeId + "/";
         String coverKey = FileUtil.COVER;
         String stepImgPrefix = FileUtil.STEP_PREFIX;
 //        save cover img
         if (fileMap.containsKey(coverKey)) {
             MultipartFile file = fileMap.get(coverKey);
-            String fileNameInDB = coverKey + FileUtil.getFileType(Objects.requireNonNull(file.getOriginalFilename()));
-            FileUtil.fileupload(file.getBytes(), imgPath, fileNameInDB);
-
-            File awsFile = new File(imgPath+fileNameInDB);
-
-            file.transferTo(awsFile);
-            log.info(AwsClient.uploadToS3(awsFile, file.getOriginalFilename()));
-
-            Img img = new Img(FileUtil.getRecipeDirRelativePath(recipeId) + fileNameInDB);
+            String url = FileUtil.uploadCoverToAws(file, recipeId);
+//
+            Img img = new Img(url);
             imgService.save(img);
             recipe.setRecipeCoverId(img.getImgId());
         }
@@ -137,7 +129,7 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
             step.setRecipeId(recipeId);
             String nameInFileMap = stepImgPrefix + order;
             if (fileMap.containsKey(nameInFileMap)) {
-                stepService.addStep(step, fileMap.get(nameInFileMap), imgPath);
+                stepService.addStep(step, fileMap.get(nameInFileMap));
             } else {
                 stepService.addStep(step);
             }
@@ -156,8 +148,7 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
         RecipeDTO recipeDTO = new RecipeDTO(recipe);
 //        get cover path
         if (recipe.getRecipeCoverId() != null) {
-            String coverPath = FileUtil.getFileAbsolutePath(imgService.getPathById(recipe.getRecipeCoverId()));
-            recipeDTO.setCoverPath(coverPath);
+            recipeDTO.setCoverPath(imgService.getPathById(recipe.getRecipeCoverId()));
         }
 
 //  TODO add author info
@@ -171,7 +162,7 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
         for (Step step : stepList
         ) {
             StepDTO stepDTO = new StepDTO(step);
-            stepDTO.setImgPath(FileUtil.getFileAbsolutePath(imgService.getPathById(step.getImgId())));
+            stepDTO.setImgPath(imgService.getPathById(step.getImgId()));
             stepDTOList.add(stepDTO);
         }
         recipeDTO.setStepDTOList(stepDTOList);

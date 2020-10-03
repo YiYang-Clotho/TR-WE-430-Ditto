@@ -42,7 +42,11 @@ public class RecipeTagBridgeServiceImpl extends ServiceImpl<RecipeTagBridgeMappe
         ) {
             ids.add(bridge.getTagId());
         }
-        return tagService.listByIds(ids);
+        if (ids.size() != 0) {
+            return tagService.listByIds(ids);
+        }
+        return new ArrayList<Tag>();
+
     }
 
     @Override
@@ -57,7 +61,10 @@ public class RecipeTagBridgeServiceImpl extends ServiceImpl<RecipeTagBridgeMappe
         ) {
             ids.add(bridge.getRecipeId());
         }
-        return recipeService.listByIds(ids);
+        if (ids.size() != 0) {
+            return recipeService.listByIds(ids);
+        }
+        return new ArrayList<Recipe>();
     }
 
 

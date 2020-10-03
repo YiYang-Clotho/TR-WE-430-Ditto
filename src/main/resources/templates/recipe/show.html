@@ -35,7 +35,7 @@
 <!-- Description area-->
 <div class="container-fluid w-60 padding">
     <div style="text-align:center" class="col-md-12">
-        <img th:src="@{(${'/static'+recipeDTO.getCoverPath()})}" class="img-fluid" id="img1">
+        <img th:src="@{${recipeDTO.getCoverPath()}}" class="img-fluid" id="img1">
     </div>
     <hr>
     <div class="row padding">
@@ -97,7 +97,7 @@
                     </p>
                 </div>
                 <div class="col-md-12 col-lg-4">
-                    <img th:src="@{(${'/static'+step.getImgPath()})}" class="img-fluid">
+                    <img th:src="@{${step.getImgPath()}}" class="img-fluid">
                     <!--                    <img src="/static/images/recipes/19/stepImg-1.png" class="img-fluid" alt="">-->
                 </div>
             </div>

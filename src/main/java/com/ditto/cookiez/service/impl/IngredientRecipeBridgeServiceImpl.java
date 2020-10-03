@@ -1,10 +1,7 @@
 package com.ditto.cookiez.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.ditto.cookiez.entity.Ingredient;
-import com.ditto.cookiez.entity.IngredientRecipeBridge;
-import com.ditto.cookiez.entity.Recipe;
-import com.ditto.cookiez.entity.RecipeTagBridge;
+import com.ditto.cookiez.entity.*;
 import com.ditto.cookiez.mapper.IngredientRecipeBridgeMapper;
 import com.ditto.cookiez.service.IIngredientRecipeBridgeService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -46,7 +43,12 @@ public class IngredientRecipeBridgeServiceImpl extends ServiceImpl<IngredientRec
         ) {
             ids.add(bridge.getIngredientId());
         }
-        return ingredientService.listByIds(ids);
+        if(ids.size()!=0){
+            return ingredientService.listByIds(ids);
+        }else {
+           return new  ArrayList<Ingredient>();
+        }
+
     }
 
     @Override
@@ -61,6 +63,11 @@ public class IngredientRecipeBridgeServiceImpl extends ServiceImpl<IngredientRec
         ) {
             ids.add(bridge.getRecipeId());
         }
-        return recipeService.listByIds(ids);
+        if(ids.size()!=0){
+            return recipeService.listByIds(ids);
+        }else {
+            return new ArrayList<Recipe>();
+        }
+
     }
 }

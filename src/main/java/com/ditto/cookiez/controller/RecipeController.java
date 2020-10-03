@@ -92,7 +92,7 @@ public class RecipeController {
     }
 
     @GetMapping("/recipe/detail")
-    public ModelAndView RecipeDetail() {
+    public ModelAndView recipeDetail() {
         ModelAndView mv = new ModelAndView("recipe/detail");
         return mv;
     }
