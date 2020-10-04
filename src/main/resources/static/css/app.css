@@ -3,12 +3,31 @@
     color: white;
     background-color: #C14A4A;
 }
-
+input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+    cursor: pointer;
+}
 .text-grad-888276 {
 
     color: #888276;
 }
-
+textarea,input{
+    resize:none;
+    outline: none;
+}
+.font-orkney{
+    font-family: 'OrkneyRegular';
+    font-weight: normal;
+    font-style: normal;
+}
+#input-title::placeholder{
+   font-size: large;
+    font-family: 'ComicReliefRegular';
+    font-weight: normal;
+    font-style: normal;
+}
 .bg-grad-888276 {
 
     background-color: #888276;
