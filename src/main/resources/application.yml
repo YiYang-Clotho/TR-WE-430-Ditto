@@ -3,8 +3,8 @@ spring:
     prefix: file:src/main/resources/templates/
     cache: false
   datasource:
-#    driver-class-name: com.mysql.cj.jdbc.Driver
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
+#    driver-class-name: com.mysql.jdbc.Driver
   resources:
     static-locations: file:src/main/resources/static/
   profiles:

@@ -17,6 +17,11 @@ textarea,input{
     resize:none;
     outline: none;
 }
+label{
+    font-family: 'OrkneyRegular';
+    font-weight: normal;
+    font-style: normal;
+}
 .font-orkney{
     font-family: 'OrkneyRegular';
     font-weight: normal;
