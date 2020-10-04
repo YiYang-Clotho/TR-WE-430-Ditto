@@ -53,13 +53,20 @@ $("#btn-addStep").click(function () {
     const html =
         `
             <div class="d-flex mt-5 justify-content-between align-content-between" id="step-${size + 1}">
-                <div class="d-flex flex-column w-75 mr-3"> Step${size + 1}
+                <div class="d-flex flex-column w-75 mr-3">
+                 <h4 class="font-comic"> Step${size + 1}</h4>
+                
                     <textarea class="h-100 input-area-red" name="textarea"
                               placeholder="Add step here"></textarea>
 
                 </div>
-                <div class="d-flex flex-column "><img id="img-step-${size + 1}" class="rounded-20 mb-1" src="http://iph.href.lu/300x300" alt="" width="300"
-                                                      height="300"> <input id="img-input-step-${size + 1}" type="file" class="btn-red" ACCEPT="image/*" onchange="uploadStepImg(${size + 1})"></div>
+                <div class="d-flex flex-column "><img id="img-step-${size + 1}" class="rounded-20 mb-1"  src="http://iph.href.lu/1280x1024" alt="" width="300"
+                                                      width="300">                        <label class="btn custom-file-upload btn-red">
+                 <input id="img-input-step-${size + 1}" type="file" class="btn-red" ACCEPT="image/*" onchange="uploadStepImg(${size + 1})">
+                                
+                    <i class="iconfont icon-LocalUpload"></i>
+                     Upload a Step Picture
+                </label></div>
 
             </div>
             `
@@ -159,19 +166,20 @@ function submit() {
     }
     const ingredients = getIngredients()
     for (const ingredient of ingredients) {
-     errors.push(validate(ingredient, {
-         ingredient: {
-             length: {
-                 minimum: 3,
-                 message: "%{value} is too short. Each ingredient step should be at least 3 characters"
-             }
-         }, amount: {
-             length: {
-                 minimum: 3,
-                 message: "%{value} is too short. Each amount should be at least 3 characters"
-             }
-         }
-     }))
+        console.log("get header!")
+        errors.push(validate(ingredient, {
+            ingredient: {
+                length: {
+                    minimum: 3,
+                    message: "%{value} is too short. Each ingredient step should be at least 3 characters"
+                }
+            }, amount: {
+                length: {
+                    minimum: 3,
+                    message: "%{value} is too short. Each amount should be at least 3 characters"
+                }
+            }
+        }))
     }
     console.log(errors);
     let data = {
