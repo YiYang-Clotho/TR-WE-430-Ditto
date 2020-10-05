@@ -57,6 +57,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/recipe/add").permitAll()
                 .antMatchers("/recipe/*").permitAll()
                 .antMatchers("/recipe/detail").permitAll()
+                .antMatchers("/**").permitAll()
                 .antMatchers("/").permitAll()
                 .antMatchers("/tags").permitAll()
                 .antMatchers("/tags/*").permitAll()

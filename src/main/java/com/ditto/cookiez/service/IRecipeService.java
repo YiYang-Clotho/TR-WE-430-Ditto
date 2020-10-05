@@ -4,9 +4,11 @@ import com.alibaba.fastjson.JSONObject;
 import com.ditto.cookiez.entity.Recipe;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.ditto.cookiez.entity.dto.RecipeDTO;
+import com.ditto.cookiez.entity.vo.RecipeResultVo;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -26,4 +28,5 @@ public interface IRecipeService extends IService<Recipe> {
     RecipeDTO getRecipe(int id);
 
 
+    List<RecipeResultVo> search(String keyword);
 }
