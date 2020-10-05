@@ -7,6 +7,7 @@ import com.ditto.cookiez.entity.*;
 import com.ditto.cookiez.entity.dto.IngredientDTO;
 import com.ditto.cookiez.entity.dto.RecipeDTO;
 import com.ditto.cookiez.entity.dto.StepDTO;
+import com.ditto.cookiez.entity.vo.RecipeResultVo;
 import com.ditto.cookiez.mapper.RecipeMapper;
 import com.ditto.cookiez.service.*;
 import com.ditto.cookiez.utils.FileUtil;
@@ -17,10 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * <p>
@@ -184,4 +182,47 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
 
         return recipeDTO;
     }
+
+    public List<RecipeResultVo> search(String keyword) {
+        List<Recipe> recipes;
+        Set<Integer> recipeIdSet = new HashSet<>();
+//        title
+        QueryWrapper<Recipe> qw = new QueryWrapper<>();
+        qw.like("recipe_name", keyword);
+        recipes = list(qw);
+        for (Recipe recipe : recipes
+        ) {
+            recipeIdSet.add(recipe.getRecipeId());
+        }
+//        tag
+        Set<Integer> recipeIdSetFromTag = searchRecipeIdListByTag(keyword);
+        if (recipeIdSetFromTag != null) {
+            recipeIdSet.addAll(recipeIdSetFromTag);
+        }
+//        ingredient
+
+        return null;
+    }
+
+    private   Set<Integer> searchRecipeIdListByTag(String keyword) {
+        QueryWrapper<Tag> qw = new QueryWrapper<>();
+        List<Recipe> recipes = new ArrayList<>();
+        Set<Integer> recipeIdSet = new HashSet<>();
+//        search tag using "like"
+        qw.like("tag_name", keyword);
+        List<Tag> tags = tagService.list(qw);
+        List<Integer> tagIdList = new ArrayList<>();
+        for (Tag tag : tags
+        ) {
+            tagIdList.add(tag.getTagId());
+        }
+        List<RecipeTagBridge> recipeTagBridges = recipeTagBridgeService.listByIds(tagIdList);
+        for (RecipeTagBridge recipeTagBridge : recipeTagBridges
+        ) {
+            recipeIdSet.add(recipeTagBridge.getRecipeId());
+        }
+        return recipeIdSet;
+    }
+//    private Set<Integer> searchRecipeIdListByTag
+
 }
