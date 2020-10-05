@@ -135,7 +135,7 @@ function submit() {
     const description = $("#input-describe").val().trim();
     //poor validate
     const recipe = {
-        recipeName: title, recipeDescription: description, recipeCreatedTime: moment().format()
+        recipeName: title, recipeDescription: description, recipeCreatedTime: moment().format(),recipeAuthorId:userId,
     };
     errors.push(validate(recipe, {
         recipeName: {
@@ -183,25 +183,28 @@ function submit() {
     }
     console.log(errors);
     let data = {
-        recipe, steps, ingredients, tags
+        recipe, steps, ingredients, tags,
     }
     formData.append("data", JSON.stringify(data))
 
     bootbox.confirm("Are you sure you want to submit this recipe?", function (result) {
         if (result) {
-            // axios.post('/api/recipe', formData, {
-            //     headers: {
-            //         'Content-Type': 'multipart/form-data'
-            //     }
-            // }).then(res => {
-            //     console.log(res)
-            //     bootbox.alert("Add a recipe Successfully!")
-            //     // window.location.replace("/");
-            // }).catch(err => {
-            //     bootbox.alert("Failed to add")
-            //     console.log(err)
-            // })
-            // formData = new FormData()
+
+            axios.post('/api/recipe', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            }).then(res => {
+                console.log(res)
+                let recipeId=res['data']['data']['recipeId']
+                bootbox.alert("Add a recipe Successfully!")
+                window.location.replace('/recipe/'+recipeId)
+                // window.location.replace("/");
+            }).catch(err => {
+                bootbox.alert("Failed to add")
+                console.log(err)
+            })
+            formData = new FormData()
         }
     })
 }

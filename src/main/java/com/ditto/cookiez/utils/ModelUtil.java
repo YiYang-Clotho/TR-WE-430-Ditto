@@ -3,9 +3,11 @@ package com.ditto.cookiez.utils;
 import com.ditto.cookiez.auth.JwtTokenUtil;
 import com.ditto.cookiez.controller.UserController;
 import com.ditto.cookiez.entity.User;
+import com.ditto.cookiez.service.IUserService;
 import com.ditto.cookiez.service.impl.UserServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -21,22 +23,14 @@ public class ModelUtil {
     private final static Logger logger = LoggerFactory.getLogger(ModelUtil.class);
 
 
-    public static Map<String, Object> getBaseModel() {
-//        Map<String, Object> model = new HashMap<>();
-//        UserServiceImpl userService = new UserServiceImpl();
-//        JwtTokenUtil jwtTokenUtil = new JwtTokenUtil();
-//        if("".equals(token)){
-//            return model;
-//        }
-//       token= token.substring(7);
-//        logger.info(token);
-//        String username = jwtTokenUtil.getUsernameFromToken(token);
-//        if (username != null) {
-//            User user = userService.getByUsername(username);
-//            model.put("user", user);
-//            logger.info(user.toString());
-//        }
-//        return model;
-        return null;
+    public static Map<String, Object> getBaseModel(String token) {
+        Map<String, Object> model = new HashMap<>();
+        IUserService userService = new UserServiceImpl();
+        System.out.println(token+"token");
+        User user = userService.getUserByToken(token);
+        logger.info(user.toString()+"30");
+        model.put("user", user);
+        return model;
+
     }
 }
