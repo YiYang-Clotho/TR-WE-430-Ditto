@@ -15,7 +15,7 @@ import java.io.IOException;
 
 /**
  * <p>
- * 服务实现类
+ * Service Class
  * </p>
  *
  * @author astupidcoder
@@ -36,7 +36,7 @@ public class StepServiceImpl extends ServiceImpl<StepMapper, Step> implements IS
     public Step addStep(Step step, MultipartFile file, String imgPath) throws IOException {
         int recipeId = step.getRecipeId();
         int order = step.getStepOrder();
-        String relativeImgPath="recipes/" + recipeId + "/";
+        String relativeImgPath=FileUtil.getRecipeDirRelativePath(recipeId);
         String nameInFileMap = "stepImg-" + order;
         String fileNameInDB = nameInFileMap + FileUtil.getFileType(file.getOriginalFilename());
         FileUtil.fileupload(file.getBytes(), imgPath, fileNameInDB);
