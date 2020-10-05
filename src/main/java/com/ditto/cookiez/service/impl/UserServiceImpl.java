@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.ditto.cookiez.WebLogAspect;
 import com.ditto.cookiez.auth.JwtTokenUtil;
 import com.ditto.cookiez.entity.Img;
+import com.ditto.cookiez.entity.Ingredient;
 import com.ditto.cookiez.entity.User;
 import com.ditto.cookiez.mapper.UserMapper;
 import com.ditto.cookiez.service.IImgService;
@@ -130,6 +131,15 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         final String token = jwtTokenUtil.generateToken(userDetails);
         user.setAccessToken(token);
         return user;
+    }
+
+    @Override
+    public String getUsernameById(Integer id) {
+        if (id != null) {
+            User user = getById(id);
+            return user.getUsername();
+        }
+        return null;
     }
 
 }

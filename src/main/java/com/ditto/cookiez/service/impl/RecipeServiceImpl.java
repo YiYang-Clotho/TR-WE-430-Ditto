@@ -183,8 +183,10 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
         return recipeDTO;
     }
 
+    @Override
     public List<RecipeResultVo> search(String keyword) {
         List<Recipe> recipes;
+        List<RecipeResultVo> voList = new ArrayList<>();
         Set<Integer> recipeIdSet = new HashSet<>();
 //        title
         QueryWrapper<Recipe> qw = new QueryWrapper<>();
@@ -192,6 +194,7 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
         recipes = list(qw);
         for (Recipe recipe : recipes
         ) {
+            log.info("add by title:"+recipe.getRecipeName());
             recipeIdSet.add(recipe.getRecipeId());
         }
 //        tag
@@ -200,13 +203,32 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
             recipeIdSet.addAll(recipeIdSetFromTag);
         }
 //        ingredient
+        Set<Integer> recipeIdSetFromIngred = searchRecipeIdListByIngredient(keyword);
+        recipeIdSet.addAll(recipeIdSetFromIngred);
+        if (!recipeIdSet.isEmpty()) {
+            recipes = listByIds(recipeIdSet);
+        }
+//        tag coverpath url
+        if (recipes != null) {
+            for (Recipe r : recipes
+            ) {
+                String username = userService.getUsernameById(r.getRecipeAuthorId());
+                RecipeResultVo resultVo = new RecipeResultVo(r.getRecipeName(), r.getRecipeDescription(), username);
+                String coverPath = imgService.getPathById(r.getRecipeId());
+                resultVo.setCoverPath(coverPath);
+                resultVo.setUrl("/recipe/" + r.getRecipeId());
+                List<Tag> tagList = recipeTagBridgeService.getTagsByRecipeId(r.getRecipeId());
+                resultVo.setTagList(tagList);
+                voList.add(resultVo);
+            }
 
-        return null;
+        }
+        return voList;
+
     }
 
-    private   Set<Integer> searchRecipeIdListByTag(String keyword) {
+    private Set<Integer> searchRecipeIdListByTag(String keyword) {
         QueryWrapper<Tag> qw = new QueryWrapper<>();
-        List<Recipe> recipes = new ArrayList<>();
         Set<Integer> recipeIdSet = new HashSet<>();
 //        search tag using "like"
         qw.like("tag_name", keyword);
@@ -214,15 +236,44 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
         List<Integer> tagIdList = new ArrayList<>();
         for (Tag tag : tags
         ) {
+            log.info("add by tag:"+tag.getTagName() );
             tagIdList.add(tag.getTagId());
         }
-        List<RecipeTagBridge> recipeTagBridges = recipeTagBridgeService.listByIds(tagIdList);
+        List<RecipeTagBridge> recipeTagBridges = new ArrayList<>();
+        if (tagIdList.size() != 0) {
+            recipeTagBridges = recipeTagBridgeService.listByIds(tagIdList);
+        }
+
         for (RecipeTagBridge recipeTagBridge : recipeTagBridges
         ) {
+
             recipeIdSet.add(recipeTagBridge.getRecipeId());
         }
         return recipeIdSet;
     }
-//    private Set<Integer> searchRecipeIdListByTag
+
+    private Set<Integer> searchRecipeIdListByIngredient(String keyword) {
+        QueryWrapper<Ingredient> qw = new QueryWrapper<>();
+        Set<Integer> recipeIdSet = new HashSet<>();
+//        search tag using "like"
+        qw.like("ingredient_name", keyword);
+        List<Ingredient> ingredients = ingredientService.list(qw);
+        List<Integer> ingredientIdList = new ArrayList<>();
+        for (Ingredient ingredient : ingredients
+        ) {
+            log.info("add by ingredient:" + ingredient.getIngredientName());
+            ingredientIdList.add(ingredient.getIngredientId());
+        }
+        List<IngredientRecipeBridge> ingredientRecipeBridges = new ArrayList<>();
+        if (ingredientIdList.size() != 0) {
+            ingredientRecipeBridges = ingredientRecipeBridgeService.listByIds(ingredientIdList);
+
+        }
+        for (IngredientRecipeBridge ingredientRecipeBridge : ingredientRecipeBridges
+        ) {
+            recipeIdSet.add(ingredientRecipeBridge.getRecipeId());
+        }
+        return recipeIdSet;
+    }
 
 }

@@ -23,4 +23,6 @@ public interface IUserService extends IService<User> {
     User getUserByToken(String token);
 
     User updateProfile(JSONObject jsonObject, Map<String, MultipartFile> fileMap) throws IOException;
+
+    String getUsernameById(Integer id);
 }

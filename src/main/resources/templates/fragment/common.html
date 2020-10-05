@@ -44,8 +44,8 @@
                     <a class="nav-link" href="/tags"><i class="iconfont icon-tag mr-1"></i>Tags</a>
                 </li>
             </ul>
-            <form class="form-inline mx-2 my-lg-0 ml-5">
-                <input class="form-control mr-sm-2 ml-4" style="width:20em; height:2em" type="search" placeholder="Search" aria-label="Search">
+            <form class="form-inline mx-2 my-lg-0 ml-5" action="#" th:action="@{/search}" method="get">
+                <input class="form-control mr-sm-2 ml-4" name="keyword" style="width:20em; height:2em" type="search" placeholder="Search" aria-label="Search">
 
                 <button class="btn btn-outline-danger my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
             </form>
