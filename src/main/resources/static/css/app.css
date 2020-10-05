@@ -33,6 +33,26 @@ label{
     font-weight: normal;
     font-style: normal;
 }
+.box {
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    border: 1px solid currentcolor;
+    border-radius: 3px;
+    font-size: 30px;
+    color: rgba(200, 200, 200, 0.5);
+    padding: 1em;
+    margin-bottom: .25em;
+    vertical-align: top;
+    -webkit-transition: .3s color, .3s border;
+    transition: .3s color, .3s border;
+}
+.loader-01 {
+    border: .2em dotted currentcolor;
+    border-radius: 50%;
+    -webkit-animation: 1s loader-01 linear infinite;
+    animation: 1s loader-01 linear infinite;
+}
 .bg-grad-888276 {
 
     background-color: #888276;

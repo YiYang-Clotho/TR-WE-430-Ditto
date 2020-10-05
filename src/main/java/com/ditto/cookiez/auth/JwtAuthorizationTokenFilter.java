@@ -1,9 +1,11 @@
 package com.ditto.cookiez.auth;
 
+import com.ditto.cookiez.service.IUserService;
 import com.ditto.cookiez.utils.WebUtil;
 import io.jsonwebtoken.ExpiredJwtException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -22,7 +24,8 @@ import java.io.IOException;
 
 @Component
 public class JwtAuthorizationTokenFilter extends OncePerRequestFilter {
-
+    @Autowired
+    IUserService userService;
     private final UserDetailsService userDetailsService;
     private final JwtTokenUtil jwtTokenUtil;
     private final String tokenHeader;
@@ -47,7 +50,7 @@ public class JwtAuthorizationTokenFilter extends OncePerRequestFilter {
 
 
             authToken = requestHeader.substring(7);
-           WebUtil.setCookieVal(response,"accessToken",authToken,3600);
+            WebUtil.setCookieVal(response, "accessToken", authToken, 3600);
             try {
                 username = jwtTokenUtil.getUsernameFromToken(authToken);
             } catch (ExpiredJwtException e) {
@@ -55,16 +58,19 @@ public class JwtAuthorizationTokenFilter extends OncePerRequestFilter {
         }
 
 
-
-        Cookie cookie = WebUtil.getCookieVal(request,"accessToken");
-        String auth= null;
-        if(cookie!=null){
-            auth=cookie.getValue();
+        Cookie cookie = WebUtil.getCookieVal(request, "accessToken");
+        String auth = null;
+        if (cookie != null) {
+            auth = cookie.getValue();
         }
 //        logger.info("cookiez-auth:"+auth);
-        if (auth!=null) {
+        if (auth != null&& !"".equals(auth)) {
             try {
                 username = jwtTokenUtil.getUsernameFromToken(auth);
+                if (userService.getByUsername(username) == null) {
+                    username = null;
+                    WebUtil.setCookieVal(response, "accessToken", "", 3600);
+                }
             } catch (ExpiredJwtException e) {
             }
         }

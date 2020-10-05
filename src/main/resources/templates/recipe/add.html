@@ -19,7 +19,7 @@
          alt="" height="520" style="height:520px">
     <!--    <button class="btn bg-red-C14A4A rounded-50  w-25 ml-auto mb-5">Upload cover</button>-->
         <label class="btn custom-file-upload btn-red ml-auto">
-            <input type="file"  placeholder="Upload cover" onchange="uploadCover(this)" accept="image/jpg,image/jpeg,image/png,image/PNG">
+            <input type="file"  placeholder="Upload cover" id="cover-input" onchange="uploadCover(this)" accept="image/*">
             <i class="iconfont icon-LocalUpload"></i>
         Upload Cover
     </label>
@@ -38,7 +38,7 @@
             </div>
 
         </div>
-        <button class="w-25 btn btn-red" id="btn-addIngredient">Add an ingredient</button>
+        <button class="w-25 btn btn-red" id="btn-addIngredient"><i class="iconfont icon-cross"></i> Add an ingredient</button>
     </div>
     <!--    Step area-->
     <div class="d-flex flex-column mb-5" id="div-steps">
@@ -67,9 +67,9 @@
 
     <!--    Operation Area-->
     <div class="d-flex">
-        <button class="btn btn-red" id="btn-addStep">Add a step</button>
+        <button class="btn btn-red" id="btn-addStep"><i class="iconfont icon-cross"></i>Add a step</button>
         <button class="btn btn-red" id="btn-removeStep">Remove last step</button>
-        <button class="btn btn-red ml-auto" onclick="submit()">Submit</button>
+        <button class="btn btn-red ml-auto" onclick="submit()"> <i class="iconfont icon-submit"></i> Submit</button>
     </div>
 
 
@@ -77,6 +77,11 @@
 
 
 <th:block th:include="/fragment/common.html :: scripts"></th:block>
+<script th:inline="javascript">
+let user=[[${user}]]
+console.log(user)
+let userId=user['userId']
+</script>
 <script type="text/javascript" src="/js/recipe/add.js"></script>
 
 </body>
