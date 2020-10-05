@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <th:block th:include="/fragment/common.html :: head"></th:block>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Cookiez - Profile</title>
+
+</head>
+<body>
+<header th:replace="/fragment/common.html :: header"></header>
+<div class="container d-flex  justify-content-center">
+    <div class="d-flex flex-column w-75 my-5 align-items-center" >
+        <h2 class="font-comic">My profile</h2>
+<!--     TODO   Need prefect distance between icon and input-->
+        <div class="d-flex flex-column shadow-lg  my-3 p-5 rounded-20" style="width:60%;">
+            <div class="text-center my-3 d-flex justify-content-center">
+                <img src="/images/avatar.jpg" class="rounded-circle shadow-sm" alt="..." width="150" height="150"> <i class="iconfont icon-pencil mt-auto"></i>
+            </div>
+            <div class="form-group">
+                <label for="username" class="mt-auto"><i class="iconfont icon-seeuser"></i> Username</label>
+                <input type="text" class="form-control rounded-pill" id="username" th:value="${user.username}" >
+            </div>
+            <div class="form-group">
+                <label for="email"><i class="iconfont icon-EmailHili"></i>Email</label>
+                <input type="password" class="form-control rounded-pill" id="email" >
+            </div>
+            <div class="form-group">
+                <label for="oldPassword"><i class="iconfont icon-lock mb-2"></i>Old Password</label>
+                <input type="password" class="form-control rounded-pill" id="oldPassword">
+                <label for="newPassword"><i class="iconfont icon-lock"></i>New Password</label>
+                <input type="password" class="form-control rounded-pill" id="newPassword">
+            </div>
+            <button class="btn bg-red-C14A4A rounded-50 ml-auto w-25"> Save<i class="iconfont icon-rightarrow ml-2"></i></button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<th:block th:include="/fragment/common.html :: scripts"></th:block>
+<script type="text/javascript" src="/js/user/profile.js">
+</script>
+<script th:inline="javascript">
+
+</script>
+</body>
+</html>
