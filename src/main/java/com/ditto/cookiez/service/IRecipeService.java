@@ -7,6 +7,7 @@ import com.ditto.cookiez.entity.dto.RecipeDTO;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -23,4 +24,5 @@ public interface IRecipeService extends IService<Recipe> {
     Recipe addRecipe(JSONObject json, Map<String, MultipartFile> fileMap) throws IOException;
 
     RecipeDTO getRecipe(int id);
+    List<Recipe> getRecipesByTagId(int tag_id);
 }

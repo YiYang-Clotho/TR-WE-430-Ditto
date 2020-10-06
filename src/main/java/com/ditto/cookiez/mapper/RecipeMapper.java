@@ -1,7 +1,10 @@
 package com.ditto.cookiez.mapper;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.ditto.cookiez.entity.Recipe;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +16,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface RecipeMapper extends BaseMapper<Recipe> {
 
+    List<Recipe> selectList(QueryWrapper<List> recipeList);
 }

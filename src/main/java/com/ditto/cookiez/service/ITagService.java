@@ -1,5 +1,6 @@
 package com.ditto.cookiez.service;
 
+import com.ditto.cookiez.entity.Recipe;
 import com.ditto.cookiez.entity.Tag;
 import com.baomidou.mybatisplus.extension.service.IService;
 

@@ -2,12 +2,17 @@ $('#btn').click(function(){
     $(this).toggleClass('active');
 });
 
-// Filter table
-$(document).ready(function(){
-  $("#tableSearch").on("keyup", function() {
-    var value = $(this).val().toLowerCase();
-    $("#myTable tr").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-    });
-  });
-});
+// search tag
+function handleSearchBtn() {
+    $(".d-none").removeClass("d-none")
+    axios.post("/tags", {
+        tag_name : $("#tag_name").val(),
+    }).then(res => {
+        console.log(res)
+        window.location.replace("/tags/#tag_name");
+    }).catch(err => {
+        // eslint-disable-next-line no-undef
+    bootbox.alert("Cannot find the corresponding recipe")
+        console.log(err)
+    })
+}
