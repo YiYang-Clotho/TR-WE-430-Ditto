@@ -46,6 +46,8 @@ public class User extends Model  {
     @TableField(exist = false)
     private List<String> roles;
     @TableField(exist = false)
+    private String avatarPath=null;
+    @TableField(exist = false)
     private String accessToken;
 
     public User() {
@@ -55,6 +57,7 @@ public class User extends Model  {
         this.username = username;
         this.userPwd = userPwd;
     }
+
 
 
 

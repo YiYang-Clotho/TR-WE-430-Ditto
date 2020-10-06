@@ -17,5 +17,5 @@ import java.io.IOException;
 public interface IStepService extends IService<Step> {
     Step addStep(Step step);
 
-    Step addStep(Step step, MultipartFile file,String imgPath) throws IOException;
+    Step addStep(Step step, MultipartFile file) throws IOException;
 }

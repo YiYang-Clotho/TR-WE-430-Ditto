@@ -6,9 +6,12 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.ditto.cookiez.entity.Recipe;
 import com.ditto.cookiez.entity.Step;
+import com.ditto.cookiez.entity.User;
 import com.ditto.cookiez.entity.dto.RecipeDTO;
 import com.ditto.cookiez.service.IRecipeService;
 import com.ditto.cookiez.service.IStepService;
+import com.ditto.cookiez.service.IUserService;
+import com.ditto.cookiez.utils.ModelUtil;
 import com.ditto.cookiez.utils.Response;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,13 +45,17 @@ import java.util.Map;
 public class RecipeController {
     @Autowired
     IRecipeService service;
+    @Autowired
+    IUserService userService;
 
     @Autowired
     IStepService stepService;
 
     @GetMapping("/recipe/add")
-    public ModelAndView addRecipePage() {
+    public ModelAndView addRecipePage(@CookieValue(value = "accessToken") String accessToken) {
         ModelAndView mv = new ModelAndView("recipe/add");
+        User user = userService.getUserByToken(accessToken);
+        mv.addObject("user", user);
         return mv;
     }
 
@@ -92,7 +99,7 @@ public class RecipeController {
     }
 
     @GetMapping("/recipe/detail")
-    public ModelAndView RecipeDetail() {
+    public ModelAndView recipeDetail() {
         ModelAndView mv = new ModelAndView("recipe/detail");
         return mv;
     }
@@ -101,7 +108,7 @@ public class RecipeController {
     public  ResponseEntity<JSONObject>  addRecipe(HttpServletRequest request, @RequestParam("data") String str) throws IOException {
         JSONObject jsonObject = JSONObject.parseObject(str);
         Map<String, MultipartFile> fileMap = ((MultipartHttpServletRequest) request).getFileMap();
-        service.addRecipe(jsonObject,fileMap);
+       Recipe recipe= service.addRecipe(jsonObject,fileMap);
         log.info(JSONObject.parseObject(str).toJSONString());
 
         for (MultipartFile v : fileMap.values()) {
@@ -110,6 +117,6 @@ public class RecipeController {
         }
 
 
-        return Response.ok("Successfully added recipe!");
+        return Response.ok("Succeed to add recipe!",recipe);
     }
 }

@@ -3,6 +3,7 @@ package com.ditto.cookiez.service.impl;
 import com.baomidou.mybatisplus.core.assist.ISqlRunner;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.ditto.cookiez.entity.Recipe;
+import com.ditto.cookiez.entity.RecipeTagBridge;
 import com.ditto.cookiez.entity.Tag;
 import com.ditto.cookiez.entity.User;
 import com.ditto.cookiez.mapper.RecipeMapper;
@@ -16,6 +17,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import com.ditto.cookiez.service.IRecipeService;
+import com.ditto.cookiez.service.IRecipeTagBridgeService;
+import com.ditto.cookiez.service.ITagService;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * <p>
@@ -34,6 +46,10 @@ public class TagServiceImpl extends ServiceImpl<TagMapper, Tag> implements ITagS
     private final QueryWrapper<Recipe> queryWrapper = new QueryWrapper<>();
 
     private QueryWrapper<Tag> qw = new QueryWrapper<>();
+    @Autowired
+    IRecipeTagBridgeService recipeTagBridgeService;
+    @Autowired
+    IRecipeService recipeService;
 
     @Override
     public Integer existedReturnId(String tagName) {
@@ -46,4 +62,5 @@ public class TagServiceImpl extends ServiceImpl<TagMapper, Tag> implements ITagS
             return -1;
         }
     }
+
 }

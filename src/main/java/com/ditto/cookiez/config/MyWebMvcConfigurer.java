@@ -1,4 +1,4 @@
-package com.ditto.cookiez;
+package com.ditto.cookiez.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.util.ClassUtils;
@@ -16,8 +16,7 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        //和页面有关的静态目录都放在项目的static目录下
-        //其中OTA表示访问的前缀。"file:D:/OTA/"是文件真实的存储路径
+
         registry.addResourceHandler("/static/**").addResourceLocations("file:"+ ClassUtils.getDefaultClassLoader().getResource("").getPath() + "static/");
     }
 }

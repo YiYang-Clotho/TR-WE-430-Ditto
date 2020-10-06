@@ -32,5 +32,11 @@ application.properties
 ### VS Code ###
 .vscode/
 /src/main/resources/*.properties
-/src/main/resources/application.properties
+!/src/main/java/com/ditto/cookiez/config/AwsClient.java
+src/main/resources/mapper/
 !/src/main/resources/application.properties
+!/src/main/resources/application-database.properties
+!/src/main/resources/application-dev.properties
+src/main/resources/application-dev.properties
+src/main/resources/application.properties
+src/main/resources/application.yml

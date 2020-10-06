@@ -4,8 +4,11 @@ spring:
     cache: false
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
+  #    driver-class-name: com.mysql.jdbc.Driver
   resources:
     static-locations: file:src/main/resources/static/
+  profiles:
+    active: dev
 server:
   port: 8090
 
@@ -14,7 +17,7 @@ mybatis-plus:
     map-underscore-to-camel-case: true
     auto-mapping-behavior: full
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-#  mapper-locations: classpath*:mapper/**/*Mapper.xml
+  #  mapper-locations: classpath*:mapper/**/*Mapper.xml
   global-config:
     db-config:
       logic-not-delete-value: 1
@@ -23,3 +26,4 @@ jwt:
   secret: secretscookiez
   expiration: 7200000
   token: Authorization
+
