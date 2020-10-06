@@ -99,8 +99,6 @@ public class RecipeController {
 
     @PostMapping("/api/recipe")
     public  ResponseEntity<JSONObject>  addRecipe(HttpServletRequest request, @RequestParam("data") String str) throws IOException {
-
-
         JSONObject jsonObject = JSONObject.parseObject(str);
         Map<String, MultipartFile> fileMap = ((MultipartHttpServletRequest) request).getFileMap();
         service.addRecipe(jsonObject,fileMap);
@@ -112,6 +110,6 @@ public class RecipeController {
         }
 
 
-        return Response.ok("Succeed to add recipe!");
+        return Response.ok("Successfully added recipe!");
     }
 }

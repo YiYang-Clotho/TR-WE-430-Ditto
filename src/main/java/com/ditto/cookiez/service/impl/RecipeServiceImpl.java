@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -185,4 +186,26 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
 
         return recipeDTO;
     }
+
+    @Override
+    public List<Recipe> getRecipesByTagId(int tag_id) {
+        List<Recipe> recipeList = getRecipesByTagId(tag_id);
+
+        List<RecipeDTO> recipeDTOList = new ArrayList<>();
+//        get title, description and cover path
+        for (Recipe recipe : recipeList
+        ) {
+            RecipeDTO rDTO = new RecipeDTO(recipe);
+            rDTO.getRecipeName();
+            rDTO.getRecipeDescription();
+            recipeDTOList.add(rDTO);
+            if(recipe.getRecipeCoverId() != null){
+                String coverPath = FileUtil.getFileAbsolutePath(imgService.getPathById(recipe.getRecipeCoverId()));
+                rDTO.setCoverPath(coverPath);
+            }
+        }
+        return recipeList;
+    }
 }
+
+
