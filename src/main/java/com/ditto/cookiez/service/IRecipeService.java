@@ -27,4 +27,6 @@ public interface IRecipeService extends IService<Recipe> {
 
     RecipeDTO getRecipe(int id);
     List<RecipeResultVo> search(String keyword);
+
+    RecipeResultVo getResultVoById(int id);
 }

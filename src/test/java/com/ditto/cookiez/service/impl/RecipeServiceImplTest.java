@@ -88,4 +88,9 @@ class RecipeServiceImplTest {
         System.out.println(vo.toString());
         log.info(vo.size()+"");
     }
+
+    @Test
+    void getResultVoById() {
+        System.out.println( service.getResultVoById(20));
+    }
 }

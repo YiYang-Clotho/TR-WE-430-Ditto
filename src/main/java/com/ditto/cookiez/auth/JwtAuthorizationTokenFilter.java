@@ -62,6 +62,7 @@ public class JwtAuthorizationTokenFilter extends OncePerRequestFilter {
         String auth = null;
         if (cookie != null) {
             auth = cookie.getValue();
+            logger.info("Accesstoken:"+auth);
         }
 //        logger.info("cookiez-auth:"+auth);
         if (auth != null&& !"".equals(auth)) {

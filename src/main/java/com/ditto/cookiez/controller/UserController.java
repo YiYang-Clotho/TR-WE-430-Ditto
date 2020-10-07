@@ -130,10 +130,12 @@ public class UserController {
 
 
     @GetMapping("/user/kitchen")
-    public ModelAndView kitchenPage(@CookieValue(value = "accessToken") String accessToken) {
-      ModelAndView mv=  new ModelAndView("user/kitchen");
-        User user = service.getUserByToken(accessToken);
-
+    public ModelAndView kitchenPage(@CookieValue(value = "accessToken", defaultValue = "") String accessToken) {
+        ModelAndView mv = new ModelAndView("user/kitchen");
+        User user=new User();
+        if (!"".equals(accessToken)) {
+             user = service.getUserByToken(accessToken);
+        }
         mv.addObject("user", user);
         return mv;
     }
@@ -141,7 +143,7 @@ public class UserController {
     @GetMapping("/user/saves")
     public ModelAndView savesPage(@CookieValue(value = "accessToken") String accessToken) {
 
-        ModelAndView mv=  new ModelAndView("user/saves");
+        ModelAndView mv = new ModelAndView("user/saves");
         User user = service.getUserByToken(accessToken);
         mv.addObject("user", user);
 

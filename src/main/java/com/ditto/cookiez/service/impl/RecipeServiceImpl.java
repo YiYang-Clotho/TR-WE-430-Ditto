@@ -184,6 +184,8 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
         return recipeDTO;
     }
 
+
+
     public List<RecipeResultVo> search(String keyword) {
         List<Recipe> recipes;
         List<RecipeResultVo> voList = new ArrayList<>();
@@ -194,7 +196,7 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
         recipes = list(qw);
         for (Recipe recipe : recipes
         ) {
-            log.info("add by title:"+recipe.getRecipeName());
+            log.info("add by title:" + recipe.getRecipeName());
             recipeIdSet.add(recipe.getRecipeId());
         }
 //        tag
@@ -236,7 +238,7 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
         List<Integer> tagIdList = new ArrayList<>();
         for (Tag tag : tags
         ) {
-            log.info("add by tag:"+tag.getTagName() );
+            log.info("add by tag:" + tag.getTagName());
             tagIdList.add(tag.getTagId());
         }
         List<RecipeTagBridge> recipeTagBridges = new ArrayList<>();
@@ -274,6 +276,23 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
             recipeIdSet.add(ingredientRecipeBridge.getRecipeId());
         }
         return recipeIdSet;
+    }
+
+    @Override
+    public RecipeResultVo getResultVoById(int id) {
+        Recipe recipe = getById(id);
+        RecipeResultVo vo = new RecipeResultVo(recipe);
+        vo.setUrl(generateRecipeUrl(id));
+
+        vo.setCoverPath(imgService.getPathById(recipe.getRecipeCoverId()));
+        vo.setAuthor(userService.getUsernameById(recipe.getRecipeAuthorId()));
+//        vo.setTagList();
+//TODO get tag list
+        return vo;
+    }
+
+    private String generateRecipeUrl(int id) {
+        return "/recipe/" + id;
     }
 
 }

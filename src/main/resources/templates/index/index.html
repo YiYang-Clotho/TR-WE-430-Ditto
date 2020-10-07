@@ -5,7 +5,6 @@
     <th:block th:include="/fragment/common.html :: head"></th:block>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title>Hello Cookiez!</title>
 
 </head>
@@ -69,10 +68,10 @@
         </tr>
         -->
 
-        <div class="col-sm-3">
+        <div class="col-sm-3" th:each="vo:${voList}">
             <a th:href="@{${vo.url}}">
                 <div class="p-3  d-flex flex-column shadow-sm rounded-10 shadow-0-2-4 ">
-                    <img class="rounded-20" src="/images/fired_rice.jpg" alt="">
+                    <img class="rounded-20 " th:src="@{${vo.coverPath}}" alt="">
                     <span style="font-size: 20px" th:text="${vo.recipeName}"></span>
                     <p style="font-size: 14px;color: #6b6668;"
                        th:text="${#strings.abbreviate(vo.recipeDescription,100) }">Cooking a perfect batch of
@@ -93,142 +92,27 @@
         <!--                </div>-->
 
 
-        <div class="col-sm-3">
-            <div class="card" style="color: #C14A4A; width: 225px;">
-                <img src="/images/salad.jpg" class="card-img-top" alt="">
-                <div class="card-body">
-                    <h5 class="card-title">Salad</h5>
-                    <p class="card-text">Author</p>
-                </div>
-                <div class="card-body text-center">
-                    <a href="#" class="card-link"><i class="fa fa-bookmark" style="color: #C14A4A"
-                                                     aria-hidden="true"> </i></a>
-                    <a href="#" class="card-link"><i class="fa fa-bars" style="color: #C14A4A" aria-hidden="true"></i>
-                    </a>
-                    <a href="#" class="card-link"><i class="far fa-heart" style="color: #C14A4A" aria-hidden="true"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
+<!--        <div class="col-sm-3">-->
+<!--            <div class="card" style="color: #C14A4A; width: 225px;">-->
+<!--                <img src="/images/salad.jpg" class="card-img-top" alt="">-->
+<!--                <div class="card-body">-->
+<!--                    <h5 class="card-title">Salad</h5>-->
+<!--                    <p class="card-text">Author</p>-->
+<!--                </div>-->
+<!--                <div class="card-body text-center">-->
+<!--                    <a href="#" class="card-link"><i class="fa fa-bookmark" style="color: #C14A4A"-->
+<!--                                                     aria-hidden="true"> </i></a>-->
+<!--                    <a href="#" class="card-link"><i class="fa fa-bars" style="color: #C14A4A" aria-hidden="true"></i>-->
+<!--                    </a>-->
+<!--                    <a href="#" class="card-link"><i class="far fa-heart" style="color: #C14A4A" aria-hidden="true"></i>-->
+<!--                    </a>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
 
-        <div class="col-sm-3">
-            <div class="card" style="color: #C14A4A; width: 225px; ">
-                <img src="/images/oat_pancake.jpg" class="card-img-top" alt="">
-                <div class="card-body">
-                    <h5 class="card-title">Oat pancake</h5>
-                    <p class="card-text">Author</p>
-                </div>
-                <div class="card-body text-center">
-                    <a href="#" class="card-link"><i class="fa fa-bookmark" style="color: #C14A4A"
-                                                     aria-hidden="true"> </i></a>
-                    <a href="#" class="card-link"><i class="fa fa-bars" style="color: #C14A4A" aria-hidden="true"></i>
-                    </a>
-                    <a href="#" class="card-link"><i class="far fa-heart" style="color: #C14A4A" aria-hidden="true"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-sm-3">
-            <div class="card" style="color: #C14A4A; width: 225px;  ">
-                <img src="/images/lava_cake.png" class="card-img-top" alt="">
-                <div class="card-body">
-                    <h5 class="card-title">Lava cake</h5>
-                    <p class="card-text">Author</p>
-                </div>
-                <div class="card-body text-center">
-                    <a href="#" class="card-link"><i class="fa fa-bookmark" style="color: #C14A4A"
-                                                     aria-hidden="true"> </i></a>
-                    <a href="#" class="card-link"><i class="fa fa-bars" style="color: #C14A4A" aria-hidden="true"></i>
-                    </a>
-                    <a href="#" class="card-link"><i class="far fa-heart" style="color: #C14A4A" aria-hidden="true"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 
-<div class="container d-flex justify-content-center my-5">
-    <div class="row w-85">
-        <div class="col-sm-3">
-            <div class="card" style="width: 225px; ">
-                <img src="/images/pasta.jpg" class="card-img-top" alt="">
-                <div class="card-body">
-                    <h5 class="card-title">Pasta</h5>
-                    <p class="card-text">Author</p>
-                </div>
-                <div class="card-body text-center">
-                    <a href="#" class="card-link"><i class="fa fa-bookmark" style="color: #C14A4A"
-                                                     aria-hidden="true"> </i></a>
-                    <a href="#" class="card-link"><i class="fa fa-bars" style="color: #C14A4A" aria-hidden="true"></i>
-                    </a>
-                    <a href="#" class="card-link"><i class="far fa-heart" style="color: #C14A4A" aria-hidden="true"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-sm-3">
-            <div class="card" style="width: 225px; ">
-                <img src="/images/blueberry_muffin.jpg" class="card-img-top" alt="">
-                <div class="card-body">
-                    <h5 class="card-title">Blueberry muffin</h5>
-                    <p class="card-text">Author: Heran Wang</p>
-                </div>
-                <div class="card-body text-center">
-                    <a href="#" class="card-link"><i class="fa fa-bookmark" style="color: #C14A4A"
-                                                     aria-hidden="true"> </i></a>
-                    <a href="#" class="card-link"><i class="fa fa-bars" style="color: #C14A4A" aria-hidden="true"></i>
-                    </a>
-                    <a href="#" class="card-link"><i class="far fa-heart" style="color: #C14A4A" aria-hidden="true"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-sm-3">
-            <div class="card" style="width: 225px; ">
-                <img src="/images/veg_burger.jpg" class="card-img-top" alt="">
-                <div class="card-body">
-                    <h5 class="card-title">Veg burger</h5>
-                    <p class="card-text">Author</p>
-                </div>
-                <div class="card-body text-center">
-                    <a href="#" class="card-link"><i class="fa fa-bookmark" style="color: #C14A4A"
-                                                     aria-hidden="true"> </i></a>
-                    <a href="#" class="card-link"><i class="fa fa-bars" style="color: #C14A4A" aria-hidden="true"></i>
-                    </a>
-                    <a href="#" class="card-link"><i class="far fa-heart" style="color: #C14A4A" aria-hidden="true"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-sm-3">
-            <div class="card" style="width: 225px;  ">
-                <img src="/images/shrimp.png" class="card-img-top" alt="">
-                <div class="card-body">
-                    <h5 class="card-title">Shrimp</h5>
-                    <p class="card-text">Author</p>
-                </div>
-                <div class="card-body text-center">
-                    <div>
-                        <a href="#" class="card-link"><i class="fa fa-bookmark" style="color: #C14A4A"
-                                                         aria-hidden="true"> </i></a>
-                        <a href="#" class="card-link"><i class="fa fa-bars" style="color: #C14A4A"
-                                                         aria-hidden="true"></i> </a>
-                        <a id="light" class="card-link" onclick="changeToSolid(this)"
-                           style="display: inline; clear: both; "><i class="far fa-heart" style="color: #C14A4A"
-                                                                     aria-hidden="true"></i> </a>
-                        <a id="solid" class="card-link" onclick="changeToLight(this)" style="display: none; "><i
-                                class="fa fa-heart" style="color: #C14A4A" aria-hidden="true"></i> </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 <!-- Footer -->
 <footer th:replace="/fragment/common.html :: footer"></footer>
@@ -237,5 +121,6 @@
 
 <script type="text/javascript" src="/js/index.js">
 </script>
+
 </body>
 </html>
