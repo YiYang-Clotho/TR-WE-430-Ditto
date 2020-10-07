@@ -151,8 +151,8 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
 
 //  TODO add author info
 
-//        User user = userService.getById(recipe.getRecipeAuthorId());
-//        recipeDTO.setAuthor(user.getUsername());
+        User user = userService.getById(recipe.getRecipeAuthorId());
+        recipeDTO.setAuthor(user.getUsername());
 
 //        Get Step
         List<Step> stepList = stepService.list(new QueryWrapper<Step>().eq("recipe_id", id));

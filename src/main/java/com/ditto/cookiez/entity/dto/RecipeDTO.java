@@ -4,6 +4,7 @@ import com.ditto.cookiez.entity.Recipe;
 import com.ditto.cookiez.entity.Tag;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,5 +26,15 @@ public class RecipeDTO {
     public RecipeDTO(Recipe recipe) {
         this.recipeName = recipe.getRecipeName();
         this.recipeDescription=recipe.getRecipeDescription();
+    }
+
+    public String getTagsString(){
+        String str="";
+        for (Tag tag : this.getTagList()) {
+            str += tag.getTagName();
+            str += ",";
+        }
+        str = str.substring(0,str.length()-1);
+        return str;
     }
 }
