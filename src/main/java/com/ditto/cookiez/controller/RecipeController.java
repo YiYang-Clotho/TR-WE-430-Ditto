@@ -71,6 +71,20 @@ public class RecipeController {
         return mv;
     }
 
+    @GetMapping("/recipe/{recipeId}/edit")
+    public ModelAndView recipeEditPage(@PathVariable Integer recipeId) {
+        ModelAndView mv = new ModelAndView("recipe/edit");
+        RecipeDTO recipe=service.getRecipe(recipeId);
+        if (recipe != null) {
+
+            mv.addObject("recipeDTO",recipe);
+        } else {
+            log.info("Recipe is null, id is " + recipeId);
+        }
+        return mv;
+    }
+
+
     @PutMapping("/api/recipe")
     public Integer updateRecipe(@RequestBody JSONObject json) {
         Recipe recipe = json.getObject("recipe", Recipe.class);

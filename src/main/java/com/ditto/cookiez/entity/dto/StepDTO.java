@@ -1,7 +1,10 @@
 package com.ditto.cookiez.entity.dto;
 
 import com.ditto.cookiez.entity.Step;
+import com.ditto.cookiez.entity.Tag;
 import lombok.Data;
+
+import java.util.ArrayList;
 
 /**
  * @author Zhihao Liang
@@ -21,6 +24,5 @@ public class StepDTO {
     public StepDTO(Step step) {
         this.stepContent = step.getStepContent();
         this.stepOrder = step.getStepOrder();
-
     }
 }
