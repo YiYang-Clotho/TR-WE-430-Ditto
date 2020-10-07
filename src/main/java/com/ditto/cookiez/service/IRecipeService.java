@@ -26,7 +26,5 @@ public interface IRecipeService extends IService<Recipe> {
     Recipe addRecipe(JSONObject json, Map<String, MultipartFile> fileMap) throws IOException;
 
     RecipeDTO getRecipe(int id);
-
-
     List<RecipeResultVo> search(String keyword);
 }

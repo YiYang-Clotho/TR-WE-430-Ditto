@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
@@ -151,8 +152,8 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
 
 //  TODO add author info
 
-        User user = userService.getById(recipe.getRecipeAuthorId());
-        recipeDTO.setAuthor(user.getUsername());
+//        User user = userService.getById(recipe.getRecipeAuthorId());
+//        recipeDTO.setAuthor(user.getUsername());
 
 //        Get Step
         List<Step> stepList = stepService.list(new QueryWrapper<Step>().eq("recipe_id", id));
@@ -183,7 +184,6 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
         return recipeDTO;
     }
 
-    @Override
     public List<RecipeResultVo> search(String keyword) {
         List<Recipe> recipes;
         List<RecipeResultVo> voList = new ArrayList<>();
@@ -277,3 +277,5 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
     }
 
 }
+
+
