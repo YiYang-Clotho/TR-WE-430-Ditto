@@ -13,13 +13,11 @@
 <header th:replace="/fragment/common.html :: header"></header>
 <div class="container d-flex justify-content-center">
     <div class="row my-5 w-75 animate__fadeInRightBig animate__bounceIn">
-    <!--    <form action="/tags/search" method="post" id="tagForm">-->
-            <input class="w-50 border-green-28A745 rounded-50" id="tag_name" type="text"
+            <input class="w-50 border-green-28A745 rounded-50" name="tag_name" id="tag_name" type="text"
                    placeholder="Type something for searching">
             <button class="btn bg-red-C14A4A rounded-50  ml-auto" onclick="handleSearchBtn(this)">
                 <i class="iconfont icon-sousuo
                 mr-1"></i>Search Recipes</button>
-        <!-- </form> -->
     </div>
 </div>
 
@@ -45,18 +43,9 @@
         </div>
     </div>
 
-    <div>
-        <tr th:each="recipe : ${recipes}">
-            <div class="col-sm-4 ">
-                <div class="card" style="width: 225px;  margin: center;">
-                    <div class="card-body">=
-                        <img th:src="@{'/static/images'+${recipe.cover}}" class="card-img-top" id="recipeCover"/>
-                        <td th:text="${recipe.title}" class="card-title">Recipe title</td>
-                        <td th:text="${recipe.author}" class="card-text">Recipe author</td>
-                    </div>
-                </div>
-            </div>
-        </tr>
+    <div class="container d-flex justify-content-center" id="cardDiv">
+
+
     </div>
 
 </div>

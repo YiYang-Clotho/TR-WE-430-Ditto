@@ -184,23 +184,6 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
         return recipeDTO;
     }
 
-    @Override
-    public List<Recipe> getRecipesByTagId(int tag_id) {
-        List<Recipe> recipeList = getRecipesByTagId(tag_id);
-
-        List<RecipeDTO> recipeDTOList = new ArrayList<>();
-//        get title, description and cover path
-        for (Recipe recipe : recipeList
-        ) {
-            RecipeDTO rDTO = new RecipeDTO(recipe);
-            rDTO.getRecipeName();
-            rDTO.getRecipeDescription();
-            rDTO.getCoverPath();
-            recipeDTOList.add(rDTO);
-        }
-        return recipeList;
-    }
-
     public List<RecipeResultVo> search(String keyword) {
         List<Recipe> recipes;
         List<RecipeResultVo> voList = new ArrayList<>();
