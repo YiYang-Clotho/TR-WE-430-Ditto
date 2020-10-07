@@ -1,10 +1,17 @@
 package com.ditto.cookiez.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.ditto.cookiez.entity.Recipe;
 import com.ditto.cookiez.entity.vo.RecipeResultVo;
+import com.ditto.cookiez.service.IRecipeService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Zhihao Liang
@@ -13,16 +20,17 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @RestController
 public class IndexController {
+    @Autowired
+    IRecipeService recipeService;
+
     @GetMapping("/")
     public ModelAndView index() {
-            ModelAndView mv=new ModelAndView("index/index");
-            RecipeResultVo vo=new RecipeResultVo("Rice","Cooking a perfect batch of white " +
-                    "rice without a rice cooker can be a challenge. That's why we are going for forget about cooking " +
-                    "rice on the stove and show you the incredibly delicious and absolutely foolproof world " +
-                    "of pilaf!","ZhihaoLiang");
-            vo.setCoverPath("https://cookiez-img2.s3.amazonaws.com/images/recipes/32/step-1.png");
-            vo.setUrl("/recipe/20");
-            mv.addObject("vo",vo);
-            return mv;
+        ModelAndView mv = new ModelAndView("index/index");
+        List<RecipeResultVo> voList = new ArrayList<>();
+        voList.add(recipeService.getResultVoById(37));
+        voList.add(recipeService.getResultVoById(38));
+        voList.add(recipeService.getResultVoById(40));
+        mv.addObject("voList", voList);
+        return mv;
     }
 }

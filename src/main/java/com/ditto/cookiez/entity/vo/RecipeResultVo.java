@@ -1,5 +1,6 @@
 package com.ditto.cookiez.entity.vo;
 
+import com.ditto.cookiez.entity.Recipe;
 import com.ditto.cookiez.entity.Tag;
 import lombok.Data;
 
@@ -33,4 +34,11 @@ public class RecipeResultVo {
         this.recipeDescription = recipeDescription;
         this.author = author;
     }
+
+    public RecipeResultVo(Recipe recipe) {
+        recipeName=recipe.getRecipeName();
+        recipeDescription=recipe.getRecipeDescription();
+
+    }
+
 }
