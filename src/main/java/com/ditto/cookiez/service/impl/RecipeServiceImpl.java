@@ -152,8 +152,8 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
 
 //  TODO add author info
 
-        User user = userService.getById(recipe.getRecipeAuthorId());
-        recipeDTO.setAuthor(user.getUsername());
+//        User user = userService.getById(recipe.getRecipeAuthorId());
+//        recipeDTO.setAuthor(user.getUsername());
 
 //        Get Step
         List<Step> stepList = stepService.list(new QueryWrapper<Step>().eq("recipe_id", id));
@@ -183,8 +183,6 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
 
         return recipeDTO;
     }
-
-
     @Override
     public List<RecipeResultVo> search(String keyword) {
         List<Recipe> recipes;
@@ -196,7 +194,7 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
         recipes = list(qw);
         for (Recipe recipe : recipes
         ) {
-            log.info("add by title:" + recipe.getRecipeName());
+            log.info("add by title:"+recipe.getRecipeName());
             recipeIdSet.add(recipe.getRecipeId());
         }
 //        tag
@@ -238,7 +236,7 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
         List<Integer> tagIdList = new ArrayList<>();
         for (Tag tag : tags
         ) {
-            log.info("add by tag:" + tag.getTagName());
+            log.info("add by tag:"+tag.getTagName() );
             tagIdList.add(tag.getTagId());
         }
         List<RecipeTagBridge> recipeTagBridges = new ArrayList<>();
@@ -277,7 +275,6 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
         }
         return recipeIdSet;
     }
-
     @Override
     public RecipeResultVo getResultVoById(int id) {
         Recipe recipe = getById(id);
