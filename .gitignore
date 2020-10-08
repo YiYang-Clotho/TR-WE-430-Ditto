@@ -40,3 +40,23 @@ src/main/resources/mapper/
 src/main/resources/application-dev.properties
 src/main/resources/application.properties
 src/main/resources/application.yml
+!/src/main/resources/application.properties
+!/src/main/resources/application.properties
+!/src/main/resources/application.properties
+### Example user template template
+### Example user template
+
+# IntelliJ project files
+.idea
+*.iml
+out
+gen
+### Example user template template
+### Example user template
+
+# IntelliJ project files
+.idea
+*.iml
+out
+gen
+!/src/main/resources/application.properties
