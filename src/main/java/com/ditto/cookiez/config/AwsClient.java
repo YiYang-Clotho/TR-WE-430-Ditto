@@ -25,7 +25,7 @@ import java.util.Objects;
 public class AwsClient {
     static AmazonS3 s3;
     //    static TransferManager tx;
-    static final String bucketName = "cookiez-img";
+    static final String bucketName = "cookiez-img2";
 
     static {
 

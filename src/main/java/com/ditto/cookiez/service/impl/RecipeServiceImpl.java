@@ -183,6 +183,7 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
 
         return recipeDTO;
     }
+
     @Override
     public List<RecipeResultVo> search(String keyword) {
         List<Recipe> recipes;
@@ -208,6 +209,44 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
         if (!recipeIdSet.isEmpty()) {
             recipes = listByIds(recipeIdSet);
         }
+//        tag coverpath url
+        if (recipes != null) {
+            for (Recipe r : recipes
+            ) {
+                String username = userService.getUsernameById(r.getRecipeAuthorId());
+                RecipeResultVo resultVo = new RecipeResultVo(r.getRecipeName(), r.getRecipeDescription(), username);
+                String coverPath = imgService.getPathById(r.getRecipeId());
+                resultVo.setCoverPath(coverPath);
+                resultVo.setUrl("/recipe/" + r.getRecipeId());
+                List<Tag> tagList = recipeTagBridgeService.getTagsByRecipeId(r.getRecipeId());
+                resultVo.setTagList(tagList);
+                voList.add(resultVo);
+            }
+
+        }
+        return voList;
+
+    }
+
+    public List<RecipeResultVo> searchTagOnly(String keyword) {
+        List<Recipe> recipes;
+        List<RecipeResultVo> voList = new ArrayList<>();
+        Set<Integer> recipeIdSet = new HashSet<>();
+//        title
+        QueryWrapper<Recipe> qw = new QueryWrapper<>();
+        qw.like("recipe_name", keyword);
+        recipes = list(qw);
+        for (Recipe recipe : recipes
+        ) {
+            log.info("add by title:"+recipe.getRecipeName());
+            recipeIdSet.add(recipe.getRecipeId());
+        }
+//        tag
+        Set<Integer> recipeIdSetFromTag = searchRecipeIdListByTag(keyword);
+        if (recipeIdSetFromTag != null) {
+            recipeIdSet.addAll(recipeIdSetFromTag);
+        }
+
 //        tag coverpath url
         if (recipes != null) {
             for (Recipe r : recipes
