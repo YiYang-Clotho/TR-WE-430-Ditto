@@ -60,7 +60,7 @@ public class TagController {
         if (tag_name == null) {
             return Response.ok("Do not have to find");
         }else{
-            List<RecipeResultVo> recipeList = recipeService.search(tag_name);
+            List<RecipeResultVo> recipeList = recipeService.searchTagOnly(tag_name);
             System.out.println("Print recipeList" + recipeList.toString());
             if (recipeList != null) {
                 return Response.ok("Succeed to find the recipes", recipeList);
