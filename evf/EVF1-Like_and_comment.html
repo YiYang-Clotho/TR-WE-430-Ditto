@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+
+
+<html>
+
+<head>
+  <title>MVF1-Account management</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+    integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.css" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet" />
+</head>
+
+<body>
+  <!-- Header -->
+  <div id="headerDiv"></div>
+
+  <!-- Main -->
+  <section id="main">
+    <div class="inner">
+      <header class="major special">
+        <h1>EVF1 - Like and comment</h1>
+      </header>
+      <!-- <a href="#" class="image fit"><img src="images/pic11.jpg" alt="" /></a> -->
+      <h2>1. Diagram design</h2>
+      <!-- STUB: done -->
+      <p>
+        <h3>Activity Diagram</h3>
+        <b><img src="/images/mvf1activ.png" alt="Activity Diagram" />
+      </p>
+      <p>
+        <p>
+          <h3>Class Diagram</h3>
+          <b><img src="/images/mvf1class-account.bmp" width="960" height="600" alt="Class Diagram" />
+        </p>
+        <p>
+          <h3>Design Diagram For Login</h3>
+          <p>User can easily like and comment on the main recipes</p>
+          <b><img src="/images/mvf1login.bmp" width="960" height="600" alt="Class Diagram" />
+        </p>
+        <p>
+          <h3>Design Diagram For Sign Up</h3>
+          <p>After creating an account, users can login, logout, manage the profile. Furthermore, they can post and edit
+            the recipes or comment other recipes.</p>
+          <b><img src="/images/mvf1createaccount.bmp" width="960" height="600" alt="Class Diagram" />
+        </p>
+        <p>
+          <h3>Design Diagram For Profile Page</h3>
+          <p>We provide a profile card and users can modify their personal information </p>
+          <b><img src="/images/mvf1profile.bmp" width="960" height="900" alt="Class Diagram" />
+        </p>
+        <p>
+
+          <h2>2.Explanation</h2>
+          <h3>2.1 Description</h3>
+          <p style="color: black;">This is an extension to add to recipe details. Users can like and comment on posts they want to contribute or express personal opinion.</p>
+          <h3>2.2 User story and criteria</h3>
+
+
+          <ul>
+
+            <li>
+              <b> Like and comment: </b> <br />
+
+              <table data-toggle="table">
+                <thead>
+                  <tr>
+                    <th>User story</th>
+
+                    <th>Acceptance criteria</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><b>As a</b> user,
+                      <b><br>I can/ I want</b> react to my favourite recipe and comment on it
+                      <b><br>so that</b> I can provide my ideas to improve that recipe.</td>
+
+                    <td>
+                      <p>
+                        <br><br>Criterion 0:
+                        <b><br>Given</b> I im in the main page and I choose a recipe, system switches to the recipe details
+                        <b><br>When</b> I click the "like" button
+                        <b><br>Then</b> “Like” button turns green, I have successfully pressed like
+                        <b><br>When</b> I click the "like" button again
+                        <b><br>Then</b> “Like” button turns blank, I have unlike the recipe
+
+                        <br><br>Criterion 1:
+                        <b><br>Given</b> I im in the main page and I choose a recipe, system switches to the recipe details
+                        <b><br>When</b> I click the comment button (bubble chat symbol)
+                        <b><br>Then</b> The system switch to comment section AND I can post my comments to public
+                        <b><br>When</b> I click "Return to main recipe
+                        <b><br>Then</b> System switches to the main recipe
+
+                      </p>
+                      <p>
+
+                      </p>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </li>
+
+            <br />
+            </ol>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <div id="footerDiv"></div>
+
+  <script src="/assets/js/common.js"></script>
+</body>
+
+</html>
