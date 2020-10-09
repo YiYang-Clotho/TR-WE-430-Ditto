@@ -4,7 +4,7 @@
 <html>
 
 <head>
-  <title>EVF4-Substitution</title>
+  <title>EVF3-Collection and Favourite function</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -24,7 +24,7 @@
   <section id="main">
     <div class="inner">
       <header class="major special">
-        <h1>MVF2 - Slider</h1>
+        <h1>EVF3-Collection and Favourite function</h1>
       </header>
 
       <h2>1. Diagram design</h2>
@@ -32,17 +32,16 @@
       <p>
 
         <p><b>Mock up (By invision): <br></b>
-          <p>User can substitution ingredients in recipe</p>
-          <b><img src="/images/EVF4.png" width="960" height="600" alt="" />
+          <p>User can collection and facourite the recipe and check in their personal center</p>
+          <b><img src="/images/EVF3.2.png" width="960" height="600" alt="" />
         </p>
       </p>
       <h2>2.Explanation</h2>
       <h3>2.1 Description</h3>
       <p style="color: black;">
-        The function of this part is to help users replace the ingredients in the recipe. 
-        Because some users may be allergic to certain ingredients or other special circumstances, they can't use certain ingredients. 
-        Therefore, this function can help them replace inedible ingredients. This function can screen out the replaced menu for users to use.
-
+        This part of the function has been implemented in MVF, users can click 
+        the red heart under the menu to collect recipes, and users can quickly 
+        find the recipes they want in the personal center interface.
       </p>
       <h3>2.2 User story and criteria</h3>
 
@@ -62,19 +61,17 @@
               <tr>
                 <td>
                   <b>As a</b> user
-                  <p><b>I want</b> to substitution some ingredients in a recipe</p>
-                  <p><b>so that</b> I can avoid eating some ingredients</p>
+                  <p><b>I want</b> to collect and favourite a recipe</p>
+                  <p><b>so that</b> I can easy to find the recipe which I want to use</p>
                 </td>
                 <td>
                   <p>
                     <br><br>Criterion 0: <br>
-                    <b>Given</b>
-                    I am a customer
-                    I search a recipe
-                    I am on recipe detail page<br>
-                    <b><br>When</b> I click on the substitution button<br>
-                    <b><br>Then</b> User can substitution some ingredients And get new recipes<br>
-
+                    <b>Given</b> I have logged in And view the recipe page<br>
+                    <b><br>When</b> I see the pictures of the recipes 
+                    And next to every recipe picture will have a "Collection and Favourite function" button 
+                    And I click the  "button" section <br>
+                    <b><br>Then</b> I can collect this recipe And add one to its popularity<br>
                   </p>
                 </td>
               </tr>
