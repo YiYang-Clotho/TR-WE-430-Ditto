@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+
+
+<html>
+
+<head>
+  <title>MVF6-Tags and searching</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+    integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.css" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet" />
+</head>
+
+<body>
+  <!-- Header -->
+  <div id="headerDiv"></div>
+
+  <!-- Main -->
+  <section id="main">
+    <div class="inner">
+      <header class="major special">
+        <h1>MVF6 - Tags and searching</h1>
+      </header>
+      <!-- <a href="#" class="image fit"><img src="images/pic11.jpg" alt="" /></a> -->
+      <h2>1. Diagram design</h2>
+      <!-- STUB: done -->
+      <p>
+
+        <p><b>Activity diagram: <br></b>
+          <b><img src="/images/MVF6_Activity_diagram.png" width="960" height="600" alt="" />
+        </p>
+
+      </p>
+      <p>
+
+        <p><b>Class diagram: <br></b>
+          <b><img src="/images/mvf6calss.bmp" width="720" height="600" alt="" />
+        </p>
+
+      </p>
+      <p>
+
+        <p><b>Mock up diagram: <br></b>
+          <p>User can touch recommended tags or type in a recipe’s name or an ingredient’s name to search recipe </p>
+          <b><img src="/images/mvf6gif.gif" width="960" height="300" alt="" />
+        </p>
+
+      </p>
+      <h2>2.Explanation</h2>
+      <h3>2.1 Description</h3>
+      <p style="color: black;">
+        To help users find their suitable recipes, tags will be used in recipes. Those tags may contain key ingredients.
+        Users will have a more pleasing searching experience because tags help them to target recipes more precisely.
+        Tags are also structured in the system. The system provides different kinds of tags to help the user to find
+        what they want rapidly. In the result page, the user can directly save recipes through the save button
+        and see more about the recipe.
+      </p>
+      <h3>2.2 User story and criteria</h3>
+
+      <ul>
+
+        <li>
+          <b> Tags and searching:</b> <br />
+
+          <table data-toggle="table">
+            <thead>
+              <tr>
+                <th>User story</th>
+                <th>Acceptance criteria</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <b>As a</b> user
+                  <p><b>I want/can</b> searching for needed recipes </p>
+                  <p><b>so that</b> I can prepare my family meal quicker and easier</p>
+                </td>
+                <td>
+                  <p>
+                    <br><br>Criterion 0:<br>
+                    <b>Given</b> I have logged in And am in the main site<br>
+                    <b><br>When</b> I click the "search" section And type masterpiece ingredient<br>
+                    <b><br>Then</b> system popup "searching" And A list of dishes that I can cook with is shown<br>
+                    <b><br>When</b> I click one of those recipes<br>
+                    <b><br>Then</b> screen moves to the recipe spec site And shows a list of ingredients tag at the
+                    bottom of the page<br>
+
+                  </p>
+                  <p>
+                    <br><br>Criterion 1:<br>
+                    <b>Given</b> I have logged in And am in the main site<br>
+                    <b><br>When</b> I click the "search" section And type masterpiece ingredient<br>
+                    <b><br>Then</b> receive rejection message And tell me the reason why there's no recipe contain my
+                    ingredients are available.<br>
+                  </p>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </li>
+
+        <br />
+        </ol>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <div id="footerDiv"></div>
+
+  <script src="/assets/js/common.js"></script>
+</body>
+
+</html>

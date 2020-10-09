@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+
+
+<html>
+
+<head>
+  <title>MVF3-Kitchen and Pantry System</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+    integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.css" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet" />
+</head>
+
+<body>
+  <!-- Header -->
+  <div id="headerDiv"></div>
+
+  <!-- Main -->
+  <section id="main">
+    <div class="inner">
+      <header class="major special">
+        <h1>MVF3 - Kitchen and Pantry System </h1>
+      </header>
+      <h2>1. Diagram design</h2>
+      <!-- STUB: done -->
+      <p>
+
+        <p><b>Activity diagram: <br></b>
+          <b><img src="/images/MVF3.png" width="960" height="600" alt="" />
+            <p><b>Class diagram: <br></b>
+              <p>We created a class diagram to describe the feature. We have user, ingredient, pantry and recipe class
+                to finish the feature. </p>
+              <b><img src="/images/mvf3class-Pantry.bmp" width="960" height="600" alt="" />
+            </p>
+            <p><b>Design diagram: <br></b>
+              <p>User can go to profile page to access the pantry function </p>
+              <b><img src="/images/mvf3kitchen.bmp" width="960" height="700" alt="" />
+            </p>
+            <p><b>Design diagram For Pantry: <br></b>
+              <p>In the pantry page, user can input the ingredient’s name and select the ingredient. When the user
+                touches the search recipes button. The system will return related recipes. </p>
+              <b><img src="/images/mvf3pantry.bmp" width="960" height="300" alt="" />
+            </p>
+            <p><b>Design diagram For Recipe results: <br></b>
+              <b><img src="/images/mvf3pantry2.bmp" width="960" height="500" alt="" />
+            </p>
+
+
+            <h2>2.Explanation</h2>
+            <h3>2.1 Description</h3>
+            <p style="color: black;"> Registered users can record what ingredient users have in the real kitchen like
+              ingredients so that the system can recommend a suitable website by those ingredients. </p>
+            <h3>2.2 User story and criteria</h3>
+
+            <ul>
+
+              <li>
+                <table data-toggle="table">
+                  <thead>
+                    <tr>
+                      <th>User story</th>
+                      <th>Acceptance criteria</th>
+                    </tr>
+
+
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <b>As a</b> user
+                        <p><b>I want/can</b> search a kind of food ingredients in application</p>
+                        <p><b>so that</b> give me the corresponding recipe to use this kind of food ingredients</p>
+                      </td>
+                      <td>
+                        <p>
+                          <br><br>Criterion 0: <br>
+                          <b>Given</b> user a navigation bar And a "Search" button<br>
+                          <b><br>When</b> user put the name of a food ingredient in the navigation bar And
+                          they touch research.<br>
+                          <b><br>Then</b> give them corresponding recipe And put other recommendation recipes at the
+                          bottom.<br>
+                        </p>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>
+                        <b><br>As a user,</b>
+                        <b><br>I want/can</b> search a kind of food ingredients in application
+                        <b><br>so that</b> give me the corresponding recipe to use this kind of food ingredients
+                      </td>
+                      <td>
+                        <p>
+                          <br><br>Criterion 0: <br>
+                          <b>Given</b> user a navigation bar And a "Search" button<br>
+                          <b><br>When</b> user put the name of a food ingredient in the navigation bar And
+                          they touch research.<br>
+                          <b><br>Then</b> give them corresponding recipe And put other recommendation recipes at the
+                          bottom.<br>
+                        </p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </li>
+
+              <br />
+              </ol>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <div id="footerDiv"></div>
+
+  <script src="/assets/js/common.js"></script>
+</body>
+
+</html>
