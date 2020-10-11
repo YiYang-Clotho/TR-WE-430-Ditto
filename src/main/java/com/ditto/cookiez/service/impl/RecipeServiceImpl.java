@@ -202,18 +202,13 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
             String ingredientName = ingredientDTO.getIngredientName();
             String amountContent = ingredientDTO.getAmount();
             Amount amount = new Amount(amountContent);
-
-            Integer idOr1 = ingredientService.existedReturnId(ingredientName);
-            if (idOr1 == -1) {
-                Ingredient ingredient = new Ingredient(ingredientName);
-                ingredientService.save(ingredient);
-                idOr1 = ingredient.getIngredientId();
-            }
-            amount.setIngredientId(idOr1);
+            Ingredient ingredient=new Ingredient(ingredientName);
+            ingredientService.save(ingredient);
+            amount.setIngredientId(ingredient.getIngredientId());
             amount.setRecipeId(recipeId);
             log.info(amount.toString());
             amountService.save(amount);
-            IngredientRecipeBridge bridge = new IngredientRecipeBridge(idOr1, recipeId);
+            IngredientRecipeBridge bridge = new IngredientRecipeBridge(ingredient.getIngredientId(), recipeId);
             ingredientRecipeBridgeService.save(bridge);
         }
 

@@ -17,20 +17,18 @@
         <h1 class="text-inkfree " style="font-size:6.2em">Cook with what you have!</h1>
     </div>
     <div class="d-flex w-100 mb-5" >
-        <form class="form-inline mx-2 my-lg-0 ">
-            <input class="form-control mr-sm-2 border-green-28A745 rounded-50 " style="width:10em" type="Enter ingredients" placeholder="Enter ingredients" aria-label="Enter ingredients">
-        </form>
+        <input class=" mr-sm-2 border-green-28A745 rounded-50 " id="input-ingredient" style="width:10em" type="text" placeholder="Enter ingredients">
         <h4 class="text-dark ml-auto">My ingredients</h4>
-        <button class="btn bg-red-C14A4A rounded-50  ml-auto" href="#"><i class="iconfont icon-sousuo mr-1"></i>Search Recipes</button>
+        <button class="btn bg-red-C14A4A rounded-50  ml-auto" onclick="search()"><i class="iconfont icon-sousuo mr-1"></i>Search Recipes</button>
     </div>
-    <div class="d-flex w-100  h-100 p-4 justify-content-around mb-5  border-red-C14A4A" >
-        <button class="btn bg-success rounded-50  mr-auto text-white" href="#">Chicken  <i class="iconfont icon-x mr-1"></i></button>
+    <button class="btn mr-auto btn-danger m-2" onclick="clearIngredients()">Clear All Ingredients</button>
+    <div id="div-ingredient" class="d-flex flex-wrap w-100  h-100 p-4  mb-5  border-red-C14A4A" >
 
     </div>
 </div>
 <footer th:replace="/fragment/common.html :: footer"></footer>
 <th:block th:include="/fragment/common.html :: scripts"></th:block>
-<script type="text/javascript" src="/js/">
+<script type="text/javascript" src="/js/pantry/show.js">
 </script>
 <script th:inline="javascript">
 
