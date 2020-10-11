@@ -323,28 +323,21 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
         QueryWrapper<Recipe> qw = new QueryWrapper<>();
         qw.like("recipe_name", keyword);
         recipes = list(qw);
-        for (Recipe recipe : recipes
-        ) {
-            log.info("add by title:"+recipe.getRecipeName());
-            recipeIdSet.add(recipe.getRecipeId());
-        }
 //        tag
-        Set<Integer> recipeIdSetFromTag = searchRecipeIdListByTag(keyword);
+//        Set<Integer> recipeIdSetFromTag = searchRecipeIdListByTag(keyword);
+        int tag_id = tagService.existedReturnId(keyword);
+        Set<Integer> recipeIdSetFromTag = recipeTagBridgeService.getRecipesIdByTagId(tag_id);
         if (recipeIdSetFromTag != null) {
             recipeIdSet.addAll(recipeIdSetFromTag);
         }
-
+        if (!recipeIdSet.isEmpty()) {
+            recipes = listByIds(recipeIdSet);
+        }
 //        tag coverpath url
         if (recipes != null) {
             for (Recipe r : recipes
             ) {
-                String username = userService.getUsernameById(r.getRecipeAuthorId());
-                RecipeResultVo resultVo = new RecipeResultVo(r.getRecipeName(), r.getRecipeDescription(), username);
-                String coverPath = imgService.getPathById(r.getRecipeId());
-                resultVo.setCoverPath(coverPath);
-                resultVo.setUrl("/recipe/" + r.getRecipeId());
-                List<Tag> tagList = recipeTagBridgeService.getTagsByRecipeId(r.getRecipeId());
-                resultVo.setTagList(tagList);
+                RecipeResultVo resultVo = getResultVoById(r.getRecipeId());
                 voList.add(resultVo);
             }
 
@@ -352,6 +345,8 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
         return voList;
 
     }
+
+
 
     private Set<Integer> searchRecipeIdListByTag(String keyword) {
         QueryWrapper<Tag> qw = new QueryWrapper<>();
