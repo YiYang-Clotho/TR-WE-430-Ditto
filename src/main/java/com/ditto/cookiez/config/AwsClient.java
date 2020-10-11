@@ -150,6 +150,7 @@ public class AwsClient {
         }
     }
 
+
     public static void main(String[] args) throws Exception {
 //        String key = "redisinfo";
 //        File tempFile = new File("C:\\Users\\guosen\\Desktop\\redis.txt");

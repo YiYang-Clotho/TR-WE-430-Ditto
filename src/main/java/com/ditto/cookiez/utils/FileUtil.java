@@ -56,8 +56,8 @@ public class FileUtil {
         return url;
     }
 
-    public static void delete(String path) {
-        AwsClient.delete(path);
+    public static void delete(String path) throws IOException {
+        AwsClient.delFromS3(path);
     }
 
     public static String uploadCoverToAws(MultipartFile file, int recipeId) throws IOException {
