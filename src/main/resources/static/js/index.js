@@ -16,7 +16,7 @@
 $("img.rounded-20").each(function (i){
     $(this).jqthumb({
         width : '100%',//
-        height : '142px',//
+        height : '200px',//
         zoom : '1',//
         method : 'auto',
         after:function (obj) {
@@ -24,4 +24,5 @@ $("img.rounded-20").each(function (i){
         }
     });
 })
+
 

@@ -22,7 +22,7 @@ function handleSearchBtn() {
                     <div class="col-sm-3 mb-3" >
                         <a href="${link}">
                             <div class="p-3  d-flex flex-column shadow-sm rounded-10 shadow-0-2-4 ">
-                                <img class="rounded-20" src="${coverPath!=null?coverPath:'/images/pasted.png'}" alt="">
+                                <img class="rounded-20" src="${coverPath!=null?coverPath:'/images/logo.png'}" alt="">
                                 <span style="font-size: 20px">${title}</span>
                                 <p style="font-size: 14px;color: #6b6668; max-width: 10em; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
                                    ${description} </p>
@@ -40,7 +40,7 @@ function handleSearchBtn() {
         $('img.rounded-20').each(function (i){
          $(this).jqthumb({
              width : '100%',//
-             height : '142px',//
+             height : '200px',//
              zoom : '1',//
              method : 'auto',
              after:function (obj) {
