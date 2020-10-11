@@ -13,7 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * <p>
@@ -75,5 +77,21 @@ public class RecipeTagBridgeServiceImpl extends ServiceImpl<RecipeTagBridgeMappe
         return new ArrayList<Recipe>();
     }
 
+    public Set<Integer> getRecipesIdByTagId(Integer tagId) {
+        QueryWrapper<RecipeTagBridge> qw = new QueryWrapper();
+        if (tagId != null) {
+            qw.eq("tag_id", tagId);
+        }
+        List<RecipeTagBridge> bridges = list(qw);
+        Set<Integer> recipeIdSet = new HashSet<>();
+        for (RecipeTagBridge bridge : bridges
+        ) {
+            recipeIdSet.add(bridge.getRecipeId());
+        }
+        if (recipeIdSet.size() == 0) {
+            log.error("Cannot find corresponding recipe");
+        }
+        return recipeIdSet;
+    }
 
 }

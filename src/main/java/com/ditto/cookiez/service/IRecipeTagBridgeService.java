@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.ditto.cookiez.entity.Tag;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * <p>
@@ -21,4 +22,6 @@ public interface IRecipeTagBridgeService extends IService<RecipeTagBridge> {
       Boolean deleteByRecipeId(Integer id);
 
       List<Recipe> getRecipesByTagId(Integer tagId);
+
+      Set<Integer> getRecipesIdByTagId(Integer tagId);
 }
