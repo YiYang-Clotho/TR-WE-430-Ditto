@@ -33,7 +33,14 @@ label {
     font-weight: normal;
     font-style: normal;
 }
-
+h3,h4{
+    font-family: 'OrkneyRegular';
+    font-weight: normal;
+    font-style: normal;
+}
+.font-size-20{
+    font-size: 200px;
+}
 #input-title::placeholder {
     font-size: large;
     font-family: 'ComicReliefRegular';
@@ -75,6 +82,12 @@ label {
     border: 3px #C14A4A solid;
 
     box-shadow: 2px 2px 5px #888888;
+}
+.icon {
+    width: 1em; height: 1em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
 }
 
 .input-area-red {

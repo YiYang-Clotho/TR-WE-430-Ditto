@@ -9,20 +9,20 @@ function handleSearchBtn() {
         console.log(res)
         let recipes = res['data']['data']
         const div = document.getElementById("cardDiv")
-        var html = ''
+        let html = '';
         for(const i in recipes){
-            var recipe = recipes[i]
-            var title = recipe["recipeName"]
-            var description = recipe['recipeDescription']
-            var coverPath = recipe['coverPath']
-            var author = recipe['author']
-            var link = recipe['url']
+            let recipe = recipes[i]
+            let title = recipe["recipeName"]
+            let description = recipe['recipeDescription']
+            let coverPath = recipe['coverPath']
+            let author = recipe['author']
+            let link = recipe['url']
             html +=
                 `
-                    <div class="col-sm-3" >
+                    <div class="col-sm-3 mb-3" >
                         <a href="${link}">
                             <div class="p-3  d-flex flex-column shadow-sm rounded-10 shadow-0-2-4 ">
-                                <img class="rounded-20" src="${coverPath}" alt="">
+                                <img class="rounded-20" src="${coverPath!=null?coverPath:'/images/pasted.png'}" alt="">
                                 <span style="font-size: 20px">${title}</span>
                                 <p style="font-size: 14px;color: #6b6668; max-width: 10em; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
                                    ${description} </p>
@@ -33,13 +33,7 @@ function handleSearchBtn() {
                         </a>
                     </div>
                 `
-
         }
-        html +=
-            `
-                </div>
-
-            `
         $(div).html(html)
         //window.location.replace("/tags");
          //set img size
