@@ -27,9 +27,13 @@ public class IndexController {
     public ModelAndView index() {
         ModelAndView mv = new ModelAndView("index/index");
         List<RecipeResultVo> voList = new ArrayList<>();
-        voList.add(recipeService.getResultVoById(37));
-        voList.add(recipeService.getResultVoById(38));
-        voList.add(recipeService.getResultVoById(40));
+        int[] list2 = {36, 37, 38, 40, 48, 49, 50, 51};
+
+        for (int i : list2
+        ) {
+            voList.add(recipeService.getResultVoById(i));
+        }
+
         mv.addObject("voList", voList);
         return mv;
     }
