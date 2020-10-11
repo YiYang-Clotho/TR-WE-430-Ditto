@@ -314,7 +314,7 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
         return voList;
 
     }
-
+@Override
     public List<RecipeResultVo> searchTagOnly(String keyword) {
         List<Recipe> recipes;
         List<RecipeResultVo> voList = new ArrayList<>();
@@ -345,8 +345,6 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
         return voList;
 
     }
-
-
 
     private Set<Integer> searchRecipeIdListByTag(String keyword) {
         QueryWrapper<Tag> qw = new QueryWrapper<>();
@@ -414,6 +412,23 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
     private String generateRecipeUrl(int id) {
         return "/recipe/" + id;
     }
+    @Override
+    public List<RecipeResultVo> getResultVoListByUserId(int id) {
+        QueryWrapper<Recipe> qw = new QueryWrapper<>();
+        qw.eq("recipe_author_id", id);
+        List<Recipe> recipes = list(qw);
+        List<RecipeResultVo> voList = new ArrayList<>();
+        if (recipes == null) {
+            return voList;
+        }
+        for (Recipe r : recipes
+        ) {
+            voList.add(getResultVoById(r.getRecipeId()));
+        }
+        return voList;
+
+    }
+
 
 }
 

@@ -13,6 +13,7 @@ import java.util.List;
  */
 @Data
 public class RecipeResultVo {
+    private Integer id;
     private String recipeName;
     private String recipeDescription;
     private String author;
