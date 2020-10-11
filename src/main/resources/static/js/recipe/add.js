@@ -241,7 +241,7 @@ function update() {
 
                 bootbox.alert("Update the recipe Successfully!")
                 formData = new FormData()
-                window.location.reload()
+                window.location.replace('/recipe/' + recipeId)
                 // window.location.replace("/");
             }).catch(err => {
                 bootbox.alert("Failed to add")

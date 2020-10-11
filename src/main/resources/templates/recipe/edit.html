@@ -24,32 +24,44 @@
         Upload Cover
     </label>
 
-    <h4 class="font-orkney">Description</h4>
+    <h3>
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-description"></use>
+        </svg>
+        Description
+    </h3>
     <textarea class="mb-5 input-area-red iconfont" placeholder="&#xedce; Describe Your Recipe" id="input-describe"
               th:text="${recipeDTO.getRecipeDescription()}"></textarea>
 
-    <h4 class="font-orkney">Tags</h4>
+    <h3>
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-tagpx"></use>
+        </svg>
+        Tags
+    </h3>
     <div th:switch="${recipeDTO.getTagsString().equals('')}">
-        <div th:case="true">
-            <input class="input-red mb-5 iconfont w-75 input-tags" type="text"
-                   placeholder='&#xe618;Add Tags(separated by commas)'>
-        </div>
         <div>
             <input class="input-red mb-5 iconfont w-75 input-tags" type="text" th:value="${recipeDTO.getTagsString()}"
-                  >
+            >
         </div>
     </div>
 
 
     <div class="d-flex flex-column mb-5">
-        <h4 class="font-orkney">Ingredients</h4>
+        <h3 class="mb-5">
+            <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-Ingredients"></use>
+            </svg>
+            Ingredients
+        </h3>
         <div class="d-flex flex-column mb-4 justify-content-between" id="div-ingredients">
-            <div class="d-flex justify-content-between" th:id="${'ingred-'+status.count}"
+            <div class="d-flex justify-content-between mb-4" th:id="${'ingred-'+status.count}"
                  th:each="ingredient,status:${recipeDTO.getIngredientDTOList()}">
                 <input class="mr-3 input-red" type="text" th:value="${ingredient.getIngredientName()}">
                 <input class="input-red" type="text" th:value="${ingredient.getAmount()}">
-<!--                TODO delIngredientEle??-->
-                <button class="btn iconfont icon-x" th:id="${'ingred-remove-'+status.count}" onclick="delIngredientEle(-1,this)"></button>
+                <!--                TODO delIngredientEle??-->
+                <button class="btn iconfont icon-x" th:id="${'ingred-remove-'+status.count}"
+                        onclick="delIngredientEle(-1,this)"></button>
             </div>
 
         </div>
@@ -58,39 +70,36 @@
     </div>
     <button class="w-25 btn btn-red" id="btn-addIngredient"><i class="iconfont icon-cross"></i> Add an ingredient
     </button>
-</div>
+    <!--    Step area-->
+    <div class=" d-flex flex-column mt-5 " id="div-steps">
 
-
-<!--    Step area-->
-<div class="container d-flex flex-column m-5" id="div-steps">
-
-    <div class="d-flex  justify-content-between align-content-between" th:id="${'step-'+stepStatus.count}"
-         th:each="step,stepStatus: ${recipeDTO.getStepDTOList()}">
-        <div class="d-flex flex-column w-75 mr-3 ">
-            <h4 th:text="${'Step'+step.getStepOrder()}"></h4>
-            <textarea class="h-100 input-area-red iconfont" name="textarea"
-                      placeholder="&#xe7c0; Add step here" th:text="${step.getStepContent()}"></textarea>
-        </div>
-        <div class="d-flex flex-column  ">
-            <img th:id="${'img-step-'+stepStatus.count}" class="rounded-20 mb-1 mt-2"
-                 alt="" width="300" th:src="@{${step.getImgPath()}}">
-            <label class="btn custom-file-upload btn-red">
-                <input th:id="${'img-input-step-'+stepStatus.count}" type="file"
-                       ACCEPT="image/*" onchange="uploadStepImg(-1,this)">
-                <i class="iconfont icon-LocalUpload"></i>
-                Upload a Step Picture
-            </label>
+        <div class="d-flex m-2  justify-content-between align-content-between" th:id="${'step-'+stepStatus.count}"
+             th:each="step,stepStatus: ${recipeDTO.getStepDTOList()}">
+            <div class="d-flex flex-column w-75 mr-3 ">
+                <h4 th:text="${'Step'+step.getStepOrder()}"></h4>
+                <textarea class="h-100 input-area-red iconfont" name="textarea"
+                          placeholder="&#xe7c0; Add step here" th:text="${step.getStepContent()}"></textarea>
+            </div>
+            <div class="d-flex flex-column  ">
+                <img th:id="${'img-step-'+stepStatus.count}" class="rounded-20 mb-1 mt-2"
+                     alt="" width="300"
+                     th:src="@{${step.getImgPath()==null?'http://iph.href.lu/1280x1024':step.imgPath}}">
+                <label class="btn custom-file-upload btn-red">
+                    <input th:id="${'img-input-step-'+stepStatus.count}" type="file"
+                           ACCEPT="image/*" onchange="uploadStepImg(-1,this)">
+                    <i class="iconfont icon-LocalUpload"></i>
+                    Upload a Step Picture
+                </label>
+            </div>
         </div>
     </div>
-</div>
 
-<!--    Operation Area-->
-<div class="d-flex">
-    <button class="btn btn-red" id="btn-addStep"><i class="iconfont icon-cross"></i>Add a step</button>
-    <button class="btn btn-red" id="btn-removeStep">Remove last step</button>
-    <button class="btn btn-red ml-auto" onclick="update()"><i class="iconfont icon-submit"></i> Submit</button>
-</div>
-
+    <!--    Operation Area-->
+    <div class="d-flex">
+        <button class="btn btn-red" id="btn-addStep"><i class="iconfont icon-cross"></i>Add a step</button>
+        <button class="btn btn-red" id="btn-removeStep">Remove last step</button>
+        <button class="btn btn-red ml-auto" onclick="update()"><i class="iconfont icon-submit"></i> Submit</button>
+    </div>
 
 </div>
 
