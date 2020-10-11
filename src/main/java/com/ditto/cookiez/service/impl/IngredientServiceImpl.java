@@ -11,6 +11,7 @@ import com.ditto.cookiez.service.ITagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +29,8 @@ public class IngredientServiceImpl extends ServiceImpl<IngredientMapper, Ingredi
     ITagService tagService;
     @Autowired
     IIngredientTagBridgeService ingredientTagBridgeService;
+    @Resource
+    IngredientMapper mapper;
     private QueryWrapper<Ingredient> qw = new QueryWrapper<>();
 
 
@@ -55,5 +58,20 @@ public class IngredientServiceImpl extends ServiceImpl<IngredientMapper, Ingredi
             return -1;
         }
 
+
     }
+
+    @Override
+    public boolean save(Ingredient ingredient) {
+        QueryWrapper<Ingredient> qw = new QueryWrapper<>();
+        qw.eq("ingredient_name", ingredient.getIngredientName());
+        List<Ingredient> list = mapper.selectList(qw);
+        if (list.size() >= 1) {
+            ingredient.setIngredientId(list.get(0).getIngredientId());
+        } else {
+            mapper.insert(ingredient);
+        }
+        return true;
+    }
+
 }

@@ -26,4 +26,7 @@ public class ImgServiceImpl extends ServiceImpl<ImgMapper, Img> implements IImgS
         }
         return null;
     }
+//    @Override
+//    public boolean save()
+
 }
