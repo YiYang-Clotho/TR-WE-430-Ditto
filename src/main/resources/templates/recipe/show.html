@@ -10,103 +10,122 @@
     <title>Step by step instructions</title>
     <link rel="stylesheet" href="/css/detail.css">
     <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
-    <script>
-        $(document).ready(function () {
-            $("input:checkbox").click(function () {
 
-                if ($(this).is(':checked') == true) {
-                    $(this).next().css("text-decoration", "line-through");
-                } else {
-                    $(this).next().css("text-decoration", "none");
-                }
-            });
-        });
-    </script>
 
 </head>
 <body>
 <header th:replace="/fragment/common.html :: header"></header>
-<div class="container-fluid w-60">
-    <div class="row welcome ml-auto">
-        <h1 class="display-4" th:text="${recipeDTO.getRecipeName()}">Greek Lemon Chicken and Potatoes</h1>
+<div class="container d-flex w-75 flex-column">
+
+    <div class="container-fluid">
+        <div class="row welcome ml-auto">
+            <h1 class="display-4" th:text="${recipeDTO.getRecipeName()}">Greek Lemon Chicken and Potatoes</h1>
+            <hr>
+        </div>
+    </div>
+    <!-- Description area-->
+    <div class="container-fluid padding">
+        <div style="text-align:center" class="col-md-12">
+            <img th:src="@{${recipeDTO.getCoverPath()}}" class="img-fluid" id="img1">
+        </div>
+        <hr>
+        <div class="row padding">
+            <div class="col-md-12 col-lg-8">
+                <div>
+                    <div id="author"><h3>Author: amos</h3></div>
+                </div>
+                <div>
+                    <h3>Description</h3>
+                    <p class="lead" th:text="${recipeDTO.getRecipeDescription()}">I don't have the energy or courage to
+                        cater for a living but, if I did, this Greek lemon chicken and potatoes would be one of my go-to
+                        entrees, and not just for big, fat weddings. It's a proven crowd-pleaser, simple to make, and easy
+                        on the wallet. </p>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-4">
+                <h3>Tags</h3>
+
+                <button th:each="tag: ${recipeDTO.getTagList()}" th:text="${tag.getTagName()}" type="button"
+                        class="btn btn-outline-primary ml-2 mb-2">
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-tag-fill" fill="currentColor"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                              d="M2 1a1 1 0 0 0-1 1v4.586a1 1 0 0 0 .293.707l7 7a1 1 0 0 0 1.414 0l4.586-4.586a1 1 0 0 0 0-1.414l-7-7A1 1 0 0 0 6.586 1H2zm4 3.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                    </svg>
+                    Greek
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ingredients area-->
+    <div class="container-fluid  padding">
+        <h2>Ingredients</h2>
+        <hr>
+        <div class="checkbox">
+            <div class="custom-control custom-checkbox col-md-12 ml-5 "
+                 th:each="ingredient:${recipeDTO.getIngredientDTOList()} ">
+
+                <label >
+                    <input type="checkbox"  onclick="checkbox(this)">
+                    <span
+                            th:text="${ingredient.getAmount()}"></span>
+                    <span
+                            th:text="${ingredient.getIngredientName()}"></span>
+
+                </label>
+            </div>
+        </div>
         <hr>
     </div>
-</div>
-<!-- Description area-->
-<div class="container-fluid w-60 padding">
-    <div style="text-align:center" class="col-md-12">
-        <img th:src="@{${recipeDTO.getCoverPath()}}" class="img-fluid" id="img1">
-    </div>
-    <hr>
-    <div class="row padding">
-        <div class="col-md-12 col-lg-8">
-            <div>
-                <div id="author"><h3>Author: amos</h3></div>
-            </div>
-            <div>
-                <h3>Description</h3>
-                <p class="lead" th:text="${recipeDTO.getRecipeDescription()}">I don't have the energy or courage to
-                    cater for a living but, if I did, this Greek lemon chicken and potatoes would be one of my go-to
-                    entrees, and not just for big, fat weddings. It's a proven crowd-pleaser, simple to make, and easy
-                    on the wallet. </p>
-            </div>
-        </div>
-        <div class="col-md-12 col-lg-4">
-            <h3>Tags</h3>
-
-            <button th:each="tag: ${recipeDTO.getTagList()}" th:text="${tag.getTagName()}" type="button"
-                    class="btn btn-outline-primary ml-2 mb-2">
-                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-tag-fill" fill="currentColor"
-                     xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd"
-                          d="M2 1a1 1 0 0 0-1 1v4.586a1 1 0 0 0 .293.707l7 7a1 1 0 0 0 1.414 0l4.586-4.586a1 1 0 0 0 0-1.414l-7-7A1 1 0 0 0 6.586 1H2zm4 3.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
-                </svg>
-                Greek
-            </button>
-        </div>
-    </div>
-</div>
-
-<!-- Ingredients area-->
-<div class="container-fluid w-60 padding">
-    <h2>Ingredients</h2>
-    <hr>
-    <div class="checkbox">
-        <div class="custom-control custom-checkbox col-md-12 ml-5"
-             th:each="ingredient:${recipeDTO.getIngredientDTOList()}">
-            <input type="checkbox" class="custom-control-input" id="customCheck1">
-            <label class="custom-control-label" for="customCheck1"><span
-                    th:text="${ingredient.getIngredientName()}"></span> <span
-                    th:text="${ingredient.getAmount()}"></span></label>
-        </div>
-    </div>
-    <hr>
-</div>
 
 
-<!-- Instructions area-->
-<div class="container-fluid w-60 padding">
-    <h2>Instructions</h2>
-    <hr>
-    <div class="col-md-12">
-        <div th:each="step: ${recipeDTO.getStepDTOList()}">
-            <h4 th:text="${'Step'+step.getStepOrder()}"></h4>
-            <div class="row padding">
-                <div class="col-md-12 col-lg-8">
-                    <p class="lead" th:text="${step.getStepContent()}">
-                    </p>
-                </div>
-                <div class="col-md-12 col-lg-4">
-                    <img th:src="@{${step.getImgPath()}}" class="img-fluid">
-                    <!--                    <img src="/static/images/recipes/19/stepImg-1.png" class="img-fluid" alt="">-->
+    <!-- Instructions area-->
+    <div class="container-fluid  padding">
+        <h2>Instructions</h2>
+        <hr>
+        <div class="col-md-12">
+            <div th:each="step: ${recipeDTO.getStepDTOList()}">
+                <h4 th:text="${'Step'+step.getStepOrder()}"></h4>
+                <div class="row padding">
+                    <div class="col-md-12 col-lg-8">
+                        <p class="lead" th:text="${step.getStepContent()}">
+                        </p>
+                    </div>
+                    <div class="col-md-12 col-lg-4">
+                        <img th:src="@{${step.getImgPath()}}" class="img-fluid">
+                        <!--                    <img src="/static/images/recipes/19/stepImg-1.png" class="img-fluid" alt="">-->
+                    </div>
                 </div>
             </div>
+
+
         </div>
-
-
+        <hr>
     </div>
-    <hr>
+
+
 </div>
+
 <footer class="footer" th:replace="/fragment/common.html :: footer"></footer>
+<script>
+    function checkbox(obj) {
+        if ($(obj).is(':checked') === true) {
+            $(obj).next().css("text-decoration", "line-through");
+            $(obj).next().next().css("text-decoration", "line-through");
+        } else {
+            $(obj).next().css("text-decoration", "none");
+            $(obj).next().next().css("text-decoration", "none");
+        }
+    }
+    $('textarea').each(function () {
+        this.setAttribute('style', 'height:' + (this.scrollHeight) + 'px;overflow-y:hidden;');
+    }).on('input', function () {
+        this.style.height = 'auto';
+        this.style.height = (this.scrollHeight) + 'px';
+    });
+
+
+</script>
 </body>
 </html>

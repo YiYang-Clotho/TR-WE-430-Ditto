@@ -21,11 +21,17 @@ import java.util.Set;
  * @since 2020-08-14
  */
 public interface IRecipeService extends IService<Recipe> {
-     void updateRecipe(JSONObject json);
+
+
+    //         TODO update ingredients
+    Boolean updateRecipe(JSONObject json, Map<String, MultipartFile> fileMap) throws IOException;
 
     Recipe addRecipe(JSONObject json, Map<String, MultipartFile> fileMap) throws IOException;
 
     RecipeDTO getRecipe(int id);
+
+    RecipeDTO getRecipe(Integer id);
+
     List<RecipeResultVo> search(String keyword);
 
     List<RecipeResultVo> searchTagOnly(String keyword);

@@ -1,5 +1,6 @@
 package com.ditto.cookiez.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.ditto.cookiez.entity.Img;
 import com.ditto.cookiez.entity.Step;
 import com.ditto.cookiez.mapper.StepMapper;
@@ -33,14 +34,18 @@ public class StepServiceImpl extends ServiceImpl<StepMapper, Step> implements IS
     }
 
     @Override
+    public Step getByOrderAndRecipeId(Integer order, Integer recipeId) {
+        QueryWrapper<Step> qw = new QueryWrapper<>();
+        qw.eq("recipe_id", recipeId);
+        qw.eq("step_order", order);
+        return getOne(qw);
+    }
+
+    @Override
     public Step addStep(Step step, MultipartFile file) throws IOException {
         int recipeId = step.getRecipeId();
         int order = step.getStepOrder();
         String url = FileUtil.uploadStepImgToAws(file, recipeId, order);
-//        String relativeImgPath = FileUtil.getRecipeDirRelativePath(recipeId);
-//        String nameInFileMap = "stepImg-" + order;
-//        String fileNameInDB = nameInFileMap + FileUtil.getFileTypeHasDot(file.getOriginalFilename());
-//        FileUtil.fileUpload(file.getBytes(), imgPath, fileNameInDB);
         Img img = new Img(url);
         imgService.save(img);
         step.setImgId(img.getImgId());

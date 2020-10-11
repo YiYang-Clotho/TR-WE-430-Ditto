@@ -14,7 +14,7 @@ import java.util.List;
  */
 @Data
 public class RecipeDTO {
-
+    private Integer id;
     private String recipeName;
     private String recipeDescription;
     private String author;
@@ -25,16 +25,16 @@ public class RecipeDTO {
 
     public RecipeDTO(Recipe recipe) {
         this.recipeName = recipe.getRecipeName();
-        this.recipeDescription=recipe.getRecipeDescription();
+        this.recipeDescription = recipe.getRecipeDescription();
     }
 
-    public String getTagsString(){
-        String str="";
+    public String getTagsString() {
+        String str = "";
         for (Tag tag : this.getTagList()) {
             str += tag.getTagName();
             str += ",";
         }
-        str = str.substring(0,str.length()-1);
+        str = str.substring(0, str.length() - 1);
         return str;
     }
 }

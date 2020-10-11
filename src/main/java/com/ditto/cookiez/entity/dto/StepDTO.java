@@ -17,6 +17,7 @@ public class StepDTO {
     private String imgPath;
     private Integer stepOrder;
     private Integer imgId;
+    private Integer id;
     public StepDTO() {
 
     }

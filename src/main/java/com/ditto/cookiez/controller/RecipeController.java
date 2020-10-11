@@ -62,9 +62,9 @@ public class RecipeController {
     @GetMapping("/recipe/{recipeId}")
     public ModelAndView recipePage(@PathVariable Integer recipeId) {
         ModelAndView mv = new ModelAndView("recipe/show");
-        RecipeDTO recipe=service.getRecipe(recipeId);
+        RecipeDTO recipe = service.getRecipe(recipeId);
         if (recipe != null) {
-            mv.addObject("recipeDTO",recipe);
+            mv.addObject("recipeDTO", recipe);
         } else {
             log.info("Recipe is null, id is " + recipeId);
         }
@@ -72,12 +72,13 @@ public class RecipeController {
     }
 
     @GetMapping("/recipe/{recipeId}/edit")
-    public ModelAndView recipeEditPage(@PathVariable Integer recipeId) {
+    public ModelAndView recipeEditPage(@PathVariable Integer recipeId,@CookieValue(value = "accessToken") String accessToken) {
         ModelAndView mv = new ModelAndView("recipe/edit");
-        RecipeDTO recipe=service.getRecipe(recipeId);
+        RecipeDTO recipe = service.getRecipe(recipeId);
         if (recipe != null) {
-
-            mv.addObject("recipeDTO",recipe);
+            User user = userService.getUserByToken(accessToken);
+            mv.addObject("user", user);
+            mv.addObject("recipeDTO", recipe);
         } else {
             log.info("Recipe is null, id is " + recipeId);
         }
@@ -86,19 +87,22 @@ public class RecipeController {
 
 
     @PutMapping("/api/recipe")
-    public Integer updateRecipe(@RequestBody JSONObject json) {
-        Recipe recipe = json.getObject("recipe", Recipe.class);
+    public Integer updateRecipe(HttpServletRequest request, @RequestParam("data") String str) throws IOException {
+       log.info(str);
+        JSONObject jsonObject = JSONObject.parseObject(str);
+        Map<String, MultipartFile> fileMap = ((MultipartHttpServletRequest) request).getFileMap();
+        service.updateRecipe(jsonObject, fileMap);
+        log.info(JSONObject.parseObject(str).toJSONString());
 
-        List<Step> stepArray = JSONObject.parseArray(json.getJSONArray("steps").toString(), Step.class);
-        service.update();
-        int id = recipe.getRecipeId();
-
-        for (Step s : stepArray
-        ) {
-            s.setRecipeId(id);
-            stepService.save(s);
-        }
-        log.info(json.toJSONString());
+//        service.updateRecipe(json);
+//        int id = recipe.getRecipeId();
+//
+//        for (Step s : stepArray
+//        ) {
+//            s.setRecipeId(id);
+//            stepService.save(s);
+//        }
+//        log.info(json.toJSONString());
         return 1;
     }
 
@@ -119,12 +123,10 @@ public class RecipeController {
     }
 
     @PostMapping("/api/recipe")
-    public  ResponseEntity<JSONObject>  addRecipe(HttpServletRequest request, @RequestParam("data") String str) throws IOException {
-
-
+    public ResponseEntity<JSONObject> addRecipe(HttpServletRequest request, @RequestParam("data") String str) throws IOException {
         JSONObject jsonObject = JSONObject.parseObject(str);
         Map<String, MultipartFile> fileMap = ((MultipartHttpServletRequest) request).getFileMap();
-       Recipe recipe= service.addRecipe(jsonObject,fileMap);
+        Recipe recipe = service.addRecipe(jsonObject, fileMap);
         log.info(JSONObject.parseObject(str).toJSONString());
 
         for (MultipartFile v : fileMap.values()) {
@@ -133,6 +135,6 @@ public class RecipeController {
         }
 
 
-        return Response.ok("Succeed to add recipe!",recipe);
+        return Response.ok("Succeed to add recipe!", recipe);
     }
 }

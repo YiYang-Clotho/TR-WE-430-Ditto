@@ -42,7 +42,7 @@ public class FileUtil {
 
     private static File createTempFileForImg(MultipartFile file) throws IOException {
         String fileType = getFileType(Objects.requireNonNull(file.getOriginalFilename()));
-        File tempFile = new File(PATH+"temp." + fileType);
+        File tempFile = new File(PATH + "temp." + fileType);
         file.transferTo(tempFile);
         return tempFile;
     }
@@ -50,9 +50,14 @@ public class FileUtil {
     public static String uploadStepImgToAws(MultipartFile file, int recipeId, int stepOrder) throws IOException {
         String fileType = getFileType(Objects.requireNonNull(file.getOriginalFilename()));
         File tempFile = createTempFileForImg(file);
+        System.out.println(file.getOriginalFilename());
         String url = AwsClient.uploadToS3(tempFile, getRecipeStepRelativePath(recipeId, stepOrder, fileType));
         tempFile.delete();
         return url;
+    }
+
+    public static void delete(String path) {
+        AwsClient.delete(path);
     }
 
     public static String uploadCoverToAws(MultipartFile file, int recipeId) throws IOException {
@@ -93,7 +98,7 @@ public class FileUtil {
     }
 
     public static String getAwsUrl(String bucketName) {
-        return String.format("https://%s.s3.amazonaws.com", bucketName);
+        return String.format("https://%s.s3.amazonaws.com/", bucketName);
     }
 
 

@@ -3,6 +3,7 @@ package com.ditto.cookiez.service.impl;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.ditto.cookiez.config.AwsClient;
 import com.ditto.cookiez.entity.*;
 import com.ditto.cookiez.entity.dto.IngredientDTO;
 import com.ditto.cookiez.entity.dto.RecipeDTO;
@@ -48,23 +49,78 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
     ITagService tagService;
     @Autowired
     IRecipeTagBridgeService recipeTagBridgeService;
+    public static String coverKey = FileUtil.COVER;
+    public static String stepImgPrefix = FileUtil.STEP_PREFIX;
 
     //         TODO update ingredients
+    @Transactional
     @Override
-    public void updateRecipe(JSONObject json) {
+    public Boolean updateRecipe(JSONObject json, Map<String, MultipartFile> fileMap) throws IOException {
         Recipe recipe = json.getObject("recipe", Recipe.class);
-//        update recipe basic info
-        recipe.updateById();
+        Integer recipeId = recipe.getRecipeId();
+//        get data from json
+        List<Tag> tags = json.getJSONArray("tags").toJavaList(Tag.class);
+        List<IngredientDTO> ingredients = json.getJSONArray("ingredients").toJavaList(IngredientDTO.class);
+
+        //       some magic value
+        recipe.setRecipeCreatedTime(null);
+
+        setUpCover(fileMap, recipe);
+        //        update step
         List<StepDTO> stepDTOs = json.getJSONArray("steps").toJavaList(StepDTO.class);
-//        update step
+        int index = 0;
         for (StepDTO stepDTO : stepDTOs
         ) {
-            Img img = new Img(stepDTO.getImgId(), stepDTO.getImgPath());
-            img.updateById();
-            Step step = new Step(stepDTO.getStepOrder(), stepDTO.getStepContent());
-            step.setImgId(stepDTO.getImgId());
+            index++;
+            Step step = stepService.getByOrderAndRecipeId(stepDTO.getStepOrder(), recipeId);
+            if(step==null){
+                step=new Step();
+                step.setRecipeId(recipeId);
+                stepService.save(step);
+            }
+            step.setStepContent(stepDTO.getStepContent());
+            step.setStepOrder(stepDTO.getStepOrder());
+
+
+            Integer order = stepDTO.getStepOrder();
+            if (fileMap.containsKey(stepImgPrefix + stepDTO.getStepOrder())) {
+                String nameInFileMap = stepImgPrefix + order;
+                log.info(FileUtil.getRecipeStepRelativePath(recipeId, order, FileUtil.getFileType(fileMap.get(nameInFileMap).getOriginalFilename())));
+                FileUtil.delete(FileUtil.getRecipeStepRelativePath(recipeId, order, FileUtil.getFileType(fileMap.get(nameInFileMap).getOriginalFilename())));
+                String url = FileUtil.uploadStepImgToAws(fileMap.get(nameInFileMap), recipeId, order);
+                Img img = new Img(url);
+                if(step.getImgId()!=null){
+                    img.setImgId(step.getImgId());
+                    img.updateById();
+                }else {
+                    imgService.save(img);
+                }
+                step.setImgId(img.getImgId());
+            }
             step.updateById();
         }
+//        delete redundant steps
+        QueryWrapper<Step> stepQueryWrapper = new QueryWrapper<>();
+        stepQueryWrapper.eq("recipe_id", recipeId);
+        int count = stepService.count(stepQueryWrapper);
+        for (int i = index + 1; i <= count; i++) {
+            stepQueryWrapper.clear();
+            stepQueryWrapper.eq("recipe_id", recipeId);
+            stepQueryWrapper.eq("step_order", i);
+            stepService.remove(stepQueryWrapper);
+        }
+
+//        delete previous ingredients and amount
+        ingredientRecipeBridgeService.deleteByRecipeId(recipeId);
+        amountService.deleteByRecipeId(recipeId);
+//        update ingredient
+        saveIngredientAndAmount(ingredients, recipeId);
+//       delete tags
+        recipeTagBridgeService.deleteByRecipeId(recipeId);
+//        update tags
+        saveTag(tags, recipeId);
+        recipe.updateById();
+        return true;
     }
 
     @Transactional
@@ -79,8 +135,7 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
         List<Step> steps = json.getJSONArray("steps").toJavaList(Step.class);
         List<IngredientDTO> ingredients = json.getJSONArray("ingredients").toJavaList(IngredientDTO.class);
 //       some magic value
-        String coverKey = FileUtil.COVER;
-        String stepImgPrefix = FileUtil.STEP_PREFIX;
+
 //        save cover img
         if (fileMap.containsKey(coverKey)) {
             MultipartFile file = fileMap.get(coverKey);
@@ -91,6 +146,57 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
             recipe.setRecipeCoverId(img.getImgId());
         }
 //        save ingredients and its amount
+        saveIngredientAndAmount(ingredients, recipeId);
+//         save tag
+        saveTag(tags, recipeId);
+//         save steps
+        for (Step step : steps
+        ) {
+            int order = step.getStepOrder();
+            step.setRecipeId(recipeId);
+            String nameInFileMap = stepImgPrefix + order;
+            if (fileMap.containsKey(nameInFileMap)) {
+                stepService.addStep(step, fileMap.get(nameInFileMap));
+            } else {
+                stepService.addStep(step);
+            }
+
+        }
+
+        recipe.updateById();
+        return recipe;
+    }
+
+    @Override
+    public RecipeDTO getRecipe(int id) {
+        return null;
+    }
+
+    private void saveTag(List<Tag> tags, Integer recipeId) {
+
+        for (Tag tag : tags
+        ) {
+            int idOrN1 = tagService.existedReturnId(tag.getTagName());
+            if (idOrN1 == -1) {
+                tagService.save(tag);
+            } else {
+                tag.setTagId(idOrN1);
+            }
+            recipeTagBridgeService.save(new RecipeTagBridge(recipeId, tag.getTagId()));
+        }
+    }
+
+    private void setUpCover(Map<String, MultipartFile> fileMap, Recipe recipe) throws IOException {
+        if (fileMap.containsKey(coverKey)) {
+            MultipartFile file = fileMap.get(coverKey);
+            String url = FileUtil.uploadCoverToAws(file, recipe.getRecipeId());
+            Img img = new Img(url);
+            imgService.save(img);
+            recipe.setRecipeCoverId(img.getImgId());
+        }
+    }
+
+    private void saveIngredientAndAmount(List<IngredientDTO> ingredients, Integer recipeId) {
         for (IngredientDTO ingredientDTO : ingredients
         ) {
             String ingredientName = ingredientDTO.getIngredientName();
@@ -110,41 +216,26 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
             IngredientRecipeBridge bridge = new IngredientRecipeBridge(idOr1, recipeId);
             ingredientRecipeBridgeService.save(bridge);
         }
-//         save tag
-        for (Tag tag : tags
-        ) {
-            int idOrN1 = tagService.existedReturnId(tag.getTagName());
-            if (idOrN1 == -1) {
-                tagService.save(tag);
-            } else {
-                tag.setTagId(idOrN1);
-            }
-            recipeTagBridgeService.save(new RecipeTagBridge(recipeId, tag.getTagId()));
-        }
-//         save steps
-        for (Step step : steps
-        ) {
-            int order = step.getStepOrder();
-            step.setRecipeId(recipeId);
-            String nameInFileMap = stepImgPrefix + order;
-            if (fileMap.containsKey(nameInFileMap)) {
-                stepService.addStep(step, fileMap.get(nameInFileMap));
-            } else {
-                stepService.addStep(step);
-            }
 
-        }
-
-        recipe.updateById();
-        return recipe;
     }
 
+//    private void setUpStepImg(Map<String, MultipartFile> fileMap, Step step) throws IOException {
+//        if (fileMap.containsKey(coverKey)) {
+//            MultipartFile file = fileMap.get(coverKey);
+//            String url = FileUtil.uploadCoverToAws(file, recipe.getRecipeId());
+////
+//            Img img = new Img(url);
+//            imgService.save(img);
+//            recipe.setRecipeCoverId(img.getImgId());
+//        }
+//    }
 
     @Override
-    public RecipeDTO getRecipe(int id) {
+    public RecipeDTO getRecipe(Integer id) {
         Recipe recipe = getById(id);
 //        get title and description
         RecipeDTO recipeDTO = new RecipeDTO(recipe);
+        recipeDTO.setId(id);
 //        get cover path
         if (recipe.getRecipeCoverId() != null) {
             recipeDTO.setCoverPath(imgService.getPathById(recipe.getRecipeCoverId()));
@@ -152,17 +243,19 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
 
 //  TODO add author info
 
-//        User user = userService.getById(recipe.getRecipeAuthorId());
-//        recipeDTO.setAuthor(user.getUsername());
+        User user = userService.getById(recipe.getRecipeAuthorId());
+        recipeDTO.setAuthor(user.getUsername());
 
 //        Get Step
         List<Step> stepList = stepService.list(new QueryWrapper<Step>().eq("recipe_id", id));
         List<StepDTO> stepDTOList = new ArrayList<>();
         for (Step step : stepList
         ) {
+
             StepDTO stepDTO = new StepDTO(step);
             stepDTO.setImgPath(imgService.getPathById(step.getImgId()));
             stepDTOList.add(stepDTO);
+            stepDTO.setId(step.getStepId());
         }
         recipeDTO.setStepDTOList(stepDTOList);
 //        Get tags
@@ -195,7 +288,7 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
         recipes = list(qw);
         for (Recipe recipe : recipes
         ) {
-            log.info("add by title:"+recipe.getRecipeName());
+            log.info("add by title:" + recipe.getRecipeName());
             recipeIdSet.add(recipe.getRecipeId());
         }
 //        tag
@@ -213,13 +306,7 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
         if (recipes != null) {
             for (Recipe r : recipes
             ) {
-                String username = userService.getUsernameById(r.getRecipeAuthorId());
-                RecipeResultVo resultVo = new RecipeResultVo(r.getRecipeName(), r.getRecipeDescription(), username);
-                String coverPath = imgService.getPathById(r.getRecipeId());
-                resultVo.setCoverPath(coverPath);
-                resultVo.setUrl("/recipe/" + r.getRecipeId());
-                List<Tag> tagList = recipeTagBridgeService.getTagsByRecipeId(r.getRecipeId());
-                resultVo.setTagList(tagList);
+                RecipeResultVo resultVo = getResultVoById(r.getRecipeId());
                 voList.add(resultVo);
             }
 
@@ -275,7 +362,7 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
         List<Integer> tagIdList = new ArrayList<>();
         for (Tag tag : tags
         ) {
-            log.info("add by tag:"+tag.getTagName() );
+            log.info("add by tag:" + tag.getTagName());
             tagIdList.add(tag.getTagId());
         }
         List<RecipeTagBridge> recipeTagBridges = new ArrayList<>();
@@ -314,6 +401,7 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
         }
         return recipeIdSet;
     }
+
     @Override
     public RecipeResultVo getResultVoById(int id) {
         Recipe recipe = getById(id);
@@ -322,7 +410,8 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
 
         vo.setCoverPath(imgService.getPathById(recipe.getRecipeCoverId()));
         vo.setAuthor(userService.getUsernameById(recipe.getRecipeAuthorId()));
-//        vo.setTagList();
+        List<Tag> tagList = recipeTagBridgeService.getTagsByRecipeId(recipe.getRecipeId());
+        vo.setTagList(tagList);
 //TODO get tag list
         return vo;
     }

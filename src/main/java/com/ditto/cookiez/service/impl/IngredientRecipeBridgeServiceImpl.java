@@ -70,4 +70,12 @@ public class IngredientRecipeBridgeServiceImpl extends ServiceImpl<IngredientRec
         }
 
     }
+
+    @Override
+    public Boolean deleteByRecipeId(Integer recipeId) {
+        QueryWrapper<IngredientRecipeBridge> qw=new QueryWrapper<>();
+        qw.eq("recipe_id",recipeId);
+        return  remove(qw);
+
+    }
 }

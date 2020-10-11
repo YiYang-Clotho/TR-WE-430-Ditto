@@ -27,4 +27,11 @@ public class AmountServiceImpl extends ServiceImpl<AmountMapper, Amount> impleme
         return getOne(qw);
 
     }
+
+    @Override
+    public Boolean deleteByRecipeId(Integer recipeId) {
+        QueryWrapper<Amount> qw = new QueryWrapper<>();
+        qw.eq("recipe_id", recipeId);
+        return remove(qw);
+    }
 }

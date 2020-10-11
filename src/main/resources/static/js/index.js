@@ -18,8 +18,7 @@ $("img.rounded-20").each(function (i){
         width : '100%',//
         height : '142px',//
         zoom : '1',//
-        method : 'auto'
-        ,
+        method : 'auto',
         after:function (obj) {
             $(obj).css("border-radius","20px")
         }
