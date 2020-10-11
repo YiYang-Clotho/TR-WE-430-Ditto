@@ -107,11 +107,11 @@ public class RecipeController {
     }
 
     @DeleteMapping("/api/recipe")
-    public ResponseEntity<JSONObject> deleteRecipe(@RequestParam Integer id) {
-        if (service.removeById(id)) {
+    public ResponseEntity<JSONObject> deleteRecipe(@RequestParam Integer recipeId) {
+        if (service.removeById(recipeId)) {
             return Response.ok("Delete Successfully");
         } else {
-            log.info("Delete recipe failed. Id is " + id);
+            log.info("Delete recipe failed. Id is " + recipeId);
         }
         return Response.bad("Delete Failed");
     }

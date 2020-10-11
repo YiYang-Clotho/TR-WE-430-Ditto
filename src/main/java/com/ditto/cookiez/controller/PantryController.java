@@ -18,7 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController
 //@RequestMapping("//pantry")
 public class PantryController {
-    @GetMapping("/pantry/show")
+    @GetMapping("/pantry")
     public ModelAndView addRecipePage() {
         ModelAndView mv = new ModelAndView("/pantry/show");
         return mv;

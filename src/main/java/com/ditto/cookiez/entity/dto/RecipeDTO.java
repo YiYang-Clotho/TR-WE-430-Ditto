@@ -29,12 +29,14 @@ public class RecipeDTO {
     }
 
     public String getTagsString() {
-        String str = "";
+        StringBuilder str = new StringBuilder();
         for (Tag tag : this.getTagList()) {
-            str += tag.getTagName();
-            str += ",";
+            str.append(tag.getTagName());
+            str.append(",");
         }
-        str = str.substring(0, str.length() - 1);
-        return str;
+        if(str.length()!=0){
+            str = new StringBuilder(str.substring(0, str.length() - 1));
+        }
+        return str.toString();
     }
 }

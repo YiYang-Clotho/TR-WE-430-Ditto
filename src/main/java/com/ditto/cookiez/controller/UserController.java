@@ -1,7 +1,9 @@
 package com.ditto.cookiez.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.ditto.cookiez.entity.vo.RecipeResultVo;
 import com.ditto.cookiez.service.IImgService;
+import com.ditto.cookiez.service.IRecipeService;
 import com.ditto.cookiez.utils.WebUtil;
 import com.ditto.cookiez.entity.User;
 import com.ditto.cookiez.service.IUserService;
@@ -21,6 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -88,6 +91,8 @@ public class UserController {
     IUserService service;
     @Autowired
     IImgService imgService;
+    @Autowired
+    IRecipeService recipeService;
 
     @GetMapping("/login")
     public ModelAndView loginPage() {
@@ -136,6 +141,8 @@ public class UserController {
         if (!"".equals(accessToken)) {
              user = service.getUserByToken(accessToken);
         }
+        List<RecipeResultVo> voList=recipeService.getResultVoListByUserId(user.getUserId());
+        mv.addObject("voList",voList);
         mv.addObject("user", user);
         return mv;
     }
@@ -155,9 +162,9 @@ public class UserController {
     public ModelAndView profilePage(@CookieValue(value = "accessToken") String accessToken) {
         User user = service.getUserByToken(accessToken);
         ModelAndView mv = new ModelAndView("user/profile");
+
         mv.addObject("user", user);
         logger.info(user.toString());
-//        mv.addAllObjects(ModelUtil.getBaseModel(session));
         return mv;
     }
 

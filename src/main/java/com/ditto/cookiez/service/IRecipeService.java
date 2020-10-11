@@ -37,4 +37,6 @@ public interface IRecipeService extends IService<Recipe> {
     List<RecipeResultVo> searchTagOnly(String keyword);
 
     RecipeResultVo getResultVoById(int id);
+
+    List<RecipeResultVo> getResultVoListByUserId(int id);
 }
