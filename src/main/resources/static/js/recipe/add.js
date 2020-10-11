@@ -10,7 +10,11 @@ function uploadCover(obj) {
     formData.append("coverImg", coverFile.files[0])
 }
 
-function uploadStepImg(index) {
+function uploadStepImg(index,obj) {
+    if (index === -1) {
+        index = $(obj).attr('id').split('-')[3]
+
+    }
     let stepFile = document.getElementById(`img-input-step-${index}`)
     let reader = new FileReader()
 
@@ -24,7 +28,9 @@ function uploadStepImg(index) {
 function getIngredients() {
     const div = document.getElementById("div-ingredients")
     let ingredientsJson = []
+
     for (const ele of div.children) {
+
         let ingredient = $(ele.children[0]).val().trim()
         let amount = $(ele.children[1]).val().trim()
         if (ingredient.length !== 0 && amount.length !== 0)
@@ -35,7 +41,10 @@ function getIngredients() {
     return ingredientsJson
 }
 
-function delIngredientEle(index) {
+function delIngredientEle(index,obj) {
+    if(index===-1){
+        index=$(obj).attr('id').split('-')[2]
+    }
     const div = document.getElementById("div-ingredients")
     const size = div.children.length
     if (size > 1) {
@@ -80,7 +89,7 @@ $("#btn-removeStep").click(function () {
     const size = div.children.length
     if (size > 1) {
 
-        console.log(div.lastElementChild)
+
         div.lastElementChild.remove()
     }
 
@@ -106,6 +115,7 @@ function getStepsContent() {
     let steps = []
     let ind = 0;
     for (const ele of div.children) {
+
         ind++;
         let stepOrder = ind;
         let stepContent = $(ele).find('textarea').val().trim();
@@ -117,7 +127,7 @@ function getStepsContent() {
 }
 
 function getTags() {
-    let tags = $("#input-tags").val().split(",")
+    let tags = $(".input-tags").val().split(",")
     let newTags = []
     for (let tag of tags) {
         if (tag.trim().length !== 0) {
@@ -129,13 +139,13 @@ function getTags() {
 
 }
 
-function submit() {
+function getJsonData() {
     let errors = []
     const title = $("#input-title").val().trim();
     const description = $("#input-describe").val().trim();
     //poor validate
     const recipe = {
-        recipeName: title, recipeDescription: description, recipeCreatedTime: moment().format(),recipeAuthorId:userId,
+        recipeName: title, recipeDescription: description, recipeCreatedTime: moment().format(), recipeAuthorId: userId,
     };
     errors.push(validate(recipe, {
         recipeName: {
@@ -166,7 +176,6 @@ function submit() {
     }
     const ingredients = getIngredients()
     for (const ingredient of ingredients) {
-        console.log("get header!")
         errors.push(validate(ingredient, {
             ingredient: {
                 length: {
@@ -181,12 +190,17 @@ function submit() {
             }
         }))
     }
-    console.log(errors);
+
     let data = {
         recipe, steps, ingredients, tags,
     }
-    formData.append("data", JSON.stringify(data))
+    return data
 
+}
+
+function submit() {
+    let data = getJsonData()
+    formData.append("data", JSON.stringify(data))
     bootbox.confirm("Are you sure you want to submit this recipe?", function (result) {
         if (result) {
 
@@ -196,9 +210,9 @@ function submit() {
                 }
             }).then(res => {
                 console.log(res)
-                let recipeId=res['data']['data']['recipeId']
+                let recipeId = res['data']['data']['recipeId']
                 bootbox.alert("Add a recipe Successfully!")
-                window.location.replace('/recipe/'+recipeId)
+                window.location.replace('/recipe/' + recipeId)
                 // window.location.replace("/");
             }).catch(err => {
                 bootbox.alert("Failed to add")
@@ -209,3 +223,32 @@ function submit() {
     })
 }
 
+function update() {
+    let data = getJsonData()
+    data['recipe']['recipeId'] = recipeId
+    console.log({data})
+    formData.append("data", JSON.stringify(data))
+
+    bootbox.confirm("Are you sure you want to update this recipe?", function (result) {
+        if (result) {
+
+            axios.put('/api/recipe', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            }).then(res => {
+                console.log(res)
+
+                bootbox.alert("Update the recipe Successfully!")
+                formData = new FormData()
+                window.location.reload()
+                // window.location.replace("/");
+            }).catch(err => {
+                bootbox.alert("Failed to add")
+                console.log(err)
+            })
+
+        }
+    })
+
+}

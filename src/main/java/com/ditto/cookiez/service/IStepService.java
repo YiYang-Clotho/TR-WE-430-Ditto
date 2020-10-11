@@ -17,5 +17,7 @@ import java.io.IOException;
 public interface IStepService extends IService<Step> {
     Step addStep(Step step);
 
+    Step getByOrderAndRecipeId(Integer order, Integer recipeId);
+
     Step addStep(Step step, MultipartFile file) throws IOException;
 }

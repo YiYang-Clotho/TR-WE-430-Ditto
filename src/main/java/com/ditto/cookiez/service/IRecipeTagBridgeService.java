@@ -18,5 +18,7 @@ import java.util.List;
 public interface IRecipeTagBridgeService extends IService<RecipeTagBridge> {
       List<Tag> getTagsByRecipeId(Integer recipeId);
 
+      Boolean deleteByRecipeId(Integer id);
+
       List<Recipe> getRecipesByTagId(Integer tagId);
 }

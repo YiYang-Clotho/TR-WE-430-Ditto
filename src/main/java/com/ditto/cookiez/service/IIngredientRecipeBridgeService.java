@@ -18,4 +18,5 @@ import java.util.List;
 public interface IIngredientRecipeBridgeService extends IService<IngredientRecipeBridge> {
     List<Ingredient> getIngredientsByRecipeId(Integer recipeId);
     List<Recipe> getRecipesByIngredientId(Integer ingredientId);
+    Boolean deleteByRecipeId(Integer recipeId);
 }

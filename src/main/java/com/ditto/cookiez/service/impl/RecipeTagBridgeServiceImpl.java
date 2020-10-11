@@ -50,6 +50,14 @@ public class RecipeTagBridgeServiceImpl extends ServiceImpl<RecipeTagBridgeMappe
     }
 
     @Override
+    public Boolean deleteByRecipeId(Integer id) {
+        QueryWrapper<RecipeTagBridge> qw = new QueryWrapper<>();
+        qw.eq("recipe_id", id);
+        return remove(qw);
+
+    }
+
+    @Override
     public List<Recipe> getRecipesByTagId(Integer tagId) {
         QueryWrapper<RecipeTagBridge> qw = new QueryWrapper();
         if (tagId != null) {

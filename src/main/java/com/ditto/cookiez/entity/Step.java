@@ -35,4 +35,7 @@ public class Step extends Model {
         this.stepOrder = stepOrder;
         this.stepContent = stepContent;
     }
+
+    public Step() {
+    }
 }

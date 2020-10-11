@@ -13,4 +13,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IAmountService extends IService<Amount> {
     Amount getByRecipeIngredientId(Integer recipeId, Integer ingredientId);
+    Boolean deleteByRecipeId(Integer recipeId);
 }
