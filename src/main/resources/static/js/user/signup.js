@@ -4,6 +4,7 @@ function signUp() {
         closeButton: false
     })
     axios.post("/api/register", {
+
         username: $("#username").val(),
         password: $("#password").val()
     }).then(res => {

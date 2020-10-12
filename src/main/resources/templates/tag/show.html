@@ -12,13 +12,15 @@
 <body>
 <header th:replace="/fragment/common.html :: header"></header>
 <div class="container d-flex justify-content-center">
-    <div class="row my-5 w-75 animate__fadeInRightBig animate__bounceIn">
-        <input class="w-50 border-green-28A745 rounded-50" name="tag_name" id="tag_name" type="text"
-               placeholder="Type something for searching">
-        <button class="btn bg-red-C14A4A rounded-50  ml-auto" onclick="handleSearchBtn(this)">
-            <i class="iconfont icon-sousuo
-                mr-1"></i>Search Recipes
-        </button>
+    <div class="d-flex flex-column my-5 w-75 animate__fadeInRightBig animate__bounceIn">
+        <label for="tag_name">
+            Separated by commas, press Enter to search
+        </label><input class="w-50 border-green-28A745 rounded-50" name="tag_name" id="tag_name" type="text"
+                                             placeholder="Search Recipes with Tags">
+<!--        <button class="btn bg-red-C14A4A rounded-50 mt-5 mr-auto" onclick="handleSearchBtn(this)">-->
+<!--            <i class="iconfont icon-sousuo-->
+<!--                mr-1"></i>Search Recipes-->
+<!--        </button>-->
     </div>
 </div>
 

@@ -73,8 +73,8 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
         ) {
             index++;
             Step step = stepService.getByOrderAndRecipeId(stepDTO.getStepOrder(), recipeId);
-            if(step==null){
-                step=new Step();
+            if (step == null) {
+                step = new Step();
                 step.setRecipeId(recipeId);
                 stepService.save(step);
             }
@@ -89,10 +89,10 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
                 FileUtil.delete(FileUtil.getRecipeStepRelativePath(recipeId, order, FileUtil.getFileType(fileMap.get(nameInFileMap).getOriginalFilename())));
                 String url = FileUtil.uploadStepImgToAws(fileMap.get(nameInFileMap), recipeId, order);
                 Img img = new Img(url);
-                if(step.getImgId()!=null){
+                if (step.getImgId() != null) {
                     img.setImgId(step.getImgId());
                     img.updateById();
-                }else {
+                } else {
                     imgService.save(img);
                 }
                 step.setImgId(img.getImgId());
@@ -202,7 +202,7 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
             String ingredientName = ingredientDTO.getIngredientName();
             String amountContent = ingredientDTO.getAmount();
             Amount amount = new Amount(amountContent);
-            Ingredient ingredient=new Ingredient(ingredientName);
+            Ingredient ingredient = new Ingredient(ingredientName);
             ingredientService.save(ingredient);
             amount.setIngredientId(ingredient.getIngredientId());
             amount.setRecipeId(recipeId);
@@ -309,33 +309,35 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
         return voList;
 
     }
-@Override
-    public List<RecipeResultVo> searchTagOnly(String keyword) {
-        List<Recipe> recipes;
-        List<RecipeResultVo> voList = new ArrayList<>();
-        Set<Integer> recipeIdSet = new HashSet<>();
-//        title
-        QueryWrapper<Recipe> qw = new QueryWrapper<>();
-        qw.like("recipe_name", keyword);
-        recipes = list(qw);
-//        tag
-//        Set<Integer> recipeIdSetFromTag = searchRecipeIdListByTag(keyword);
-        int tag_id = tagService.existedReturnId(keyword);
-        Set<Integer> recipeIdSetFromTag = recipeTagBridgeService.getRecipesIdByTagId(tag_id);
-        if (recipeIdSetFromTag != null) {
-            recipeIdSet.addAll(recipeIdSetFromTag);
-        }
-        if (!recipeIdSet.isEmpty()) {
-            recipes = listByIds(recipeIdSet);
-        }
-//        tag coverpath url
-        if (recipes != null) {
-            for (Recipe r : recipes
-            ) {
-                RecipeResultVo resultVo = getResultVoById(r.getRecipeId());
-                voList.add(resultVo);
-            }
 
+    @Override
+    public List<RecipeResultVo> searchByIngredients(List<String> strList) {
+        Set<Integer> recipeIdSet = new HashSet<>();
+        List<RecipeResultVo> voList = new ArrayList<>();
+        for (String ingred : strList
+        ) {
+            Set<Integer> idList = searchRecipeIdListByIngredient(ingred);
+            recipeIdSet.addAll(idList);
+        }
+        for (int i : recipeIdSet
+        ) {
+            voList.add(getResultVoById(i));
+        }
+        return voList;
+    }
+
+    @Override
+    public List<RecipeResultVo> searchByTags(List<String> keywords) {
+        Set<Integer> recipeIdSet = new HashSet<>();
+        List<RecipeResultVo> voList = new ArrayList<>();
+        for (String tag : keywords
+        ) {
+            Set<Integer> idList = searchRecipeIdListByTag(tag);
+            recipeIdSet.addAll(idList);
+        }
+        for (int i : recipeIdSet
+        ) {
+            voList.add(getResultVoById(i));
         }
         return voList;
 
@@ -355,7 +357,9 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
         }
         List<RecipeTagBridge> recipeTagBridges = new ArrayList<>();
         if (tagIdList.size() != 0) {
-            recipeTagBridges = recipeTagBridgeService.listByIds(tagIdList);
+            QueryWrapper<RecipeTagBridge>  qw2=new QueryWrapper<>();
+            qw2.in("tag_id",tagIdList);
+            recipeTagBridges = recipeTagBridgeService.list(qw2);
         }
 
         for (RecipeTagBridge recipeTagBridge : recipeTagBridges
@@ -380,8 +384,9 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
         }
         List<IngredientRecipeBridge> ingredientRecipeBridges = new ArrayList<>();
         if (ingredientIdList.size() != 0) {
-            ingredientRecipeBridges = ingredientRecipeBridgeService.listByIds(ingredientIdList);
-
+            QueryWrapper<IngredientRecipeBridge> qw2=new QueryWrapper<>();
+            qw2.in("ingredient_id",ingredientIdList);
+            ingredientRecipeBridges = ingredientRecipeBridgeService.list(qw2);
         }
         for (IngredientRecipeBridge ingredientRecipeBridge : ingredientRecipeBridges
         ) {
@@ -407,6 +412,7 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
     private String generateRecipeUrl(int id) {
         return "/recipe/" + id;
     }
+
     @Override
     public List<RecipeResultVo> getResultVoListByUserId(int id) {
         QueryWrapper<Recipe> qw = new QueryWrapper<>();
