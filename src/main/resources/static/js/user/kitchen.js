@@ -11,16 +11,19 @@ $("img.rounded-20").each(function (i) {
 })
 
 function deleteRecipe(id) {
-    bootbox.confirm("Are you sure you want to submit this recipe?", function (result) {
+    bootbox.confirm("Are you sure you want to delete this recipe?", function (result) {
         if (result) {
+            loading()
             axios.delete('/api/recipe',{
                 params: {
                     recipeId:id
                 }
             }).then(res=>{
+                completeLoading()
                 console.log(res)
                 window.location.reload()
             }).catch(err => {
+                completeLoading()
                 bootbox.alert("Delete Failed")
                 console.log(err)
             })
