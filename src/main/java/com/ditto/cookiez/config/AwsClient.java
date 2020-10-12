@@ -124,7 +124,7 @@ public class AwsClient {
     }
 
     /**
-     * 验证s3上是否存在名称为bucketName的Bucket
+
      *
      * @param s3
      * @param bucketName
