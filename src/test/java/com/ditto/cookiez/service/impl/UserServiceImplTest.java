@@ -25,10 +25,10 @@ class UserServiceImplTest {
     @Test
     public void test() {
 
-     User user=  service.getByUsername("1234");
-     user.setUsername("123");
-     user.setUserPwd(null);
-     user.updateById();
+//     User user=  service.getByUsername("1234");
+//     user.setUsername("123");
+//     user.setUserPwd(null);
+//     user.updateById();
 
     }
 
@@ -36,9 +36,6 @@ class UserServiceImplTest {
     void getByUsername() {
 
 
-        System.out.println(("----- selectAll method test ------"));
-
-        System.out.println(userMapper.selectById(1).toString());
 
     }
 }

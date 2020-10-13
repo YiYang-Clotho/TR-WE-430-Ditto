@@ -32,11 +32,14 @@ public interface IRecipeService extends IService<Recipe> {
 
     RecipeDTO getRecipe(Integer id);
 
-    List<RecipeResultVo> search(String keyword);
+
+
+    List<RecipeResultVo> search(List<String> keyword);
 
     List<RecipeResultVo> searchByIngredients(List<String> strList);
 
 
+    List<RecipeResultVo> searchByTitle(List<String> strList);
 
     List<RecipeResultVo> searchByTags(List<String> keywords);
 

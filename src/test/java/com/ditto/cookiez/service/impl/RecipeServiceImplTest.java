@@ -78,14 +78,15 @@ class RecipeServiceImplTest {
 
     @Test
     void getRecipe() {
-        Integer id = 19;
-        System.out.println(service.getRecipe(19).toString());
+
 
     }
 
     @Test
     void search() {
-        List<RecipeResultVo> vo = service.search("a");
+        List<String> str=new ArrayList<>();
+        str.add("chicken");
+        List<RecipeResultVo> vo = service.search(str);
         System.out.println(vo.toString());
         log.info(vo.size() + "");
     }
@@ -111,5 +112,14 @@ class RecipeServiceImplTest {
         stringList.add("shit");
         List<RecipeResultVo> list= service.searchByTags(stringList);
         assert list.size()==1;
+    }
+
+
+    @Test
+    void searchByTitle() {
+        List<String> stringList = new ArrayList<>();
+        stringList.add("shit");
+        List<RecipeResultVo> list= service.searchByTitle(stringList);
+        assert list.size()==0;
     }
 }

@@ -3,12 +3,12 @@ let index = 0
 $("#input-ingredient").keydown(function (e) {
 
     let val = $("#input-ingredient").val().trim()
-    let size = $('#div-ingredient').children.length
+    let size = $('#div-ingredient').children().length
     size++
-    if (e.key === "Enter" && val.length !== 0) {
 
+    if (e.key === "Enter" && val.length !== 0) {
         let html = ` <span class=" bg-success m-3 rounded-50  text-white" id="ingred-${size}" > <span class="ml-3 ingred" >${val}</span>  <button class="btn iconfont icon-x"" onclick="delIngredient(${size})" ></button></span>`
-        $('#div-ingredient').append(html)
+        $("#div-ingredient").append(html)
         $("#input-ingredient").val('')
         handleSearchBtn()
     }
@@ -48,32 +48,7 @@ function handleSearchBtn() {
         console.log(res)
         let recipes = res['data']['data']
         const div = document.getElementById("cardDiv")
-        let html = '';
-
-        for (const i in recipes) {
-            let recipe = recipes[i]
-            let title = recipe["recipeName"]
-            let description = recipe['recipeDescription']
-            let coverPath = recipe['coverPath']
-            let author = recipe['author']
-            let link = recipe['url']
-            html +=
-                `
-                    <div class="col-sm-3 mb-3" >
-                        <a href="${link}">
-                            <div class="p-3  d-flex flex-column shadow-sm rounded-10 shadow-0-2-4 ">
-                                <img class="rounded-20" src="${coverPath != null ? coverPath : '/images/logo.png'}" alt="">
-                                <span style="font-size: 20px">${title}</span>
-                                <p style="font-size: 14px;color: #6b6668; max-width: 10em; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
-                                   ${description} </p>
-                                <span class="d-flex"> <span
-                                        class="ml-auto" style="font-size: 13px" >By ${author}</span>
-                            </span>
-                            </div>
-                        </a>
-                    </div>
-                `
-        }
+        let html = generateRecipeCard(recipes);
         if (recipes.length === 0) {
             html = `<h2>No result...</h2>`
         }
@@ -102,6 +77,7 @@ function cutPicture() {
         });
     })
 }
+
 function clearAllResults() {
     const div = document.getElementById("cardDiv")
     $(div).html('');

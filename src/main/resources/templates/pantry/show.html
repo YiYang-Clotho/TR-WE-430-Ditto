@@ -13,16 +13,30 @@
 <header th:replace="/fragment/common.html :: header"></header>
 
 <div class="container d-flex flex-column  align-items-center">
-    <div class="d-flex flex-column my-10 mb-5 align-items-center ">
-        <h1 class="text-inkfree " style="font-size:6.2em">Cook with what you have!</h1>
+    <div class="d-flex flex-column mt-5 mb-5 align-items-center animate__fadeInLeftBig animate__bounceIn">
+        <img src="/images/logowhat.png" alt="">
     </div>
-    <div class="d-flex flex-column w-100 mb-5">
-        <label for="input-ingredient">Press Enter for searching
-        </label>
-        <input class=" border-green-28A745 rounded-20 " id="input-ingredient"
-               style="width:20em" type="text"
-               placeholder="Enter an ingredient">
-        <h4 class="text-dark ml-auto">
+    <div class="d-flex flex-column  mb-5 align-items-center animate__fadeInLeftBig animate__bounceIn">
+        <label for="input-ingredient" class="text-grad-888276 mr-auto">Press Enter for searching</label>
+        <div class="d-flex">
+            <input class="border-green-28A745 rounded-20 input-red mr-3" id="input-ingredient"
+                   type="text" style="width: 40em"
+                   placeholder="Enter an ingredient">
+            <h3 >
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-chaxun"></use>
+                </svg>
+            </h3>
+        </div>
+
+
+
+    </div>
+
+    <div class="row">
+        <!--        <button class="btn mr-auto btn-danger" onclick="clearAllResults()">Clear All Results</button>-->
+        <!--        <button class="btn mr-auto btn-danger" onclick="clearIngredients()">Clear All Ingredients</button>-->
+        <h2 class="text-dark text-center">
             <svg class="icon" aria-hidden="true">
                 <use xlink:href="#icon-Ingredients"></use>
             </svg>
@@ -30,14 +44,14 @@
             <svg class="icon" aria-hidden="true">
                 <use xlink:href="#icon-Ingredients"></use>
             </svg>
-        </h4>
+        </h2>
     </div>
-    <button class="btn mr-auto btn-danger m-2" onclick="clearIngredients()">Clear All Ingredients</button>
+
     <div id="div-ingredient" class="d-flex flex-wrap w-100  h-100 p-4  mb-5  border-red-C14A4A">
 
     </div>
-    <button class="btn mr-auto btn-danger m-2" onclick="clearAllResults()">Clear All Results</button>
-    <div class="d-flex flex-wrap" id="cardDiv"></div>
+
+    <div class="row w-100" id="cardDiv"></div>
 </div>
 <footer th:replace="/fragment/common.html :: footer"></footer>
 <th:block th:include="/fragment/common.html :: scripts"></th:block>

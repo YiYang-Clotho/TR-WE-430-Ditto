@@ -71,3 +71,54 @@ function loading(obj) {
 function completeLoading() {
     $("#loading").remove();
 }
+
+function getTagsHtml(tagList) {
+    let tagHtml = ''
+    let ind = 0
+    for (const tag of tagList) {
+        if (ind > 1) {
+            break
+        }
+        let tagName = tag['tagName'];
+        tagHtml += `              
+                  <span  class=" iconfont mx-1 "> &#xe612;${tagName}</span>   
+           `
+        ind++
+    }
+    return tagHtml
+}
+
+function generateRecipeCard(recipes) {
+    let html = ''
+    for (const i in recipes) {
+        let recipe = recipes[i]
+        let title = recipe["recipeName"]
+        let description = recipe['recipeDescription']
+        let coverPath = recipe['coverPath']
+        let author = recipe['author']
+        let link = recipe['url']
+        let tagList = recipe['tagList']
+        let tagHtml=getTagsHtml(tagList)
+        let ind = 0
+        html +=
+            `
+                    <div class="col-sm-3 mb-3" >
+                        <a href="${link}">
+                            <div class="p-3  d-flex flex-column shadow-sm rounded-10 shadow-0-2-4 ">
+                                <img class="rounded-20" src="${coverPath != null ? coverPath : '/images/logo.png'}" alt="">
+                                <span style="font-size: 20px">${title}</span>
+                                <p style="font-size: 14px;color: #6b6668; max-width: 10em; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+                                   ${description} </p>
+                                <span class="d-flex">
+                                ${tagHtml}
+                         <span
+                                        class="ml-auto" style="font-size: 13px" >By ${author}</span>
+                            </span>
+                            </div>
+                        </a>
+                    </div>
+                `
+    }
+
+    return html
+}

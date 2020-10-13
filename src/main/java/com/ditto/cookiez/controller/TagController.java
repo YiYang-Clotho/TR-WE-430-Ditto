@@ -34,24 +34,10 @@ public class TagController {
     @Autowired
     IRecipeService recipeService;
 
-    @GetMapping("/tags")
-    public ModelAndView tagPage() {
-            return new ModelAndView("/tag/show");
-    }
 
 
-    @PostMapping("/tags")
-    public ResponseEntity<JSONObject> searchByTag(@RequestBody JSONObject param, HttpServletResponse response) {
-        List<String> list = JSONObject.parseArray(param.getJSONArray("tag_name").toString(), String.class);
-        if (list.size()==0) {
-            return Response.ok("Do not have to find");
-        }else{
-            List<RecipeResultVo> recipeList = recipeService.searchByTags(list);
-            System.out.println("Print recipeList" + recipeList.toString());
-            return Response.ok("Succeed to find the recipes", recipeList);
-        }
 
-    }
+
 
 //    @PutMapping("/tags")
 //    public ResponseEntity<JSONObject> searchPage(@RequestBody JSONObject param) {

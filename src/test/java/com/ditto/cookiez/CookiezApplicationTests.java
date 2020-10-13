@@ -14,8 +14,8 @@ class CookiezApplicationTests {
     @Test
     void contextLoads() {
 
-        JdbcTemplate jdbcTemplate;
-        System.out.println(ClassLoader.getSystemResource("static").getPath());
+//        JdbcTemplate jdbcTemplate;
+//        System.out.println(ClassLoader.getSystemResource("static").getPath());
 
     }
 

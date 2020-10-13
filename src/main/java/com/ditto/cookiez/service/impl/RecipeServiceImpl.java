@@ -3,7 +3,6 @@ package com.ditto.cookiez.service.impl;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.ditto.cookiez.config.AwsClient;
 import com.ditto.cookiez.entity.*;
 import com.ditto.cookiez.entity.dto.IngredientDTO;
 import com.ditto.cookiez.entity.dto.RecipeDTO;
@@ -18,7 +17,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
@@ -273,76 +271,56 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
     }
 
     @Override
-    public List<RecipeResultVo> search(String keyword) {
-        List<Recipe> recipes;
-        List<RecipeResultVo> voList = new ArrayList<>();
+    public List<RecipeResultVo> search(List<String> keywords) {
         Set<Integer> recipeIdSet = new HashSet<>();
 //        title
-        QueryWrapper<Recipe> qw = new QueryWrapper<>();
-        qw.like("recipe_name", keyword);
-        recipes = list(qw);
-        for (Recipe recipe : recipes
+        for (String word : keywords
         ) {
-            log.info("add by title:" + recipe.getRecipeName());
-            recipeIdSet.add(recipe.getRecipeId());
+            recipeIdSet.addAll(searchRecipeIdListByTitle(word));
+            recipeIdSet.addAll(searchRecipeIdListByTag(word));
+            recipeIdSet.addAll(searchRecipeIdListByIngredient(word));
         }
-//        tag
-        Set<Integer> recipeIdSetFromTag = searchRecipeIdListByTag(keyword);
-        if (recipeIdSetFromTag != null) {
-            recipeIdSet.addAll(recipeIdSetFromTag);
-        }
-//        ingredient
-        Set<Integer> recipeIdSetFromIngred = searchRecipeIdListByIngredient(keyword);
-        recipeIdSet.addAll(recipeIdSetFromIngred);
-        if (!recipeIdSet.isEmpty()) {
-            recipes = listByIds(recipeIdSet);
-        }
-//        tag coverpath url
-        if (recipes != null) {
-            for (Recipe r : recipes
-            ) {
-                RecipeResultVo resultVo = getResultVoById(r.getRecipeId());
-                voList.add(resultVo);
-            }
 
-        }
-        return voList;
+        return getResultVoListByIdList(recipeIdSet);
+
 
     }
 
     @Override
     public List<RecipeResultVo> searchByIngredients(List<String> strList) {
         Set<Integer> recipeIdSet = new HashSet<>();
-        List<RecipeResultVo> voList = new ArrayList<>();
         for (String ingred : strList
         ) {
             Set<Integer> idList = searchRecipeIdListByIngredient(ingred);
             recipeIdSet.addAll(idList);
         }
-        for (int i : recipeIdSet
+        return getResultVoListByIdList(recipeIdSet);
+
+    }
+    @Override
+    public List<RecipeResultVo> searchByTitle(List<String> strList) {
+        Set<Integer> recipeIdSet = new HashSet<>();
+
+        for (String ingred : strList
         ) {
-            voList.add(getResultVoById(i));
+            Set<Integer> idList = searchRecipeIdListByTitle(ingred);
+            recipeIdSet.addAll(idList);
         }
-        return voList;
+        return getResultVoListByIdList(recipeIdSet);
     }
 
     @Override
     public List<RecipeResultVo> searchByTags(List<String> keywords) {
         Set<Integer> recipeIdSet = new HashSet<>();
-        List<RecipeResultVo> voList = new ArrayList<>();
         for (String tag : keywords
         ) {
             Set<Integer> idList = searchRecipeIdListByTag(tag);
             recipeIdSet.addAll(idList);
         }
-        for (int i : recipeIdSet
-        ) {
-            voList.add(getResultVoById(i));
-        }
-        return voList;
+
+        return getResultVoListByIdList(recipeIdSet);
 
     }
-
     private Set<Integer> searchRecipeIdListByTag(String keyword) {
         QueryWrapper<Tag> qw = new QueryWrapper<>();
         Set<Integer> recipeIdSet = new HashSet<>();
@@ -357,8 +335,8 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
         }
         List<RecipeTagBridge> recipeTagBridges = new ArrayList<>();
         if (tagIdList.size() != 0) {
-            QueryWrapper<RecipeTagBridge>  qw2=new QueryWrapper<>();
-            qw2.in("tag_id",tagIdList);
+            QueryWrapper<RecipeTagBridge> qw2 = new QueryWrapper<>();
+            qw2.in("tag_id", tagIdList);
             recipeTagBridges = recipeTagBridgeService.list(qw2);
         }
 
@@ -366,6 +344,19 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
         ) {
 
             recipeIdSet.add(recipeTagBridge.getRecipeId());
+        }
+        return recipeIdSet;
+    }
+
+    private Set<Integer> searchRecipeIdListByTitle(String keyword) {
+        QueryWrapper<Recipe> qw = new QueryWrapper<>();
+        Set<Integer> recipeIdSet = new HashSet<>();
+//        search tag using "like"
+        qw.like("recipe_name", keyword);
+        List<Recipe> recipes = list(qw);
+        for (Recipe r : recipes
+        ) {
+            recipeIdSet.add(r.getRecipeId());
         }
         return recipeIdSet;
     }
@@ -384,8 +375,8 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
         }
         List<IngredientRecipeBridge> ingredientRecipeBridges = new ArrayList<>();
         if (ingredientIdList.size() != 0) {
-            QueryWrapper<IngredientRecipeBridge> qw2=new QueryWrapper<>();
-            qw2.in("ingredient_id",ingredientIdList);
+            QueryWrapper<IngredientRecipeBridge> qw2 = new QueryWrapper<>();
+            qw2.in("ingredient_id", ingredientIdList);
             ingredientRecipeBridges = ingredientRecipeBridgeService.list(qw2);
         }
         for (IngredientRecipeBridge ingredientRecipeBridge : ingredientRecipeBridges
@@ -400,13 +391,20 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
         Recipe recipe = getById(id);
         RecipeResultVo vo = new RecipeResultVo(recipe);
         vo.setUrl(generateRecipeUrl(id));
-
         vo.setCoverPath(imgService.getPathById(recipe.getRecipeCoverId()));
         vo.setAuthor(userService.getUsernameById(recipe.getRecipeAuthorId()));
         List<Tag> tagList = recipeTagBridgeService.getTagsByRecipeId(recipe.getRecipeId());
         vo.setTagList(tagList);
-//TODO get tag list
         return vo;
+    }
+
+    private List<RecipeResultVo> getResultVoListByIdList(Set<Integer> idList) {
+        List<RecipeResultVo> voList = new ArrayList<>();
+        for (Integer id : idList
+        ) {
+            voList.add(getResultVoById(id));
+        }
+        return voList;
     }
 
     private String generateRecipeUrl(int id) {

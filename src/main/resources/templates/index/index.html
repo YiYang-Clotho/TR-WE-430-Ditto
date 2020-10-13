@@ -24,22 +24,22 @@
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <a href="/recipe/36"> <img src="https://cookiez-img2.s3.amazonaws.com/images/recipes/36/cover.jpg"
-                                                class="d-block  " height="500"  alt="">
+                                               class="d-block  " height="500" alt="">
                     </a>
                 </div>
                 <div class="carousel-item">
                     <a href="/recipe/43"> <img src="https://cookiez-img.s3.amazonaws.com/images/recipes/43/cover.jpg"
-                                                class=" d-block "  height="500"  alt="">
+                                               class=" d-block " height="500" alt="">
                     </a>
                 </div>
                 <div class="carousel-item">
                     <a href="/recipe/40"> <img src="https://cookiez-img.s3.amazonaws.com/images/recipes/40/cover.png"
-                                                class=" d-block " height="500"  alt="">
+                                               class=" d-block " height="500" alt="">
                     </a>
                 </div>
                 <div class="carousel-item">
                     <a href="/recipe/41"> <img src="https://cookiez-img.s3.amazonaws.com/images/recipes/41/cover.jpg"
-                                                class="d-block  " height="500" alt="">
+                                               class="d-block  " height="500" alt="">
                     </a>
                 </div>
             </div>
@@ -56,9 +56,9 @@
 </div>
 
 <div class="container d-flex justify-content-center">
-    <div class="row w-85">
+    <div class="row w-100">
 
-        <div class="col-sm-3 m-2" th:each="vo:${voList}">
+        <div class="col-3 ,-1" th:each="vo:${voList}">
             <a th:href="@{${vo.url}}">
                 <div class="p-3  d-flex flex-column shadow-sm rounded-10 shadow-0-2-4 ">
                     <img class="rounded-20 " th:src="@{${vo.coverPath==null?'/images/logo.png':vo.coverPath}}" alt="">
@@ -66,8 +66,18 @@
                     <p style="font-size: 14px;color: #6b6668;"
                        th:text="${#strings.abbreviate(vo.recipeDescription,100) }">Cooking a perfect batch of
                         white rice without a rice ... </p>
-                    <span class="d-flex"> <span
-                            class="ml-auto" style="font-size: 13px" th:text="${'By '+vo.author}"> Zhihao Liang</span>
+                    <span class="d-flex">
+                         <th:block th:each="tag,status: ${vo.getTagList()}">
+                                                       <span th:if="${status.count<=2}"
+                                                             th:text="${'&#xe612;'+tag.tagName}"
+                                                             type="button"
+                                                             class=" iconfont mx-1 ">
+                                          </span>
+                         </th:block>
+
+                        <span
+                                class="ml-auto" style="font-size: 13px"
+                                th:text="${'By '+vo.author}"> Zhihao Liang</span>
                 </span>
                 </div>
             </a>
