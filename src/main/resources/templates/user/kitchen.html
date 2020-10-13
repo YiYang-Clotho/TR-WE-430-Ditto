@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
-    <th:block th:include="/fragment/common.html :: head"></th:block>
+    <th:block th:include="fragment/common.html :: head"></th:block>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -10,7 +10,7 @@
 
 </head>
 <body>
-<header th:replace="/fragment/common.html :: header"></header>
+<header th:replace="fragment/common.html :: header"></header>
 
 <div class="container d-flex flex-column align-items-center">
     <div class="d-flex flex-column my-5 align-items-center">
@@ -70,7 +70,7 @@
     </div>
 </div>
 
-<th:block th:include="/fragment/common.html :: scripts"></th:block>
+<th:block th:include="fragment/common.html :: scripts"></th:block>
 <script type="text/javascript" src="/js/user/kitchen.js">
 </script>
 <script th:inline="javascript">

@@ -7,16 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-@SpringBootTest
-class CookiezApplicationTests {
-
-
-    @Test
-    void contextLoads() {
-
-//        JdbcTemplate jdbcTemplate;
-//        System.out.println(ClassLoader.getSystemResource("static").getPath());
-
-    }
-
-}
+//@SpringBootTest
+//class CookiezApplicationTests {
+//
+//
+//}

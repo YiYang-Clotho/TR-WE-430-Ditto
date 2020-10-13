@@ -1,12 +1,9 @@
 package com.ditto.cookiez.controller;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.ditto.cookiez.entity.Recipe;
 import com.ditto.cookiez.entity.vo.RecipeResultVo;
 import com.ditto.cookiez.service.IRecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -25,7 +22,7 @@ public class IndexController {
 
     @GetMapping("/")
     public ModelAndView index() {
-        ModelAndView mv = new ModelAndView("index/index");
+        ModelAndView mv = new ModelAndView("index");
         List<RecipeResultVo> voList = new ArrayList<>();
         int[] list2 = {36, 37, 38, 40, 48, 49, 50, 51};
 

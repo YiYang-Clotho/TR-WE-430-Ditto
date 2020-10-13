@@ -29,7 +29,7 @@ public class SearchController {
 
     @GetMapping("/search")
     public ModelAndView searchPage() {
-        return new ModelAndView("/search/search");
+        return new ModelAndView("search/search");
     }
 
     @PostMapping("/api/search/tags")

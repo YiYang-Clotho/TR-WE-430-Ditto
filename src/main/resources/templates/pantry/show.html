@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
-    <th:block th:include="/fragment/common.html :: head"></th:block>
+    <th:block th:include="fragment/common.html :: head"></th:block>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -10,7 +10,7 @@
 
 </head>
 <body>
-<header th:replace="/fragment/common.html :: header"></header>
+<header th:replace="fragment/common.html :: header"></header>
 
 <div class="container d-flex flex-column  align-items-center">
     <div class="d-flex flex-column mt-5 mb-5 align-items-center animate__fadeInLeftBig animate__bounceIn">
@@ -53,8 +53,8 @@
 
     <div class="row w-100" id="cardDiv"></div>
 </div>
-<footer th:replace="/fragment/common.html :: footer"></footer>
-<th:block th:include="/fragment/common.html :: scripts"></th:block>
+<footer th:replace="fragment/common.html :: footer"></footer>
+<th:block th:include="fragment/common.html :: scripts"></th:block>
 <script type="text/javascript" src="/js/pantry/show.js">
 </script>
 </body>

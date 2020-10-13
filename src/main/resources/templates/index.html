@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
-    <th:block th:include="/fragment/common.html :: head"></th:block>
+    <th:block th:include="fragment/common.html :: head"></th:block>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Hello Cookiez!</title>
 
 </head>
 <!-- Header -->
-<header th:replace="/fragment/common.html :: header"></header>
+<header th:replace="fragment/common.html :: header"></header>
 
 <!-- Banner -->
 <div class="container d-flex justify-content-center">
@@ -89,12 +90,12 @@
 
 
 <!-- Footer -->
-<footer th:replace="/fragment/common.html :: footer"></footer>
+<footer th:replace="fragment/common.html :: footer"></footer>
 
-<th:block th:include="/fragment/common.html :: scripts"></th:block>
+<th:block th:include="fragment/common.html :: scripts"></th:block>
 
-<script type="text/javascript" src="/js/index.js">
-</script>
+<script type="text/javascript"   th:src="@{/js/index.js}"></script>
+
 
 </body>
 </html>

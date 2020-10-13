@@ -5,7 +5,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <th:block th:include="/fragment/common.html :: head"></th:block>
+    <th:block th:include="fragment/common.html :: head"></th:block>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Step by step instructions</title>
     <link rel="stylesheet" href="/css/detail.css">
@@ -25,7 +25,7 @@
 
 </head>
 <body>
-<header th:replace="/fragment/common.html :: header"></header>
+<header th:replace="fragment/common.html :: header"></header>
 <div class ="container-fluid w-60">
     <div class="row welcome ml-auto">
         <h1 class="display-4">Greek Lemon Chicken and Potatoes</h1>
@@ -192,6 +192,6 @@
     </div>
     <hr>
 </div>
-<footer class="footer" th:replace="/fragment/common.html :: footer"></footer>
+<footer class="footer" th:replace="fragment/common.html :: footer"></footer>
 </body>
 </html>

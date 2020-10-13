@@ -10,6 +10,7 @@ import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.*;
 import com.amazonaws.services.s3.transfer.TransferManager;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
@@ -45,13 +46,13 @@ public class AwsClient {
      * @Title: uploadToS3
      * @Description:
      */
-    public static String uploadToS3(File tempFile, String remoteFileName) throws IOException {
+    public static String uploadToS3(MultipartFile tempFile, String remoteFileName) throws IOException {
         try {
+            ObjectMetadata objectMetadata = new ObjectMetadata();
             //upload file
-            s3.putObject(new PutObjectRequest(bucketName, remoteFileName, tempFile).withCannedAcl(CannedAccessControlList.PublicRead));
+            s3.putObject(new PutObjectRequest(bucketName, remoteFileName, tempFile.getInputStream(),objectMetadata).withCannedAcl(CannedAccessControlList.PublicRead));
             //get a request
-            GeneratePresignedUrlRequest urlRequest = new GeneratePresignedUrlRequest(
-                    bucketName, remoteFileName);
+
             //generate url
 
             return s3.getUrl(bucketName, remoteFileName).toString();
@@ -157,7 +158,6 @@ public class AwsClient {
 //        uploadToS3(tempFile, key);//上传文件
 //        String url = getUrlFromS3(key);//获取文件的url
 //        System.out.println(url);
-        AwsClient.uploadToS3(new File("D:\\1.png"), "/imagess/1.txt");
 
 //    	delFromS3(key);//删除文件
     }

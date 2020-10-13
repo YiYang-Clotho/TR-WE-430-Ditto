@@ -33,7 +33,7 @@ public class PantryController {
 
     @GetMapping("/pantry")
     public ModelAndView addRecipePage() {
-        ModelAndView mv = new ModelAndView("/pantry/show");
+        ModelAndView mv = new ModelAndView("pantry/show");
         return mv;
     }
 

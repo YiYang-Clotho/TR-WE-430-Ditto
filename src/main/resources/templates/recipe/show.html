@@ -4,14 +4,14 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="UTF-8">
-    <th:block th:include="/fragment/common.html :: head"></th:block>
+    <th:block th:include="fragment/common.html :: head"></th:block>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Step by step instructions</title>
     <link rel="stylesheet" href="/css/detail.css">
     <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
 </head>
 <body>
-<header th:replace="/fragment/common.html :: header"></header>
+<header th:replace="fragment/common.html :: header"></header>
 <div class="container d-flex w-75 flex-column">
 
 
@@ -103,7 +103,7 @@
 
 </div>
 
-<footer class="footer" th:replace="/fragment/common.html :: footer"></footer>
+<footer class="footer" th:replace="fragment/common.html :: footer"></footer>
 <script>
     function checkbox(obj) {
         if ($(obj).is(':checked') === true) {

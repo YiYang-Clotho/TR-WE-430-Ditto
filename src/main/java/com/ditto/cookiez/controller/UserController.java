@@ -96,7 +96,7 @@ public class UserController {
 
     @GetMapping("/login")
     public ModelAndView loginPage() {
-        return new ModelAndView("/user/login");
+        return new ModelAndView("user/login");
     }
 
     @PostMapping("/api/login")
@@ -147,15 +147,7 @@ public class UserController {
         return mv;
     }
 
-    @GetMapping("/user/saves")
-    public ModelAndView savesPage(@CookieValue(value = "accessToken") String accessToken) {
 
-        ModelAndView mv = new ModelAndView("user/saves");
-        User user = service.getUserByToken(accessToken);
-        mv.addObject("user", user);
-
-        return mv;
-    }
 
 
     @GetMapping("/user/profile")

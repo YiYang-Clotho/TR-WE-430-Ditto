@@ -34,9 +34,9 @@ public class FileUtil {
 
     public static String uploadAvatarToAws(MultipartFile file, int userId) throws IOException {
         String fileType = getFileType(Objects.requireNonNull(file.getOriginalFilename()));
-        File tempFile = createTempFileForImg(file);
-        String url = AwsClient.uploadToS3(tempFile, getAvatarRelativePath(userId, fileType));
-        tempFile.delete();
+//        File tempFile = createTempFileForImg(file);
+        String url = AwsClient.uploadToS3(file, getAvatarRelativePath(userId, fileType));
+
         return url;
     }
 
@@ -49,10 +49,10 @@ public class FileUtil {
 
     public static String uploadStepImgToAws(MultipartFile file, int recipeId, int stepOrder) throws IOException {
         String fileType = getFileType(Objects.requireNonNull(file.getOriginalFilename()));
-        File tempFile = createTempFileForImg(file);
-        System.out.println(file.getOriginalFilename());
-        String url = AwsClient.uploadToS3(tempFile, getRecipeStepRelativePath(recipeId, stepOrder, fileType));
-        tempFile.delete();
+//        File tempFile = createTempFileForImg(file);
+//        System.out.println(file.getOriginalFilename());
+        String url = AwsClient.uploadToS3(file, getRecipeStepRelativePath(recipeId, stepOrder, fileType));
+//        tempFile.delete();
         return url;
     }
 
@@ -62,9 +62,9 @@ public class FileUtil {
 
     public static String uploadCoverToAws(MultipartFile file, int recipeId) throws IOException {
         String fileType = getFileType(Objects.requireNonNull(file.getOriginalFilename()));
-        File tempFile = createTempFileForImg(file);
-        String url = AwsClient.uploadToS3(tempFile, getRecipeCoverRelativePath(recipeId, fileType));
-        tempFile.delete();
+//        File tempFile = createTempFileForImg(file);
+        String url = AwsClient.uploadToS3(file, getRecipeCoverRelativePath(recipeId, fileType));
+//        tempFile.delete();
         return url;
     }
 
