@@ -48,18 +48,7 @@ public class IngredientServiceImpl extends ServiceImpl<IngredientMapper, Ingredi
         return null;
     }
 
-    @Override
-    public Integer existedReturnId(String name) {
-        qw.clear();
-        Ingredient ingredient = getOne(qw.eq("ingredient_name", name));
-        if (ingredient != null) {
-            return ingredient.getIngredientId();
-        } else {
-            return -1;
-        }
 
-
-    }
 
     @Override
     public boolean save(Ingredient ingredient) {

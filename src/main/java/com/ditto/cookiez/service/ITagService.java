@@ -16,7 +16,7 @@ import java.util.Set;
  * @since 2020-09-16
  */
 public interface ITagService extends IService<Tag> {
-    Integer existedReturnId(String tagName);
+
 
 
 }

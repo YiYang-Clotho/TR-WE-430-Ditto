@@ -142,6 +142,7 @@ public class UserController {
              user = service.getUserByToken(accessToken);
         }
         List<RecipeResultVo> voList=recipeService.getResultVoListByUserId(user.getUserId());
+        log.info(voList.toString());
         mv.addObject("voList",voList);
         mv.addObject("user", user);
         return mv;

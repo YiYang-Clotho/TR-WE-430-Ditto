@@ -174,15 +174,11 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
 
         for (Tag tag : tags
         ) {
-            int idOrN1 = tagService.existedReturnId(tag.getTagName());
-            if (idOrN1 == -1) {
-                tagService.save(tag);
-            } else {
-                tag.setTagId(idOrN1);
-            }
+            tagService.save(tag);
             recipeTagBridgeService.save(new RecipeTagBridge(recipeId, tag.getTagId()));
         }
     }
+
 
     private void setUpCover(Map<String, MultipartFile> fileMap, Recipe recipe) throws IOException {
         if (fileMap.containsKey(coverKey)) {
@@ -212,7 +208,7 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
 
     }
 
-//    private void setUpStepImg(Map<String, MultipartFile> fileMap, Step step) throws IOException {
+    //    private void setUpStepImg(Map<String, MultipartFile> fileMap, Step step) throws IOException {
 //        if (fileMap.containsKey(coverKey)) {
 //            MultipartFile file = fileMap.get(coverKey);
 //            String url = FileUtil.uploadCoverToAws(file, recipe.getRecipeId());
@@ -222,7 +218,7 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
 //            recipe.setRecipeCoverId(img.getImgId());
 //        }
 //    }
-
+    @Transactional
     @Override
     public RecipeDTO getRecipe(Integer id) {
         Recipe recipe = getById(id);
@@ -297,6 +293,7 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
         return getResultVoListByIdList(recipeIdSet);
 
     }
+
     @Override
     public List<RecipeResultVo> searchByTitle(List<String> strList) {
         Set<Integer> recipeIdSet = new HashSet<>();
@@ -321,6 +318,7 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
         return getResultVoListByIdList(recipeIdSet);
 
     }
+
     private Set<Integer> searchRecipeIdListByTag(String keyword) {
         QueryWrapper<Tag> qw = new QueryWrapper<>();
         Set<Integer> recipeIdSet = new HashSet<>();
@@ -390,6 +388,7 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
     public RecipeResultVo getResultVoById(int id) {
         Recipe recipe = getById(id);
         RecipeResultVo vo = new RecipeResultVo(recipe);
+        vo.setId(id);
         vo.setUrl(generateRecipeUrl(id));
         vo.setCoverPath(imgService.getPathById(recipe.getRecipeCoverId()));
         vo.setAuthor(userService.getUsernameById(recipe.getRecipeAuthorId()));

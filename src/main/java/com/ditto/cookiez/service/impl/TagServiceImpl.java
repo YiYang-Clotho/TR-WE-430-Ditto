@@ -1,9 +1,11 @@
 package com.ditto.cookiez.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.ditto.cookiez.entity.Ingredient;
 import com.ditto.cookiez.entity.Recipe;
 import com.ditto.cookiez.entity.RecipeTagBridge;
 import com.ditto.cookiez.entity.Tag;
+import com.ditto.cookiez.mapper.IngredientMapper;
 import com.ditto.cookiez.mapper.TagMapper;
 import com.ditto.cookiez.service.IRecipeService;
 import com.ditto.cookiez.service.IRecipeTagBridgeService;
@@ -12,6 +14,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -32,17 +35,20 @@ public class TagServiceImpl extends ServiceImpl<TagMapper, Tag> implements ITagS
     IRecipeTagBridgeService recipeTagBridgeService;
     @Autowired
     IRecipeService recipeService;
+    @Resource
+    TagMapper mapper;
 
     @Override
-    public Integer existedReturnId(String tagName) {
-        qw.clear();
-        qw.eq("tag_name", tagName);
-        Tag tag = getOne(qw);
-        if (tag != null) {
-            return tag.getTagId();
+    public boolean save(Tag tag){
+        QueryWrapper<Tag> qw = new QueryWrapper<>();
+        qw.eq("tag_name", tag.getTagName());
+        List<Tag> list = mapper.selectList(qw);
+        if (list.size() >= 1) {
+            tag.setTagId(list.get(0).getTagId());
         } else {
-            return -1;
+            mapper.insert(tag);
         }
+        return true;
     }
 
 }

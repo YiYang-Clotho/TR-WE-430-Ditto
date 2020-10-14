@@ -38,7 +38,7 @@ public class StepServiceImpl extends ServiceImpl<StepMapper, Step> implements IS
         QueryWrapper<Step> qw = new QueryWrapper<>();
         qw.eq("recipe_id", recipeId);
         qw.eq("step_order", order);
-        return getOne(qw);
+        return list(qw).get(0);
     }
 
     @Override

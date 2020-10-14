@@ -10,13 +10,14 @@ $("img.rounded-20").each(function (i) {
     });
 })
 
-function deleteRecipe(id) {
+function deleteRecipe(obj) {
+
     bootbox.confirm("Are you sure you want to delete this recipe?", function (result) {
         if (result) {
             loading()
             axios.delete('/api/recipe',{
                 params: {
-                    recipeId:id
+                    recipeId:$(obj).attr('id')
                 }
             }).then(res=>{
                 completeLoading()

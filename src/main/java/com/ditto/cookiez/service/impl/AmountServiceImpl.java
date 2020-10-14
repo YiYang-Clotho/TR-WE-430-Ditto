@@ -7,6 +7,8 @@ import com.ditto.cookiez.service.IAmountService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * <p>
  * Service Class
@@ -24,7 +26,11 @@ public class AmountServiceImpl extends ServiceImpl<AmountMapper, Amount> impleme
         QueryWrapper<Amount> qw = new QueryWrapper<>();
         qw.eq("recipe_id", recipeId);
         qw.eq("ingredient_id", ingredientId);
-        return getOne(qw);
+        List<Amount> list = list(qw);
+        if (list.size() >= 1) {
+            return list.get(0);
+        }
+        return null;
 
     }
 

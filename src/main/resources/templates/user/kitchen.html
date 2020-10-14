@@ -59,8 +59,8 @@
                 <div class="ml-2">
                     <a th:href="@{${vo.url+'/edit'}}" class="btn btn-success rounded-50 "><i
                             class="iconfont icon-pencil mr-1"></i> Edit</a>
-                    <button class="btn bg-red-C14A4A rounded-50 " th:data-id="${vo.id}"
-                            onclick="deleteRecipe(this.getAttribute('data-id'))"  >
+                    <button class="btn bg-red-C14A4A rounded-50 " th:id="${vo.id}"
+                            onclick="deleteRecipe(this)"  >
                         <i class="iconfont icon-x mr-1"></i>Delete</button>
                 </div>
             </div>

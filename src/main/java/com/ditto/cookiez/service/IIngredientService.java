@@ -16,5 +16,5 @@ import java.util.List;
 public interface IIngredientService extends IService<Ingredient> {
 
     List<Ingredient> getIngredientsByTagId(Integer tagId);
-    Integer existedReturnId (String name);
+
 }
