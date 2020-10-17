@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+
+<html>
+
+<head>
+  <title>EVF2 - Health risk and precaution</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+    integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.css" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet" />
+</head>
+
+<body>
+  <!-- Header -->
+  <div id="headerDiv"></div>
+
+  <!-- Main -->
+  <section id="main">
+    <div class="inner">
+      <header class="major special">
+        <h1>EVF2 - Health risk and precaution</h1>
+      </header>
+
+      <h2>1. Diagram design</h2>
+      <!-- STUB: done -->
+      <p>
+        <p><b>Activity diagram: <br></b>
+          <b><img src="/images/evf2diagram.png" width="500" height="600" alt="" />
+        </p>
+        <p><b>Mock up diagram: <br></b>
+          <b><img src="/images/EVF2.png" width="600" height="300" alt="" />
+        </p>
+
+      <h2>2.Explanation</h2>
+      <h3>2.1 Description</h3>
+      <p style="color: black;">
+        This is a function that is added to recipe details as an extended feature. In the bottom left corner of the recipe description you can find nutrition info and the blue text underlined: View info. When the user clicks on it, nutritional information such as fat, calories or protein is displayed as a chat bubble to simplify the UI. When users want to close nutrition info, they just need to press "Hide info" next to the bubble to hide that information.
+      </p>
+      <h3>2.2 User story and criteria</h3>
+
+      <ul>
+
+        <li>
+          <b> Health risk:</b> <br />
+
+          <table data-toggle="table">
+            <thead>
+              <tr>
+                <th>User story</th>
+                <th>Acceptance criteria</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <b>As a</b> user
+                  <p><b>I want</b> to know how this recipe affects my health.</p>
+                  <p><b>so that</b> I can control my weekly menu based on it information</p>
+                </td>
+                <td>
+                  <p>
+                    <br><br>Criterion 0: <br>
+                    <b>Given</b> I am in the main page and I choose a recipe, system switches to the recipe details<br>
+                    <b><br>When</b> I click on the “View +” button next to the text “Precaution” <br>
+                    <b><br>Then</b> A chat bubble pop up AND user can read through the precaution<br>
+
+                    <br><br>Criterion 1: <br>
+                    <b>Given</b> I am in the main page and I choose a recipe, system switches to the recipe details<br>
+                    <b><br>When</b> I click on the “Hide -” button next to the text “Precaution” <br>
+                    <b><br>Then</b> The precaution disappeares<br>
+
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </li>
+
+        <br />
+        </ol>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <div id="footerDiv"></div>
+
+  <script src="/assets/js/common.js"></script>
+</body>
+
+</html>
