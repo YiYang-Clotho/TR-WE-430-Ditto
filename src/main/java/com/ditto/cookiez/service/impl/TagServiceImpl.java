@@ -24,6 +24,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -39,7 +40,7 @@ import java.util.Set;
  */
 @Service
 public class TagServiceImpl extends ServiceImpl<TagMapper, Tag> implements ITagService {
-    @Autowired
+    @Resource
     private RecipeMapper recipeMapper;
     private final Logger logger = LoggerFactory.getLogger(RecipeServiceImpl.class);
 
@@ -50,17 +51,32 @@ public class TagServiceImpl extends ServiceImpl<TagMapper, Tag> implements ITagS
     IRecipeTagBridgeService recipeTagBridgeService;
     @Autowired
     IRecipeService recipeService;
+    @Resource
+    TagMapper mapper;
 
     @Override
     public Integer existedReturnId(String tagName) {
         qw.clear();
         qw.eq("tag_name", tagName);
+        List<Tag> list= list(qw);
         Tag tag = getOne(qw);
         if (tag != null) {
             return tag.getTagId();
         } else {
             return -1;
         }
+    }
+    @Override
+    public boolean save(Tag tag){
+        qw.clear();
+        qw.eq("tag_name", tag.getTagName());
+        List<Tag> list= list(qw);
+        if (list.size() >=1) {
+            tag.setTagId(list.get(0).getTagId());
+        } else {
+           mapper.insert(tag);
+        }
+        return true;
     }
 
 }

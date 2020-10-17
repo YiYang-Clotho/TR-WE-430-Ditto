@@ -176,12 +176,7 @@ public class RecipeServiceImpl extends ServiceImpl<RecipeMapper, Recipe> impleme
 
         for (Tag tag : tags
         ) {
-            int idOrN1 = tagService.existedReturnId(tag.getTagName());
-            if (idOrN1 == -1) {
-                tagService.save(tag);
-            } else {
-                tag.setTagId(idOrN1);
-            }
+          tagService.save(tag);
             recipeTagBridgeService.save(new RecipeTagBridge(recipeId, tag.getTagId()));
         }
     }
