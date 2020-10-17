@@ -117,11 +117,6 @@ public class RecipeController {
         return Response.bad("Delete Failed");
     }
 
-    @GetMapping("/recipe/detail")
-    public ModelAndView recipeDetail() {
-        ModelAndView mv = new ModelAndView("recipe/detail");
-        return mv;
-    }
 
     @PostMapping("/api/recipe")
     public ResponseEntity<JSONObject> addRecipe(HttpServletRequest request, @RequestParam("data") String str) throws IOException {
