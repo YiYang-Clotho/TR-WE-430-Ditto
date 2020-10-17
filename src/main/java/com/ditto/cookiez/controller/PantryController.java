@@ -3,7 +3,10 @@ package com.ditto.cookiez.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.ditto.cookiez.entity.Ingredient;
+import com.ditto.cookiez.entity.vo.RecipeResultVo;
 import com.ditto.cookiez.service.IPantryService;
+import com.ditto.cookiez.service.IRecipeService;
+import com.ditto.cookiez.utils.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +28,8 @@ import java.util.List;
 public class PantryController {
     @Autowired
     IPantryService service;
+    @Autowired
+    IRecipeService recipeService;
 
     @GetMapping("/pantry")
     public ModelAndView addRecipePage() {
@@ -34,8 +39,10 @@ public class PantryController {
 
     @PostMapping("/api/pantry")
     public ResponseEntity<JSONObject> savePantry(@RequestBody JSONObject param) {
-        service.savePantry(param);
-        return null;
+        List<String> list = JSONObject.parseArray(param.getJSONArray("keywords").toString(), String.class);
+        List<RecipeResultVo> voList = recipeService.searchByIngredients(list);
+        return Response.ok("search successfully", voList);
+
     }
 
 }

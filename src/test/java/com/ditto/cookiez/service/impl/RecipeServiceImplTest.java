@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -86,11 +87,29 @@ class RecipeServiceImplTest {
     void search() {
         List<RecipeResultVo> vo = service.search("a");
         System.out.println(vo.toString());
-        log.info(vo.size()+"");
+        log.info(vo.size() + "");
     }
 
     @Test
     void getResultVoById() {
-        System.out.println( service.getResultVoById(20));
+        System.out.println(service.getResultVoById(20));
+    }
+
+    @Test
+    void searchByIngredients() {
+        List<String> stringList = new ArrayList<>();
+        stringList.add("divided");
+       List<RecipeResultVo> list= service.searchByIngredients(stringList);
+        log.info(list.toString());
+
+
+    }
+
+    @Test
+    void searchByTags() {
+        List<String> stringList = new ArrayList<>();
+        stringList.add("shit");
+        List<RecipeResultVo> list= service.searchByTags(stringList);
+        assert list.size()==1;
     }
 }

@@ -23,16 +23,24 @@
             </ol>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="/images/Slides_0.jpg" class="d-block w-100" width="1112px" height="370px" alt="">
+                    <a href="/recipe/36"> <img src="https://cookiez-img2.s3.amazonaws.com/images/recipes/36/cover.jpg"
+                                                class="d-block  " height="500"  alt="">
+                    </a>
                 </div>
                 <div class="carousel-item">
-                    <img src="/images/Slides_1.jpg" class="d-block w-100" width="1112px" height="370px" alt="">
+                    <a href="/recipe/43"> <img src="https://cookiez-img.s3.amazonaws.com/images/recipes/43/cover.jpg"
+                                                class=" d-block "  height="500"  alt="">
+                    </a>
                 </div>
                 <div class="carousel-item">
-                    <img src="/images/Slides_2.jpg" class="d-block w-100" width="1112px" height="370px" alt="">
+                    <a href="/recipe/40"> <img src="https://cookiez-img.s3.amazonaws.com/images/recipes/40/cover.png"
+                                                class=" d-block " height="500"  alt="">
+                    </a>
                 </div>
                 <div class="carousel-item">
-                    <img src="/images/Slides_3.jpg" class="d-block w-100" width="1112px" height="370px" alt="">
+                    <a href="/recipe/41"> <img src="https://cookiez-img.s3.amazonaws.com/images/recipes/41/cover.jpg"
+                                                class="d-block  " height="500" alt="">
+                    </a>
                 </div>
             </div>
             <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
@@ -49,66 +57,22 @@
 
 <div class="container d-flex justify-content-center">
     <div class="row w-85">
-        <!--
-        <tr th:each="recipe : ${recipes}">
-            <div class="col-sm-4">
-                <div class="card" style="width: 225px;  margin: center;">
-                    <img src="/images/fired_rice.jpg" class="card-img-top" alt="">
-                    <div class="card-body">=
-                        <td th:text="${recipe.title}" class="card-title">Recipe title</td>
-                        <td th:text="${recipe.auther}" class="card-text">Recipe author</td>
-                    </div>
-                    <div class="card-body text-center">
-                        <a href="#" class="card-link">link  </a>
-                        <a href="#" class="card-link">link  </a>
-                        <a href="#" class="card-link">link</a>
-                    </div>
-                </div>
-            </div>
-        </tr>
-        -->
 
-        <div class="col-sm-3" th:each="vo:${voList}">
+        <div class="col-sm-3 m-2" th:each="vo:${voList}">
             <a th:href="@{${vo.url}}">
                 <div class="p-3  d-flex flex-column shadow-sm rounded-10 shadow-0-2-4 ">
-                    <img class="rounded-20 " th:src="@{${vo.coverPath}}" alt="">
+                    <img class="rounded-20 " th:src="@{${vo.coverPath==null?'/images/logo.png':vo.coverPath}}" alt="">
                     <span style="font-size: 20px" th:text="${vo.recipeName}"></span>
                     <p style="font-size: 14px;color: #6b6668;"
                        th:text="${#strings.abbreviate(vo.recipeDescription,100) }">Cooking a perfect batch of
                         white rice without a rice ... </p>
-                    <span class="d-flex"><i class="far fa-heart" style="color: #C14A4A" aria-hidden="true"></i> <span
+                    <span class="d-flex"> <span
                             class="ml-auto" style="font-size: 13px" th:text="${'By '+vo.author}"> Zhihao Liang</span>
                 </span>
                 </div>
             </a>
         </div>
-        <!--                <div class="card-body text-center">-->
-        <!--                    <a href="#" class="card-link"><i class="fa fa-bookmark" style="color: #C14A4A"-->
-        <!--                                                     aria-hidden="true"> </i></a>-->
-        <!--                    <a href="#" class="card-link"><i class="fa fa-bars" style="color: #C14A4A" aria-hidden="true"></i>-->
-        <!--                    </a>-->
-        <!--                    <a href="#" class="card-link"><i class="far fa-heart" style="color: #C14A4A" aria-hidden="true"></i>-->
-        <!--                    </a>-->
-        <!--                </div>-->
 
-
-<!--        <div class="col-sm-3">-->
-<!--            <div class="card" style="color: #C14A4A; width: 225px;">-->
-<!--                <img src="/images/salad.jpg" class="card-img-top" alt="">-->
-<!--                <div class="card-body">-->
-<!--                    <h5 class="card-title">Salad</h5>-->
-<!--                    <p class="card-text">Author</p>-->
-<!--                </div>-->
-<!--                <div class="card-body text-center">-->
-<!--                    <a href="#" class="card-link"><i class="fa fa-bookmark" style="color: #C14A4A"-->
-<!--                                                     aria-hidden="true"> </i></a>-->
-<!--                    <a href="#" class="card-link"><i class="fa fa-bars" style="color: #C14A4A" aria-hidden="true"></i>-->
-<!--                    </a>-->
-<!--                    <a href="#" class="card-link"><i class="far fa-heart" style="color: #C14A4A" aria-hidden="true"></i>-->
-<!--                    </a>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
 
     </div>
 </div>

@@ -16,8 +16,10 @@
     />
     <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/orkney" type="text/css"/>
     <link rel="stylesheet" href="/css/app.css">
+    <script src="/js/public/iconfont.js"></script>
     <link rel="stylesheet" href="/css/icon.css">
     <link rel="stylesheet" href="/css/icon2.css">
+    <link rel="stylesheet" href="/css/loading.css">
 
 </head>
 <body>
@@ -44,12 +46,12 @@
                     <a class="nav-link" href="/tags"><i class="iconfont icon-tag mr-1"></i>Tags</a>
                 </li>
             </ul>
-            <form class="form-inline mx-2 my-lg-0 ml-5" action="#" th:action="@{/search}" method="get">
-                <input class="form-control mr-sm-2 ml-4" name="keyword" style="width:20em; height:2em" type="search" placeholder="Search" aria-label="Search">
+<!--            <form class="form-inline mx-2 my-lg-0 ml-5" action="#" th:action="@{/search}" method="get">-->
+<!--                <input class="form-control mr-sm-2 ml-4" name="keyword" style="width:20em; height:2em" type="search" placeholder="Search" aria-label="Search">-->
 
-                <button class="btn btn-outline-danger my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
-            </form>
-            <ul class="navbar-nav " style="margin-left: 3.5em">
+<!--                <button class="btn btn-outline-danger my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>-->
+<!--            </form>-->
+            <ul class="navbar-nav ml-auto " style="margin-left: 3.5em">
                 <li class="nav-item">
                     <a class="nav-link" href="/login">Join us! Login</a>
                 </li>
@@ -115,6 +117,8 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
     <script src="/js/public/common.js"></script>
     <script src="/js/public/jqthumb.min.js"></script>
+
+
 </div>
 </body>
 </html>

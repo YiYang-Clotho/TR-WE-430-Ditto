@@ -12,12 +12,15 @@
 <body>
 <header th:replace="/fragment/common.html :: header"></header>
 <div class="container d-flex justify-content-center">
-    <div class="row my-5 w-75 animate__fadeInRightBig animate__bounceIn">
-            <input class="w-50 border-green-28A745 rounded-50" name="tag_name" id="tag_name" type="text"
-                   placeholder="Type something for searching">
-            <button class="btn bg-red-C14A4A rounded-50  ml-auto" onclick="handleSearchBtn(this)">
-                <i class="iconfont icon-sousuo
-                mr-1"></i>Search Recipes</button>
+    <div class="d-flex flex-column my-5 w-75 animate__fadeInRightBig animate__bounceIn">
+        <label for="tag_name">
+            Separated by commas, press Enter to search
+        </label><input class="w-50 border-green-28A745 rounded-50" name="tag_name" id="tag_name" type="text"
+                                             placeholder="Search Recipes with Tags">
+<!--        <button class="btn bg-red-C14A4A rounded-50 mt-5 mr-auto" onclick="handleSearchBtn(this)">-->
+<!--            <i class="iconfont icon-sousuo-->
+<!--                mr-1"></i>Search Recipes-->
+<!--        </button>-->
     </div>
 </div>
 
@@ -44,14 +47,11 @@
     </div>
 -->
 
-    <div class="container d-flex justify-content-center border-red-C14A4A" id="cardDiv">
-        <div class="d-flex flex-column align-items-center row">
-            <h1 class="text-inkfree" style="font-size:3.2em">Please enter the keywords!</h1>
-        </div>
-
-
-
-
+<div class=" container d-flex justify-content-center border-red-C14A4A flex-wrap p-4" id="cardDiv">
+    <div class="d-flex flex-column  row">
+        <h1 class="text-inkfree" style="font-size:3.2em">Please enter the keywords!</h1>
+    </div>
+</div>
 
 
 <th:block th:include="/fragment/common.html :: scripts"></th:block>
@@ -60,8 +60,7 @@
 <script th:inline="javascript">
 
 </script>
-<script ype="text/javascript" src="/js/tag/tags.js">
-
+<script type="text/javascript" src="/js/tag/tags.js">
 </script>
 </body>
 </html>

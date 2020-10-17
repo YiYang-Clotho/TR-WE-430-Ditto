@@ -202,19 +202,22 @@ function submit() {
     let data = getJsonData()
     formData.append("data", JSON.stringify(data))
     bootbox.confirm("Are you sure you want to submit this recipe?", function (result) {
-        if (result) {
 
+        if (result) {
+            loading();
             axios.post('/api/recipe', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
             }).then(res => {
+                completeLoading()
                 console.log(res)
                 let recipeId = res['data']['data']['recipeId']
                 bootbox.alert("Add a recipe Successfully!")
                 window.location.replace('/recipe/' + recipeId)
                 // window.location.replace("/");
             }).catch(err => {
+                completeLoading()
                 bootbox.alert("Failed to add")
                 console.log(err)
             })
@@ -231,19 +234,21 @@ function update() {
 
     bootbox.confirm("Are you sure you want to update this recipe?", function (result) {
         if (result) {
-
+            loading();
             axios.put('/api/recipe', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
             }).then(res => {
+                completeLoading()
                 console.log(res)
 
                 bootbox.alert("Update the recipe Successfully!")
                 formData = new FormData()
-                window.location.reload()
+                window.location.replace('/recipe/' + recipeId)
                 // window.location.replace("/");
             }).catch(err => {
+                completeLoading()
                 bootbox.alert("Failed to add")
                 console.log(err)
             })

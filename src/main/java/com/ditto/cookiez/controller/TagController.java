@@ -2,34 +2,20 @@ package com.ditto.cookiez.controller;
 
 
 import com.alibaba.fastjson.JSONObject;
-import com.ditto.cookiez.entity.Recipe;
-import com.ditto.cookiez.entity.Tag;
-import com.ditto.cookiez.entity.User;
-import com.ditto.cookiez.entity.dto.RecipeDTO;
 import com.ditto.cookiez.entity.vo.RecipeResultVo;
 import com.ditto.cookiez.service.IRecipeService;
-import com.ditto.cookiez.service.IStepService;
 import com.ditto.cookiez.service.ITagService;
-import com.ditto.cookiez.service.IUserService;
 import com.ditto.cookiez.utils.Response;
-import com.ditto.cookiez.utils.WebUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * <p>
@@ -56,17 +42,13 @@ public class TagController {
 
     @PostMapping("/tags")
     public ResponseEntity<JSONObject> searchByTag(@RequestBody JSONObject param, HttpServletResponse response) {
-        String tag_name = param.getString("tag_name");
-        if (tag_name == null) {
+        List<String> list = JSONObject.parseArray(param.getJSONArray("tag_name").toString(), String.class);
+        if (list.size()==0) {
             return Response.ok("Do not have to find");
         }else{
-            List<RecipeResultVo> recipeList = recipeService.searchTagOnly(tag_name);
+            List<RecipeResultVo> recipeList = recipeService.searchByTags(list);
             System.out.println("Print recipeList" + recipeList.toString());
-            if (recipeList != null) {
-                return Response.ok("Succeed to find the recipes", recipeList);
-            } else {
-                return Response.bad("Failed to find the recipes");
-            }
+            return Response.ok("Succeed to find the recipes", recipeList);
         }
 
     }
