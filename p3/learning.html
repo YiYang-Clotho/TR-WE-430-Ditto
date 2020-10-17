@@ -13,6 +13,7 @@
         integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.css" />
     <link rel="stylesheet" href="/assets/css/main.css" />
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/roboto" type="text/css" />
     <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet" />
 </head>
 
@@ -21,13 +22,68 @@
     <div id="headerDiv"></div>
 
     <!-- Main -->
-    <section id="main">
-
-
+    <section id="main" class="container w-75">
+        <h1>What found easy? difficult? how to fix?</h1>
+        <p>In this project, user stories design is easier than other parts. The most difficult part of our project is
+            function implementing. Though spring boot is one of the best Java frameworks in the world. We still met some
+            problems in how to set up the authority management. For example, we try to use jwt (java web token) to
+            authorize the users. The most common solution is to put the token to the header using Axios (an HTTP request
+            lib) and send it to the server, but we use thymeleaf to build our interface rather than react.js or vue.js.
+            Therefore it is hard to put the web token to the request’s header and send it to the spring boot. After the
+            discussion in the meeting, we chose to put the token to request cookies and set an interceptor function to
+            get requests and verify the token in the cookie. Another unexpected and difficult part is to implement file
+            upload functionality. Firstly, we prefer to store recipe pictures and avatars locally. However, we can not
+            share recipes. So we selected a s3 bucket and learned AWS SDK to store pictures online.
+        </p>
+        <h1>expecting Challenges</h1>
+        <p>
+            One of the challenges we expect is feature implementation including data delivery between the browser and
+            the server. Thymeleaf and HTML only support “get” and “post” HTTP requests. So we chose Axios to send HTTP
+            requests from the front end. We also did lots of research to allow the server to receive data properly.
+            Another challenge we expect is interaction functionality. We find lots of material and tutorials to learn
+            javascript because javascript is very useful to build a dynamic web page and improve user experiences such
+            as error prevention and animation. The last challenge we expect is the user interface. We must know HTML and
+            CSS a lot to build a user-friendly interface, so we learn flex to plan web pages’ layouts and learn
+            bootstrap to build a proper interface for our system.
+        </p>
+        <h1>what we learned</h1>
+        <p>We learned a lot from this course. First is communication. In order to implement our system “Cookiez”, we
+            have to collaborate to design the system, to discuss user stories, to distribute tasks and so on. We have a
+            weekly meeting which allows us to share what we have done and review the work we have done. This is an
+            excellent chance to exercise our ability to describe something. Besides, we learned how to take advantage of
+            AWS to help us to develop our project. We realize what ACI(Access Control Information) is and can set access
+            control for the public. In terms of EC2, we do lots of research to deploy our project on a Linux server.
+            Finally, we chose docker as our solution because docker is popular in the industry and there are many
+            tutorials about docker. We also learn RDS in aws because we need to synchronize our data.
+        </p>
+        <h1>hindsight</h1>
+        <p>Plan changed in the feature implementation part. In hindsight, we still need to change our plan due to lack
+            of project experience. Several use stories have to be modified. If there is one thing over again, we hope we
+            can design user stories carefully and precisely with more acceptance criteria. We should learn more web
+            programming technologies and concepts like spring boot, MVC, restful and so on. JavaScript is also very
+            important but we did not use this web language skillfully.
+        </p>
+        <h1>About timetable </h1>
+        <p>As a whole, our timetable is realistic. We seldom meet unexpected events such as underestimated tasks and
+            deadlines from other courses. When unexpected events break our timetable, we always hold an emergency
+            meeting to distribute tasks again to limit the negative influence as soon as possible. For example, when we
+            are implementing the “add recipe” feature, Zhihao cannot finish his job on time. Therefore we hold a meeting
+            to let Heran help Zhihao to implement the feature.
+        </p>
+        <h1>tools and technologies worked out as expected</h1>
+        <p>We learn a lot from the tools and technologies like git, Trello, mybatis, spring boot and thymeleaf. All
+            tools and technologies we used worked out as expected. However, thymeleaf is not compatible completely with
+            javascript. We had to do a lot of research to avoid strange errors.
+        </p>
+        <h1>unanticipated events influence</h1>
+        <p>There are several events which affect our progress. First is other courses’ assignments. We need to adjust
+            our plan because of the impacts of other courses. Some group members have to delay the subtask due date.
+            Second, we need to endure terrible connection speed with aws education because several group partners are in
+            China. We spent lots of time waiting for responses.</p>
     </section>
     <!-- Footer -->
-       <footer class="navbar-fixed-bottom">
-            <div id="footerDiv"></div>
+    <footer class="navbar-fixed-bottom">
+        <div id="footerDiv"></div>
     </footer>
 
     <script src="/assets/js/common.js"></script>

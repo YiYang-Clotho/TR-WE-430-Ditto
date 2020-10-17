@@ -1760,10 +1760,11 @@ body,
 input,
 select,
 textarea {
-	font-family: "Lato", sans-serif;
+	font-family: "RobotoRegular", sans-serif;
 	font-size: 15pt;
-	font-weight: 300;
 	line-height: 2;
+	font-weight: normal;
+	font-style: normal;
 }
 
 @media screen and (max-width: 1680px) {

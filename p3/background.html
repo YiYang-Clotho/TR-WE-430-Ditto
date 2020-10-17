@@ -13,6 +13,7 @@
         integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.css" />
     <link rel="stylesheet" href="/assets/css/main.css" />
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/roboto" type="text/css" />
     <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet" />
 </head>
 
@@ -21,10 +22,24 @@
     <div id="headerDiv"></div>
 
     <!-- Main -->
-    <section id="main" class="container">
-        <header class="major special">
-            <h1>Our Group</h1>
-        </header>
+    <section id="main" class="container w-75">
+        <h1>
+            Motivation
+        </h1>
+        <p>
+            Originally, we are trying to build a recipe sharing web application, which is mainly to offer ideas to
+            people who have ingredients in their kitchen but don't know what to cook. After having a meeting with Dr.B,
+            we agree with doing some adjustments to this idea, which backward the procedure of the original idea. The
+            website will let users choose ingredients first and it will recommend recipes accordingly. Due to the fact
+            that our group has not done any web application before, it is challenging enough to endeavour to achieve
+            this project. However, our group has all the necessary knowledge to do this project. Some of us are good at
+            HTML, CSS, JS which benefits building front-end and some of us are fond of coding which helps back-end. We
+            all have experience with Java and choose Spring Boot as a new tool to code. And we all know about database
+            concepts and could have collaborative teamwork with building a well-organized database. As a result, our
+            group chooses this topic as our project.
+
+        </p>
+        <h1>People</h1>
         <div>
             <table data-toggle="table">
                 <thead>
@@ -81,15 +96,99 @@
                 </tbody>
             </table>
         </div>
+        <h1>Aim and Goals</h1>
 
+        <p>In the current Covid-19 epidemic situation in most countries. People are restricted from going out and that
+            greatly affects the quality of their meals. The project we decided to implement is a food and recipe
+            application that organizes a list of recipes based on the ingredients in the user's kitchen. It is expected
+            to solve the problem of not knowing how to use the ingredients at home and providing ideas on what to cook.
+            The application will have several goals as below to achieve the above aim.
+        </p>
+        <ol>
+            <li>
+                <h2>ACCOUNT SYSTEM</h2>
+                User can easily change to the registration page in the login page. After creating an account, users can
+                log in, logout, manage the profile. Furthermore, they can post and edit the recipes or comment on other
+                recipes. We provide a profile card and users can modify their personal information. In this feature,
+                users can have their account to access more functions, such as posting recipes, managing recipes and
+                writing a comment for a recipe. In addition, only registered users can save and collect their favourite
+                recipes.
+
+            </li>
+            <li>
+                <h2>SLIDER</h2>
+                Users can select a slider picture and navigate to the recipe page directly. The slider is shown on the
+                homepage which has four pages, and they are the best four liked recipes of the website. The slider can
+                switch the pages automatically and users can also switch pages by clicking the button under the slices.
+                Furthermore, the user can access the recipe detail page directly by simply clicking the picture.
+
+            </li>
+            <li>
+                <h2>KITCHEN AND PANTRY SYSTEM </h2>
+                Users can go to the profile page to access the pantry function. In the pantry page, the user can input
+                the ingredient’s name and select the ingredient. When the user touches the search recipes button. The
+                system will return related recipes. Registered users can record what ingredient users have in the real
+                kitchen like ingredients so that the system can recommend a suitable website by those ingredients.
+
+            </li>
+            <li>
+                <h2>RECIPE THUMBNAIL </h2>
+                Users can quickly select recipes from recipe thumbnails and register users can directly like or save the
+                recipes. This feature allows users to select what recipe they need rapidly. We provide a small recipe
+                card with the title, author and its tags. Registered users also can directly like the recipe through the
+                “like” button and save the recipe through a save button.
+
+            </li>
+            <li>
+                <h2>STEP-BY-STEP INSTRUCTIONS</h2>
+                Each recipe will have detailed descriptions of ingredients and cooking methods. Besides, step-by-step
+                instructions with pictures will be applied to help the user to cook. Step-by-step instructions page
+                should contain three parts which are recipe information, ingredients and instructions. For the first
+                part, this section will show the user the recipe photo and its author. All the related tags will be
+                shown as well. If users want to see more of similar recipes, they can click on the tag. The website will
+                look through the database again and show the recipes containing this tag. The second part is
+                ingredients, all the specific names and amounts will be shown. Besides, this part is designed to be a
+                checkbox which users could check if they have those ingredients. For the last part is instructions,
+                detailed steps will be offered with pictures. Users could use those for references.
+
+
+            </li>
+            <li>
+                <h2>TAGS AND SEARCHING</h2>
+                Users can touch recommended tags or type in a recipe’s name or an ingredient’s name to search for a
+                recipe. To help users find their suitable recipes, tags will be used in recipes. Those tags may contain
+                key ingredients. Users will have a more pleasing searching experience because tags help them to target
+                recipes more precisely. Tags are also structured in the system. The system provides different kinds of
+                tags to help the user to find what they want rapidly. In the result page, the user can directly save
+                recipes through the save button and see more about the recipe.
+
+
+            </li>
+            <li>
+                <h2>UPLOAD AND MANAGE POSTS</h2>
+                We provide excellent UX and let users upload their recipe. Users can add title, upload cover picture,
+                add a description, add ingredients, add steps with a picture to describe the recipe in detail. We also
+                provide an option to allow the user to save as a draft. Users can post and share the recipes. When
+                posting the recipes, it is required to provide the title, ingredients, steps and pictures for the steps.
+                Users can add tags for the recipes to make sure that recipes can be searched easily by the tags. For
+                example, if the key Ingredient of a recipe is the egg, then the egg can be one of the tags. Furthermore,
+                if the user believes that salt flavour is special for the recipe, he or she can also add 'salt' in the
+                tags area. Managed recipes are the feature that users can edit or delete the recipe if they wish.
+            </li>
+        </ol>
+        <h1>Scope</h1>
+        <p>We have identified the following features that will form the working prototype of the application. They are
+            listed in order, from the most basic functions to the extended functions. The first seven features are in
+            the timeline, and the last five are completed as time permits.
+        </p>
 
 
 
     </section>
 
     <!-- Footer -->
-       <footer class="navbar-fixed-bottom">
-            <div id="footerDiv"></div>
+    <footer class="navbar-fixed-bottom">
+        <div id="footerDiv"></div>
     </footer>
 
     <script src="/assets/js/common.js"></script>

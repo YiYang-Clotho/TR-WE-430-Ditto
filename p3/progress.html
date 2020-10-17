@@ -13,6 +13,7 @@
         integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.css" />
     <link rel="stylesheet" href="/assets/css/main.css" />
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/roboto" type="text/css" />
     <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet" />
 </head>
 
@@ -21,13 +22,128 @@
     <div id="headerDiv"></div>
 
     <!-- Main -->
-    <section id="main">
+    <section id="main" class="container w-75">
+        <h1>
+            Motivation
+        </h1>
+        <h2>Description</h2>
+        <p>Our team started the project with a first-team meeting discussing the main topic and what kind of IT system
+            we will develop. After discussion, we decided to develop a Web application mainly because all of the team
+            members have related web developing experience and knew basic developing knowledge like HTML, JS and
+            Bootstrap. Regarding the topic, we decided to take Gia’s Intro to IT’s project idea, which is to develop a
+            recipe website. After that, we went into the planning phase.</p>
 
+        <p>During the planning phase, we took some original functions from Gia’s project idea. And we also added some
+            more
+            functions to this project. For example, we considered during the epidemic time, people can’t go out and have
+            to
+            cook themselves. With Dr.B’s suggestion, we decided to add a Pantry function which allows the user to input
+            ingredients first and the system will offer related recipes. Besides, when we looked through some existing
+            websites, we noticed that although they offered steps to help users cook, it is still hard to follow without
+            pictures’ assistance. Therefore, when designing the step-by-step page, we decided to add some procedure
+            pictures
+            to help users to understand. After several meetings to debate and exchange ideas, we finally defined the
+            scope
+            of the whole project and we chose some functions as MVFs which we have the confidence to realize in the
+            future,
+            for others, they are considered as EVFs which we will develop if time permits.</p>
+
+        <p>After planning, we moved to the designing phase. We decided to use Invision to make a mock-up. This part did
+            not
+            go that well as we expected. Firstly, some teams were not very familiar with Invision. It took us more time
+            to
+            learn to use this Studio. And it is hard to track those studio files with Github. Therefore, we assigned
+            each
+            member an independent page to design and put all sections together. Besides, we also used LucidChart to
+            design
+            the ER diagram for building databases. In this phase, we also learned the basics about SpringBoot Frame and
+            Maven then set up the environment for further development.</p>
+        <p> Regarding the implementation phase, we encountered some major problems. First of all, it took extra time to
+            study related knowledge like Thymeleaf and MyBaits. About Thymeleaf, we used this technology to make the
+            website
+            interactive, which we could leave spaces for recognition in the HTML page and fill those with recipe data.
+            For
+            MyBaits, it could offer us some methods to connect with databases, which is convenient and we don’t have to
+            write SQL commands. We had plenty of errors when trying to implement them and spent lots of time debugging
+            and
+            trying to make sure codes could run as expected. Second, we had a major delay due to the problem of losing
+            control of our online database. We accidentally uploaded our application configuration file which contains
+            our
+            online database’s address and password. Later, we found that all the tables had been locked and the hacker
+            left
+            us a warning to pay to get our tables back. Due to this reason, we changed our plan to slow down our coding
+            process to rebuild a new database.
+        </p>
+        <p> Luckily, after having multiple team meetings, we still caught up with the schedule and realized all the
+            MVFs. We
+            use the docker to deploy our website to AWS platform. The only thing that bothers us is that we have to
+            change
+            the key periodically to reconnect with AWS so we can add recipes.
+        </p>
+
+
+        <p> All in all, the whole process went pretty well even though we met some major challenges. We managed to
+            achieve
+            all the MVFs and designed EVFs for further development. About dead-ends, we changed some functionalities’
+            performance, for example, we firstly designed the Pantry function to let users choose ingredients and the
+            website will update on the main page automatically. But we found that too challenging, therefore, we
+            adjusted
+            this function to display the results recipes only. Although using new technologies could lead us to many
+            unexpected bugs, we still appreciate this very opportunity to gain knowledge and experience along the way.
+            For
+            the team working, some members are not as active as others and sometimes we have to revise others’ work. We
+            still managed to solve this by compromising and holding meetings to exchange ideas. Finally, we learned
+            valuable
+            lessons by developing this project.</p>
+        <h2>Extended Viable Feature</h2>
+        <p>We decided to present this part in a different section. You can check this section in the navbar.</p>
+        <h2>Scope creep</h2>
+        <p>Thanks to the detailed planning at the beginning of this project, we did not change the scope of the project.
+            However, we did some adjustments on the MVFs, firstly we did not specify the US which is epic. After having
+            team meetings, we clarified those features and drew a conclusion on how to realize those functionalities.
+            And during the implementation phase, we did consider changing the scope because our online database was
+            hacked and we need extra time to fix that. At last, we held a meeting and decided not to change and continue
+            coding.
+        </p>
+        <h2>Windfall</h2>
+        <p>About windfall, we did realize MVF2 earlier than our exceptions, originally we thought it would be hard to
+            create a slider which could change recipe pictures automatically. After looking through some resources, we
+            found it easy to be accomplished by using the Bootstrap carousel indicator. Everything else is all on track
+            and finished according to schedule.
+        </p>
+        <h2>Progress</h2>
+        <p>When developing our project, we followed the estimation form to help us monitor the progress. Regarding
+            results, some of MVFs are ahead of the timetable, and about later development, we encountered a problem with
+            the online database. Therefore, we had multiple delays for that part. Eventually, we finished all the MVFs
+            and detailed progress information are listed below, sorted by MVFs.
+        </p>
+        <img src="/images/text/tasktable.png" width="600px" alt="" />
+
+        <h2>Testing</h2>
+        <p> During the designing phase, we did usability testing. When we finished the mock-up, we presented it to the
+            tutor and asked him for opinions. We did some changes on editing button icons and did some more formatting
+            to make our mock-up more formal.</p>
+
+        <p>For the back end, we used SpringBoot to test all the methods. Firstly, we did not pass the testing, it
+            reported there were some bugs, after debugging, we managed to pass all the test units.</p>
+
+        <p>For the front end, we test all the functionalities manually by following the user stories’ acceptance
+            criteria and see if we could achieve the goal. During the testing, we found some user stories maybe still
+            too epic and we specified it into some detailed user stories. After that, we finished all of the testings,
+            and the website performed as we expected.</p>
+        <h2>
+            Tools and Technologies
+        </h2>
+        <p>Already exists</p>
+        <p><a href="/p3/tools.html">See here</a></p>
+        <h3>Table for showing the proficiency of each member by tool
+        </h3>
+        <img src="/images/text/tooltab.png" width="600px" alt="" />
     </section>
 
     <!-- Footer -->
     <footer class="navbar-fixed-bottom">
-            <div id="footerDiv"></div>
+        <div id="footerDiv"></div>
     </footer>
 
     <script src="/assets/js/common.js"></script>
