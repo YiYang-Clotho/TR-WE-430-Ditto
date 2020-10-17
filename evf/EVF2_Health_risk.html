@@ -31,59 +31,59 @@
       <!-- STUB: done -->
       <p>
         <p><b>Activity diagram: <br></b>
-          <b><img src="/images/evf2diagram.png" width="500" height="600" alt="" />
+          <b><img src="/images/evf2diagram.png" width="500" alt="" />
         </p>
         <p><b>Mock up diagram: <br></b>
-          <b><img src="/images/EVF2.png" width="600" height="300" alt="" />
+          <b><img src="/images/evf/health-warning.gif" width="600" alt="" />
         </p>
 
-      <h2>2.Explanation</h2>
-      <h3>2.1 Description</h3>
-      <p style="color: black;">
-        This is a function that is added to recipe details as an extended feature. In the bottom left corner of the recipe description you can find nutrition info and the blue text underlined: View info. When the user clicks on it, nutritional information such as fat, calories or protein is displayed as a chat bubble to simplify the UI. When users want to close nutrition info, they just need to press "Hide info" next to the bubble to hide that information.
-      </p>
-      <h3>2.2 User story and criteria</h3>
+        <h2>2.Explanation</h2>
+        <h3>2.1 Description</h3>
+        <p style="color: black;">
+          The heath precaution button is near the comment button. This function allows users to know the recipe of
+          health risk such as allergy and so on. In order to decrease user operations. We do not design a new page for
+          warnings and simplify health risk messages. When a user's clicks the button. The system will pop up a message
+          which mentions ingredient warnings.
+        </p>
+        <h3>2.2 User story and criteria</h3>
 
-      <ul>
+        <ul>
 
-        <li>
-          <b> Health risk:</b> <br />
+          <li>
+            <b> Health risk:</b> <br />
 
-          <table data-toggle="table">
-            <thead>
-              <tr>
-                <th>User story</th>
-                <th>Acceptance criteria</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <b>As a</b> user
-                  <p><b>I want</b> to know how this recipe affects my health.</p>
-                  <p><b>so that</b> I can control my weekly menu based on it information</p>
-                </td>
-                <td>
-                  <p>
-                    <br><br>Criterion 0: <br>
-                    <b>Given</b> I am in the main page and I choose a recipe, system switches to the recipe details<br>
-                    <b><br>When</b> I click on the “View +” button next to the text “Precaution” <br>
-                    <b><br>Then</b> A chat bubble pop up AND user can read through the precaution<br>
+            <table data-toggle="table">
+              <thead>
+                <tr>
+                  <th>User story</th>
+                  <th>Acceptance criteria</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <b>As a</b> user
+                    <p><b>I want</b> to know how this recipe affects my health.</p>
+                    <p><b>so that</b> I am on the main page and I choose a recipe, system switches to the recipe details
 
-                    <br><br>Criterion 1: <br>
-                    <b>Given</b> I am in the main page and I choose a recipe, system switches to the recipe details<br>
-                    <b><br>When</b> I click on the “Hide -” button next to the text “Precaution” <br>
-                    <b><br>Then</b> The precaution disappeares<br>
+                    </p>
+                  </td>
+                  <td>
+                    <p>
+                      <br><br>Criterion 0: <br>
+                      <b>Given</b> I am on the a recipe page
+                      <br>
+                      <b><br>When</b> I click on the “Warning” button<br>
+                      <b><br>Then</b> a chat bubble pop up AND user can read through the precaution<br>
+                    </p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </li>
 
-                  </p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </li>
-
-        <br />
-        </ol>
+          <br />
+          </ol>
     </div>
   </section>
 
