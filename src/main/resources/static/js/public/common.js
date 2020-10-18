@@ -44,7 +44,14 @@ $('textarea').each(function () {
 }).on('input', function () {
     this.style.height = 'auto';
     this.style.height = (this.scrollHeight) + 'px';
+}).on('change', function () {
+    this.style.height = 'auto';
+    this.style.height = (this.scrollHeight) + 'px';
 });
+$('textarea').change(function () {
+    this.style.height = 'auto';
+    this.style.height = (this.scrollHeight) + 'px';
+})
 
 function loading(obj) {
     let html = `

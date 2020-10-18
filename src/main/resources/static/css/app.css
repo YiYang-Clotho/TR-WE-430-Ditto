@@ -18,6 +18,7 @@ input[type="file"] {
 }
 
 textarea, input {
+    font-size:25px;
     resize: none;
     outline: none;
 }

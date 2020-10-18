@@ -41,6 +41,8 @@
             <artifactId>mybatis-plus-generator</artifactId>
             <version>3.4.0</version>
         </dependency>
+
+
         <dependency>
             <groupId>org.freemarker</groupId>
             <artifactId>freemarker</artifactId>
@@ -95,7 +97,7 @@
             <artifactId>fastjson</artifactId>
             <version>1.2.73</version>
         </dependency>
-<!--java.lang.ClassNotFoundException: javax.xml.bind.DatatypeConverter-->
+        <!--java.lang.ClassNotFoundException: javax.xml.bind.DatatypeConverter-->
         <dependency>
             <groupId>javax.xml.bind</groupId>
             <artifactId>jaxb-api</artifactId>
